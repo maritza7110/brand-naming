@@ -32,24 +32,22 @@ export function PersonaSection() {
   const hasInput = Object.values(persona).some((v) => v.trim() !== '');
 
   return (
-    <section className="rounded-2xl bg-white/80 backdrop-blur-sm p-7 shadow-sm shadow-indigo-500/5 ring-1 ring-indigo-100/50">
-      <SectionHeader title="브랜드 페르소나" icon="✨" />
+    <section className="rounded-xl bg-[#161616] p-6 border border-[#1F1F1F]">
+      <SectionHeader title="브랜드 페르소나" icon="✦" />
 
       <div className="space-y-3">
         {personaFields.map(({ key, label, placeholder }) => (
           <div key={key}>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-[12px] font-semibold text-indigo-400/80 uppercase tracking-[0.05em]">
-                {label}
-              </label>
-              <MiniRecommendButton disabled={!persona[key].trim()} />
+              <label className="text-[12px] font-medium text-[#505050]">{label}</label>
+              <MiniRecommendButton onClick={recommend} loading={isLoading} disabled={!persona[key].trim()} />
             </div>
             <textarea
               value={persona[key]}
               onChange={(e) => updatePersona(key, e.target.value)}
               placeholder={placeholder}
               rows={1}
-              className="w-full px-4 py-2.5 rounded-xl border-0 bg-indigo-50/40 text-[14px] leading-relaxed placeholder:text-gray-300 resize-none transition-all duration-300 ring-1 ring-indigo-100 hover:ring-indigo-200 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:shadow-lg focus:shadow-indigo-500/10 focus:outline-none"
+              className="w-full px-4 py-2.5 rounded-lg bg-[#111] text-[14px] text-[#ccc] leading-relaxed placeholder:text-[#333] border border-[#222] resize-none transition-all duration-200 hover:border-[#333] focus:border-[#D4A853]/40 focus:bg-[#0F0F0F] focus:outline-none"
             />
           </div>
         ))}

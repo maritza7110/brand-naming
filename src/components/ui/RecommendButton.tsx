@@ -16,7 +16,7 @@ export function RecommendButton({
       type="button"
       onClick={onClick}
       disabled={disabled || loading}
-      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-[13px] font-semibold shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-30 disabled:shadow-none disabled:cursor-not-allowed disabled:translate-y-0"
+      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#D4A853] text-[#0C0C0C] text-[13px] font-bold transition-all duration-200 hover:bg-[#E0B96A] active:scale-[0.97] disabled:opacity-20 disabled:cursor-not-allowed disabled:active:scale-100"
     >
       {loading ? (
         <>

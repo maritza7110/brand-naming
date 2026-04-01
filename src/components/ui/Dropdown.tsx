@@ -27,7 +27,7 @@ export function Dropdown({
     <div>
       <label
         htmlFor={selectId}
-        className="block text-[12px] font-semibold text-indigo-400/80 uppercase tracking-[0.05em] mb-1.5"
+        className="block text-[12px] font-medium text-[#505050] mb-1.5"
       >
         {label}
       </label>
@@ -37,8 +37,8 @@ export function Dropdown({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className={`w-full px-4 py-3 rounded-xl border-0 bg-indigo-50/40 text-[14px] leading-relaxed appearance-none cursor-pointer transition-all duration-300 ring-1 ring-indigo-100 hover:ring-indigo-200 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:shadow-lg focus:shadow-indigo-500/10 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed pr-10 ${
-            value === '' ? 'text-gray-300' : 'text-gray-900'
+          className={`w-full px-4 py-3 rounded-lg bg-[#111] text-[14px] leading-relaxed appearance-none cursor-pointer border border-[#222] transition-all duration-200 hover:border-[#333] focus:border-[#D4A853]/40 focus:bg-[#0F0F0F] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed pr-10 ${
+            value === '' ? 'text-[#333]' : 'text-[#ccc]'
           }`}
         >
           <option value="" disabled>{placeholder}</option>
@@ -47,8 +47,8 @@ export function Dropdown({
           ))}
         </select>
         <ChevronDown
-          size={16}
-          className="absolute right-3.5 top-1/2 -translate-y-1/2 text-indigo-300 pointer-events-none"
+          size={14}
+          className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#444] pointer-events-none"
         />
       </div>
     </div>

@@ -29,40 +29,16 @@ export function StoreBasicSection() {
   const hasInput = Object.values(storeBasic).some((v) => v.trim() !== '');
 
   return (
-    <section className="rounded-2xl bg-white/80 backdrop-blur-sm p-7 shadow-sm shadow-indigo-500/5 ring-1 ring-indigo-100/50">
+    <section className="rounded-xl bg-[#161616] p-6 border border-[#1F1F1F]">
       <SectionHeader title="매장 기본" icon="🏪" />
 
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
-          <Dropdown
-            label="업종"
-            value={storeBasic.category}
-            onChange={(v) => updateStoreBasic('category', v)}
-            options={CATEGORY_OPTIONS}
-            placeholder="선택"
-          />
-          <Dropdown
-            label="규모"
-            value={storeBasic.scale}
-            onChange={(v) => updateStoreBasic('scale', v)}
-            options={SCALE_OPTIONS}
-            placeholder="선택"
-          />
+          <Dropdown label="업종" value={storeBasic.category} onChange={(v) => updateStoreBasic('category', v)} options={CATEGORY_OPTIONS} placeholder="선택" />
+          <Dropdown label="규모" value={storeBasic.scale} onChange={(v) => updateStoreBasic('scale', v)} options={SCALE_OPTIONS} placeholder="선택" />
         </div>
-        <TextArea
-          label="주력 상품/서비스"
-          value={storeBasic.mainProduct}
-          onChange={(v) => updateStoreBasic('mainProduct', v)}
-          placeholder="수제 드립커피, 시그니처 디저트, 브런치 메뉴"
-          rows={2}
-        />
-        <Dropdown
-          label="가격대"
-          value={storeBasic.priceRange}
-          onChange={(v) => updateStoreBasic('priceRange', v)}
-          options={PRICE_RANGE_OPTIONS}
-          placeholder="선택"
-        />
+        <TextArea label="주력 상품/서비스" value={storeBasic.mainProduct} onChange={(v) => updateStoreBasic('mainProduct', v)} placeholder="수제 드립커피, 시그니처 디저트, 브런치 메뉴" rows={2} />
+        <Dropdown label="가격대" value={storeBasic.priceRange} onChange={(v) => updateStoreBasic('priceRange', v)} options={PRICE_RANGE_OPTIONS} placeholder="선택" />
       </div>
 
       <div className="mt-6 flex justify-end">

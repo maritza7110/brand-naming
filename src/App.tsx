@@ -31,14 +31,14 @@ function App() {
         right={
           <RecommendPanel>
             {isLoading && (
-              <div className="flex items-center gap-2 text-gray-400 text-[12px] mb-3">
+              <div className="flex items-center gap-2 text-[#D4A853]/60 text-[12px] mb-3">
                 <Loader2 size={12} className="animate-spin" />
                 <span>생성 중...</span>
               </div>
             )}
 
             {error && (
-              <div className="p-3 mb-3 rounded-lg bg-red-50/80 text-red-500 text-[12px]">
+              <div className="p-3 mb-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-[12px]">
                 {error}
               </div>
             )}
@@ -46,7 +46,7 @@ function App() {
             {batches.length === 0 && !isLoading ? (
               <EmptyState />
             ) : (
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 {batches.map((batch) => (
                   <RecommendCardItem key={batch.id} batch={batch} />
                 ))}
