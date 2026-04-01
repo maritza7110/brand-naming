@@ -194,6 +194,10 @@ export async function generateBrandNames(form: FormState): Promise<RecommendBatc
   const parsed: GeminiNameResult[] = JSON.parse(jsonMatch[0]);
   const now = new Date();
 
+  // 배치 생성 시 현재 업종 스냅샷 캡처
+  const industry = form.storeBasic.industry;
+  const hasIndustry = industry.major || industry.medium || industry.minor;
+
   return {
     id: `batch-${now.getTime()}`,
     names: parsed.slice(0, 2).map((item) => ({
@@ -202,5 +206,6 @@ export async function generateBrandNames(form: FormState): Promise<RecommendBatc
     })),
     basedOn: filledFields,
     createdAt: now,
+    industry: hasIndustry ? { ...industry } : undefined,
   };
 }
