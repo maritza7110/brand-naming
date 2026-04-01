@@ -65,13 +65,13 @@
 
 ### 카드 그루핑 (GROUP)
 
-- [ ] **GROUP-01**: 추천 카드가 소분류 업종별로 그룹 헤더와 함께 묶여 표시된다
-- [ ] **GROUP-02**: 그룹을 클릭하면 접기/펼치기 애니메이션으로 전환된다
+- [x] **GROUP-01**: 추천 카드가 소분류 업종별로 그룹 헤더와 함께 묶여 표시된다
+- [x] **GROUP-02**: 그룹을 클릭하면 접기/펼치기 애니메이션으로 전환된다
 - [ ] **GROUP-03**: 업종을 변경하면 이전 업종 그룹이 자동으로 접힌다
 
 ### 네이밍 초기화 (RESET)
 
-- [ ] **RESET-01**: "네이밍 초기화" 버튼(API 설정 하단)으로 모든 입력 필드를 초기화하고, 기존 추천 카드를 하나의 접힌 컨테이너로 묶는다
+- [x] **RESET-01**: "네이밍 초기화" 버튼(API 설정 하단)으로 모든 입력 필드를 초기화하고, 기존 추천 카드를 하나의 접힌 컨테이너로 묶는다
 
 ### 모바일 반응형 (MOBILE)
 
@@ -116,10 +116,10 @@
 | INDUSTRY-01 | Phase 4 (v1.1) | Complete |
 | INDUSTRY-02 | Phase 4 (v1.1) | Complete |
 | INDUSTRY-03 | Phase 4 (v1.1) | Complete |
-| GROUP-01 | Phase 5 (v1.1) | Pending |
-| GROUP-02 | Phase 5 (v1.1) | Pending |
+| GROUP-01 | Phase 5 (v1.1) | Complete |
+| GROUP-02 | Phase 5 (v1.1) | Complete |
 | GROUP-03 | Phase 5 (v1.1) | Pending |
-| RESET-01 | Phase 5 (v1.1) | Pending |
+| RESET-01 | Phase 5 (v1.1) | Complete |
 | MOBILE-01 | Phase 6 (v1.1) | Pending |
 | MOBILE-02 | Phase 6 (v1.1) | Pending |
 | MOBILE-03 | Phase 6 (v1.1) | Pending |

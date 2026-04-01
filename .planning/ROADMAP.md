@@ -106,7 +106,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — 타입 확장 + persist v2 마이그레이션 + 그룹핑 유틸 + RecommendGroup 컴포넌트
+- [x] 05-01-PLAN.md — 타입 확장 + persist v2 마이그레이션 + 그룹핑 유틸 + RecommendGroup 컴포넌트
 - [ ] 05-02-PLAN.md — App.tsx 그룹 렌더링 통합 + 업종 변경 자동 접힘 + 네이밍 초기화 + 시각 검증
 
 **UI hint**: yes
