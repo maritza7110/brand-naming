@@ -1,11 +1,19 @@
+/** 업종 선택 상태 (대분류 > 중분류 > 소분류 + 비고) */
+export interface IndustrySelection {
+  major: string;    // 대분류 (예: "음식")
+  medium: string;   // 중분류 (예: "한식")
+  minor: string;    // 소분류 (예: "분식")
+  note: string;     // 비고 (예: "떡볶이 전문")
+}
+
 /** 섹션 1: 매장 기본/환경 (INPUT-01 ~ INPUT-06) */
 export interface StoreBasicState {
-  category: string;        // INPUT-01 업종/카테고리 (dropdown)
-  location: string;        // INPUT-02 위치/지역 (text)
-  scale: string;           // INPUT-03 매장 규모 (dropdown)
-  mainProduct: string;     // INPUT-04 주력 상품/서비스 (textarea)
-  priceRange: string;      // INPUT-05 가격대 (dropdown)
-  targetCustomer: string;  // INPUT-06 타겟 고객 (textarea)
+  industry: IndustrySelection; // 업종 (계층형 선택) -- 기존 category: string 대체
+  location: string;            // INPUT-02 위치/지역 (text)
+  scale: string;               // INPUT-03 매장 규모 (dropdown)
+  mainProduct: string;         // INPUT-04 주력 상품/서비스 (textarea)
+  priceRange: string;          // INPUT-05 가격대 (dropdown)
+  targetCustomer: string;      // INPUT-06 타겟 고객 (textarea)
 }
 
 /** 섹션 2: 브랜드 정체성 및 비전 (OWNER-01 ~ OWNER-03) */
