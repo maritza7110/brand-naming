@@ -100,6 +100,14 @@ export const useFormStore = create<AppState & FormActions>()(
     {
       name: 'brand-naming-data',
       partialize: (state) => ({ batches: state.batches }),
+      merge: (persisted, current) => {
+        const p = persisted as { batches?: RecommendBatch[] } | undefined;
+        const restoredBatches = (p?.batches ?? []).map((b) => ({
+          ...b,
+          createdAt: new Date(b.createdAt),
+        }));
+        return { ...current, batches: restoredBatches };
+      },
     },
   ),
 );
