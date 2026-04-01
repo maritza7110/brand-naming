@@ -3,7 +3,7 @@ import { Sparkles } from 'lucide-react';
 export function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center text-center py-24">
-      <div className="w-12 h-12 rounded-2xl bg-[#332F2C] border border-[#504A44] flex items-center justify-center mb-4">
+      <div className="w-12 h-12 rounded-2xl bg-[#3E3A36] border border-[#4A4640] flex items-center justify-center mb-4">
         <Sparkles size={18} className="text-[#B48C50]/50" />
       </div>
       <p className="text-[13px] font-medium text-[#A09890] mb-1">추천 대기 중</p>

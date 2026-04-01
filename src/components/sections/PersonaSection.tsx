@@ -31,7 +31,7 @@ export function PersonaSection() {
   const hasInput = Object.values(p).some((v) => v.trim() !== '');
 
   return (
-    <section className="rounded-2xl bg-[#332F2C] p-7 border border-[#504A44]">
+    <section className="rounded-2xl bg-[#3E3A36] p-7 border border-[#4A4640]">
       <SectionHeader title="브랜드 페르소나" />
       <div className="space-y-3">
         {F.map(({ key, label, ph }) => (
@@ -41,7 +41,7 @@ export function PersonaSection() {
               <MiniRecommendButton onClick={recommend} loading={isLoading} disabled={!p[key].trim()} />
             </div>
             <textarea value={p[key]} onChange={(e) => u(key, e.target.value)} placeholder={ph} rows={1}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#332F2C] text-[14px] text-[#F0EBE3] leading-relaxed placeholder:text-[#7A7570] border border-[#504A44] resize-none transition-all duration-200 hover:border-[#5A5650] focus:border-[#B48C50]/60 focus:bg-[#4A4440] focus:outline-none" />
+              className="w-full px-4 py-2.5 rounded-xl bg-[#4A4640] text-[14px] text-[#F0EBE3] leading-relaxed placeholder:text-[#7A7570] border border-[#4A4640] resize-none transition-all duration-200 hover:border-[#504A44] focus:border-[#B48C50]/60 focus:bg-[#504A44] focus:outline-none" />
           </div>
         ))}
       </div>

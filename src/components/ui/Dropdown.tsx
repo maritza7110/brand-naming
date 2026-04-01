@@ -20,7 +20,7 @@ export function Dropdown({ label, value, onChange, options, placeholder = 'ì„ íƒ
       <label htmlFor={selectId} className="block text-[12px] font-medium text-[#A09890] mb-1.5">{label}</label>
       <div className="relative">
         <select id={selectId} value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled}
-          className={`w-full px-4 py-3 rounded-xl bg-[#332F2C] text-[14px] leading-relaxed appearance-none cursor-pointer border border-[#504A44] transition-all duration-200 hover:border-[#5A5650] focus:border-[#B48C50]/60 focus:bg-[#4A4440] focus:outline-none disabled:opacity-40 pr-10 ${
+          className={`w-full px-4 py-3 rounded-xl bg-[#4A4640] text-[14px] leading-relaxed appearance-none cursor-pointer border border-[#4A4640] transition-all duration-200 hover:border-[#504A44] focus:border-[#B48C50]/60 focus:bg-[#504A44] focus:outline-none disabled:opacity-40 pr-10 ${
             value === '' ? 'text-[#7A7570]' : 'text-[#F0EBE3]'
           }`}>
           <option value="" disabled>{placeholder}</option>
