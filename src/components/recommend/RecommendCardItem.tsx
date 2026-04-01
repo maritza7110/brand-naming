@@ -11,39 +11,33 @@ export function RecommendCardItem({ batch }: Props) {
   });
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4 space-y-2">
-      {/* 브랜드명 + 사유 */}
+    <div className="rounded-lg bg-white border border-gray-200/60 p-4 shadow-sm">
       {batch.names.map((n, i) => (
-        <div key={i} className="flex items-baseline gap-2">
-          <span className="text-[17px] font-bold text-gray-900 whitespace-nowrap">
+        <div key={i} className={i > 0 ? 'mt-2.5 pt-2.5 border-t border-gray-100' : ''}>
+          <span className="text-[15px] font-bold text-gray-900">
             {n.brandName}
           </span>
-          <span className="text-[13px] text-gray-500 leading-snug">
-            — {n.reasoning}
-          </span>
+          <p className="mt-0.5 text-[12px] text-gray-400 leading-relaxed">
+            {n.reasoning}
+          </p>
         </div>
       ))}
 
-      {/* 작명근거 태그 + 시간 */}
-      <div className="flex items-center justify-between pt-1">
-        <div className="flex flex-wrap gap-1">
-          {batch.basedOn.slice(0, 5).map((tag) => (
-            <span
-              key={tag}
-              className="px-1.5 py-0.5 rounded bg-gray-100 text-[11px] text-gray-500"
-            >
-              {tag}
-            </span>
-          ))}
-          {batch.basedOn.length > 5 && (
-            <span className="px-1.5 py-0.5 rounded bg-gray-100 text-[11px] text-gray-500">
-              +{batch.basedOn.length - 5}
-            </span>
-          )}
-        </div>
-        <span className="text-[11px] text-gray-400 whitespace-nowrap ml-2">
-          {time}
-        </span>
+      <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+        {batch.basedOn.slice(0, 4).map((tag) => (
+          <span
+            key={tag}
+            className="px-1.5 py-0.5 rounded bg-gray-100/80 text-[10px] text-gray-400"
+          >
+            {tag}
+          </span>
+        ))}
+        {batch.basedOn.length > 4 && (
+          <span className="text-[10px] text-gray-300">
+            +{batch.basedOn.length - 4}
+          </span>
+        )}
+        <span className="ml-auto text-[10px] text-gray-300">{time}</span>
       </div>
     </div>
   );

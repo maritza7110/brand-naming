@@ -1,14 +1,11 @@
-import { Sparkles } from 'lucide-react';
-
 export function EmptyState() {
   return (
-    <div className="flex flex-col items-center justify-center text-center min-h-[400px]">
-      <Sparkles size={48} className="text-blue-300" />
-      <h3 className="mt-6 text-lg font-semibold text-gray-900">
-        브랜드명 추천 대기 중
-      </h3>
-      <p className="mt-2 text-sm text-gray-500 max-w-[240px]">
-        왼쪽 항목을 입력하고 "추천 받기" 버튼을 누르면 AI가 브랜드명을 추천합니다
+    <div className="flex flex-col items-center justify-center text-center py-20">
+      <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+        <span className="text-[18px]">✦</span>
+      </div>
+      <p className="text-[13px] text-gray-400 leading-relaxed max-w-[200px]">
+        왼쪽 항목을 입력하고<br />추천 받기를 눌러보세요
       </p>
     </div>
   );

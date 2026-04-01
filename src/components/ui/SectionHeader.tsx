@@ -5,14 +5,13 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ title, description }: SectionHeaderProps) {
   return (
-    <div>
-      <h2 className="text-[22px] font-semibold tracking-[-0.01em] text-gray-900">
+    <div className="mb-5">
+      <h2 className="text-[15px] font-semibold uppercase tracking-[0.08em] text-gray-400">
         {title}
       </h2>
       {description && (
-        <p className="text-sm text-gray-500 mt-1">{description}</p>
+        <p className="text-[13px] text-gray-400 mt-1">{description}</p>
       )}
-      <div className="mt-4 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
     </div>
   );
 }

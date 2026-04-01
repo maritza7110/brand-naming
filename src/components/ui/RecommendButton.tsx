@@ -16,16 +16,16 @@ export function RecommendButton({
       type="button"
       onClick={onClick}
       disabled={disabled || loading}
-      className="w-full py-3 px-6 rounded-lg bg-blue-600 text-white font-medium text-[15px] shadow-sm transition-all duration-200 hover:bg-blue-700 hover:shadow active:bg-blue-800 active:shadow-inner disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gray-900 text-white text-[13px] font-medium transition-all duration-200 hover:bg-gray-800 active:scale-[0.97] disabled:opacity-30 disabled:cursor-not-allowed disabled:active:scale-100"
     >
       {loading ? (
         <>
-          <Loader2 size={18} className="animate-spin" />
+          <Loader2 size={14} className="animate-spin" />
           <span>추천 중...</span>
         </>
       ) : (
         <>
-          <Sparkles size={18} />
+          <Sparkles size={14} />
           <span>추천 받기</span>
         </>
       )}

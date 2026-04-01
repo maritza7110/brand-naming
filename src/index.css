@@ -7,12 +7,13 @@
   --color-primary-hover: #1D4ED8;
   --color-primary-light: #EFF6FF;
   --color-primary-muted: #93C5FD;
-  --color-background: #FAFBFC;
+  --color-background: #F8F9FB;
   --color-surface: #FFFFFF;
-  --color-border: #E5E7EB;
-  --color-text-primary: #111827;
-  --color-text-secondary: #6B7280;
-  --color-text-muted: #9CA3AF;
+  --color-border: #E8EAF0;
+  --color-border-light: #F0F1F5;
+  --color-text-primary: #1A1D26;
+  --color-text-secondary: #5F6577;
+  --color-text-muted: #9BA1B2;
   --color-destructive: #EF4444;
 }
 
@@ -20,4 +21,12 @@ html {
   font-family: var(--font-sans);
   background-color: var(--color-background);
   color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* 스크롤바 세련화 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D1D5DE; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #B0B5C3; }
