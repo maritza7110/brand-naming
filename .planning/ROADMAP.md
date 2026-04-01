@@ -26,7 +26,13 @@
   3. 사용자가 사장님 정보 3개 항목(비전, 목표, 스토리)과 페르소나 4개 항목(철학, 슬로건, 미션, 기타)을 입력할 수 있다
   4. 왼쪽 패널이 한 화면 세로 스크롤로 동작하며, Pretendard 폰트 기반 심플하고 고급스러운 디자인이다
   5. 오른쪽 패널이 추천 카드 누적 영역으로 비어있는 상태로 대기한다
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — 프로젝트 스캐폴딩 + 타입/스토어 + 5개 공용 UI 컴포넌트
+- [ ] 01-02-PLAN.md — 레이아웃 셸 + 4개 입력 섹션 + App.tsx 통합
+- [ ] 01-03-PLAN.md — 전체 UI 시각 검증 (사용자 체크포인트)
+
 **UI hint**: yes
 
 ### Phase 2: AI Recommendation Engine
@@ -61,6 +67,6 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|---------------|--------|-----------|
-| 1. Foundation & Input UI | 0/? | Not started | - |
+| 1. Foundation & Input UI | 0/3 | Planned | - |
 | 2. AI Recommendation Engine | 0/? | Not started | - |
 | 3. RAG Knowledge Base | 0/? | Not started | - |
