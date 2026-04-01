@@ -107,7 +107,7 @@ Plans:
 
 Plans:
 - [x] 05-01-PLAN.md — 타입 확장 + persist v2 마이그레이션 + 그룹핑 유틸 + RecommendGroup 컴포넌트
-- [ ] 05-02-PLAN.md — App.tsx 그룹 렌더링 통합 + 업종 변경 자동 접힘 + 네이밍 초기화 + 시각 검증
+- [x] 05-02-PLAN.md — App.tsx 그룹 렌더링 통합 + 업종 변경 자동 접힘 + 네이밍 초기화 + 시각 검증
 
 **UI hint**: yes
 
@@ -133,5 +133,5 @@ Phases execute in numeric order: 4 -> 5 -> 6
 | 2. AI Recommendation Engine | v1.0 | -/- | Complete | 2026-04-01 |
 | 3. RAG Knowledge Base | v1.0 | -/- | Complete | 2026-04-01 |
 | 4. 산업분류 계층형 드롭다운 | v1.1 | 2/2 | Complete |  |
-| 5. 추천 카드 그루핑 | v1.1 | 0/2 | Not started | - |
+| 5. 추천 카드 그루핑 | v1.1 | 2/2 | Complete   | 2026-04-01 |
 | 6. 모바일 반응형 | v1.1 | 0/? | Not started | - |

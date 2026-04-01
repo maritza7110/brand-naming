@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: UX 개선
 status: executing
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-04-01T22:58:03.398Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-04-01T23:25:28.798Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 3
-  completed_phases: 1
-  total_plans: 2
-  completed_plans: 3
+  completed_phases: 2
+  total_plans: 4
+  completed_plans: 4
   percent: 60
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 ## Current Position
 
 Phase: 5 of 6 (추천 카드 그루핑)
-Plan: 1 of 2 complete
-Status: Executing
-Last activity: 2026-04-02
+Plan: 2 of 2 complete
+Status: Ready to execute
+Last activity: 2026-04-01
 
 Progress: [██████░░░░] 60%
 
@@ -54,6 +54,7 @@ Progress: [██████░░░░] 60%
 *Updated after each plan completion*
 | Phase 04 P02 | 2min | 3 tasks | 3 files |
 | Phase 05 P01 | 4min | 2 tasks | 5 files |
+| Phase 05 P02 | 2min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,8 @@ Recent decisions affecting current work:
 - [Phase 05]: getGroupKey는 소분류 > 중분류 > 대분류 > 미분류 우선순위로 그룹 키 결정
 - [Phase 05]: 업종 미선택 시 industry=undefined 저장 -> 미분류 그룹
 - [Phase 05]: resetNaming 별도 액션으로 resetTimestamp 기록하여 아카이브 분리 지원
+- [Phase 05]: collapsedGroups를 Zustand 대신 React state(Set)로 관리 -- 세션 UI 상태이므로 persist 불필요
+- [Phase 05]: 업종 변경 감지를 useRef + useEffect 패턴으로 구현 -- collapsedGroups(React state)와 자연스러운 통합
 
 ### Pending Todos
 
@@ -90,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T23:19:10Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-04-01T23:25:28.795Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None

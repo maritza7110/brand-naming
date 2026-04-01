@@ -67,7 +67,7 @@
 
 - [x] **GROUP-01**: 추천 카드가 소분류 업종별로 그룹 헤더와 함께 묶여 표시된다
 - [x] **GROUP-02**: 그룹을 클릭하면 접기/펼치기 애니메이션으로 전환된다
-- [ ] **GROUP-03**: 업종을 변경하면 이전 업종 그룹이 자동으로 접힌다
+- [x] **GROUP-03**: 업종을 변경하면 이전 업종 그룹이 자동으로 접힌다
 
 ### 네이밍 초기화 (RESET)
 
@@ -118,7 +118,7 @@
 | INDUSTRY-03 | Phase 4 (v1.1) | Complete |
 | GROUP-01 | Phase 5 (v1.1) | Complete |
 | GROUP-02 | Phase 5 (v1.1) | Complete |
-| GROUP-03 | Phase 5 (v1.1) | Pending |
+| GROUP-03 | Phase 5 (v1.1) | Complete |
 | RESET-01 | Phase 5 (v1.1) | Complete |
 | MOBILE-01 | Phase 6 (v1.1) | Pending |
 | MOBILE-02 | Phase 6 (v1.1) | Pending |
