@@ -7,11 +7,12 @@ import type {
   ProductState,
   PersonaState,
   RecommendBatch,
+  IndustrySelection,
 } from '../types/form';
 
 // 초기값 (모든 필드 빈 문자열)
 const initialStoreBasic: StoreBasicState = {
-  category: '',
+  industry: { major: '', medium: '', minor: '', note: '' },
   location: '',
   scale: '',
   mainProduct: '',
@@ -50,7 +51,8 @@ const initialPersona: PersonaState = {
 };
 
 interface FormActions {
-  updateStoreBasic: (field: keyof StoreBasicState, value: string) => void;
+  updateStoreBasic: (field: Exclude<keyof StoreBasicState, 'industry'>, value: string) => void;
+  updateIndustry: (selection: IndustrySelection) => void;
   updateBrandVision: (field: keyof BrandVisionState, value: string) => void;
   updateProduct: (field: keyof ProductState, value: string) => void;
   updatePersona: (field: keyof PersonaState, value: string) => void;
@@ -73,6 +75,11 @@ export const useFormStore = create<AppState & FormActions>()(
 
       updateStoreBasic: (field, value) =>
         set((state) => ({ storeBasic: { ...state.storeBasic, [field]: value } })),
+
+      updateIndustry: (selection) =>
+        set((state) => ({
+          storeBasic: { ...state.storeBasic, industry: selection },
+        })),
 
       updateBrandVision: (field, value) =>
         set((state) => ({ brandVision: { ...state.brandVision, [field]: value } })),
@@ -99,7 +106,14 @@ export const useFormStore = create<AppState & FormActions>()(
     }),
     {
       name: 'brand-naming-data',
+      version: 1,
       partialize: (state) => ({ batches: state.batches }),
+      migrate: (persisted: unknown, _version: number) => {
+        // v0: batches만 persist됨, category는 persist 안 됨
+        // batches.basedOn은 string[] 라벨이므로 호환성 유지 (D-12)
+        // 변환 없이 그대로 통과
+        return persisted;
+      },
       merge: (persisted, current) => {
         const p = persisted as { batches?: RecommendBatch[] } | undefined;
         const restoredBatches = (p?.batches ?? []).map((b) => ({
