@@ -5,7 +5,7 @@
 
 ## v1 Requirements
 
-### 입력 — 기본정보 (INPUT)
+### 입력 -- 기본정보 (INPUT)
 
 - [ ] **INPUT-01**: 업종/카테고리 입력
 - [ ] **INPUT-02**: 위치/지역 입력
@@ -14,13 +14,13 @@
 - [ ] **INPUT-05**: 가격대 입력
 - [ ] **INPUT-06**: 타겟 고객 입력
 
-### 입력 — 사장님 정보 (OWNER)
+### 입력 -- 사장님 정보 (OWNER)
 
 - [ ] **OWNER-01**: 사장님 비전/꿈 입력
 - [ ] **OWNER-02**: 5/10년 목표 입력
 - [ ] **OWNER-03**: 개인 스토리/동기 입력
 
-### 입력 — 브랜드 페르소나 (PERSONA)
+### 입력 -- 브랜드 페르소나 (PERSONA)
 
 - [ ] **PERSONA-01**: 브랜드 철학 입력
 - [ ] **PERSONA-02**: 슬로건 입력
@@ -38,8 +38,8 @@
 ### 레이아웃 (LAYOUT)
 
 - [ ] **LAYOUT-01**: 왼쪽 70% 입력 패널 / 오른쪽 30% 추천 패널
-- [ ] **LAYOUT-02**: 왼쪽 패널 — 한 화면 세로 스크롤
-- [ ] **LAYOUT-03**: 오른쪽 패널 — 추천 카드 누적 (최신이 상단)
+- [ ] **LAYOUT-02**: 왼쪽 패널 -- 한 화면 세로 스크롤
+- [ ] **LAYOUT-03**: 오른쪽 패널 -- 추천 카드 누적 (최신이 상단)
 - [ ] **LAYOUT-04**: 심플하고 고급스러운 디자인 (Pretendard 폰트)
 
 ### RAG 지식 기반 (RAG)
@@ -69,7 +69,7 @@
 
 | Feature | Reason |
 |---------|--------|
-| 브랜드명 → 페르소나 역방향 | 기존 앱이 담당 |
+| 브랜드명 -> 페르소나 역방향 | 기존 앱이 담당 |
 | 사용자 인증/로그인 | 사내 앱, v1에서는 직접 접근 |
 | 모바일 앱 | 웹앱 우선 |
 | 다국어 브랜드명 | 한국어 전용 |
@@ -81,13 +81,41 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (로드맵 생성 후 업데이트) | | |
+| INPUT-01 | Phase 1 | Pending |
+| INPUT-02 | Phase 1 | Pending |
+| INPUT-03 | Phase 1 | Pending |
+| INPUT-04 | Phase 1 | Pending |
+| INPUT-05 | Phase 1 | Pending |
+| INPUT-06 | Phase 1 | Pending |
+| OWNER-01 | Phase 1 | Pending |
+| OWNER-02 | Phase 1 | Pending |
+| OWNER-03 | Phase 1 | Pending |
+| PERSONA-01 | Phase 1 | Pending |
+| PERSONA-02 | Phase 1 | Pending |
+| PERSONA-03 | Phase 1 | Pending |
+| PERSONA-04 | Phase 1 | Pending |
+| LAYOUT-01 | Phase 1 | Pending |
+| LAYOUT-02 | Phase 1 | Pending |
+| LAYOUT-03 | Phase 1 | Pending |
+| LAYOUT-04 | Phase 1 | Pending |
+| REC-01 | Phase 2 | Pending |
+| REC-02 | Phase 2 | Pending |
+| REC-03 | Phase 2 | Pending |
+| REC-04 | Phase 2 | Pending |
+| REC-05 | Phase 2 | Pending |
+| AI-01 | Phase 2 | Pending |
+| AI-02 | Phase 2 | Pending |
+| AI-03 | Phase 2 | Pending |
+| RAG-01 | Phase 3 | Pending |
+| RAG-02 | Phase 3 | Pending |
+| RAG-03 | Phase 3 | Pending |
+| RAG-04 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 22 total
-- Mapped to phases: 0
-- Unmapped: 22 ⚠️
+- v1 requirements: 29 total
+- Mapped to phases: 29
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-01*
-*Last updated: 2026-04-01 after initial definition*
+*Last updated: 2026-04-01 after roadmap creation*
