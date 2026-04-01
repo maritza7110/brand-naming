@@ -7,25 +7,25 @@
 
 ### 입력 -- 기본정보 (INPUT)
 
-- [ ] **INPUT-01**: 업종/카테고리 입력
-- [ ] **INPUT-02**: 위치/지역 입력
-- [ ] **INPUT-03**: 매장 규모 입력
-- [ ] **INPUT-04**: 주력 상품/서비스 입력
-- [ ] **INPUT-05**: 가격대 입력
-- [ ] **INPUT-06**: 타겟 고객 입력
+- [x] **INPUT-01**: 업종/카테고리 입력
+- [x] **INPUT-02**: 위치/지역 입력
+- [x] **INPUT-03**: 매장 규모 입력
+- [x] **INPUT-04**: 주력 상품/서비스 입력
+- [x] **INPUT-05**: 가격대 입력
+- [x] **INPUT-06**: 타겟 고객 입력
 
 ### 입력 -- 사장님 정보 (OWNER)
 
-- [ ] **OWNER-01**: 사장님 비전/꿈 입력
-- [ ] **OWNER-02**: 5/10년 목표 입력
-- [ ] **OWNER-03**: 개인 스토리/동기 입력
+- [x] **OWNER-01**: 사장님 비전/꿈 입력
+- [x] **OWNER-02**: 5/10년 목표 입력
+- [x] **OWNER-03**: 개인 스토리/동기 입력
 
 ### 입력 -- 브랜드 페르소나 (PERSONA)
 
-- [ ] **PERSONA-01**: 브랜드 철학 입력
-- [ ] **PERSONA-02**: 슬로건 입력
-- [ ] **PERSONA-03**: 미션 입력
-- [ ] **PERSONA-04**: 기존 앱의 나머지 페르소나 항목 (브랜드명 제외)
+- [x] **PERSONA-01**: 브랜드 철학 입력
+- [x] **PERSONA-02**: 슬로건 입력
+- [x] **PERSONA-03**: 미션 입력
+- [x] **PERSONA-04**: 기존 앱의 나머지 페르소나 항목 (브랜드명 제외)
 
 ### 추천 시스템 (REC)
 
@@ -37,9 +37,9 @@
 
 ### 레이아웃 (LAYOUT)
 
-- [ ] **LAYOUT-01**: 왼쪽 70% 입력 패널 / 오른쪽 30% 추천 패널
-- [ ] **LAYOUT-02**: 왼쪽 패널 -- 한 화면 세로 스크롤
-- [ ] **LAYOUT-03**: 오른쪽 패널 -- 추천 카드 누적 (최신이 상단)
+- [x] **LAYOUT-01**: 왼쪽 70% 입력 패널 / 오른쪽 30% 추천 패널
+- [x] **LAYOUT-02**: 왼쪽 패널 -- 한 화면 세로 스크롤
+- [x] **LAYOUT-03**: 오른쪽 패널 -- 추천 카드 누적 (최신이 상단)
 - [x] **LAYOUT-04**: 심플하고 고급스러운 디자인 (Pretendard 폰트)
 
 ### RAG 지식 기반 (RAG)
@@ -81,22 +81,22 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INPUT-01 | Phase 1 | Pending |
-| INPUT-02 | Phase 1 | Pending |
-| INPUT-03 | Phase 1 | Pending |
-| INPUT-04 | Phase 1 | Pending |
-| INPUT-05 | Phase 1 | Pending |
-| INPUT-06 | Phase 1 | Pending |
-| OWNER-01 | Phase 1 | Pending |
-| OWNER-02 | Phase 1 | Pending |
-| OWNER-03 | Phase 1 | Pending |
-| PERSONA-01 | Phase 1 | Pending |
-| PERSONA-02 | Phase 1 | Pending |
-| PERSONA-03 | Phase 1 | Pending |
-| PERSONA-04 | Phase 1 | Pending |
-| LAYOUT-01 | Phase 1 | Pending |
-| LAYOUT-02 | Phase 1 | Pending |
-| LAYOUT-03 | Phase 1 | Pending |
+| INPUT-01 | Phase 1 | Complete |
+| INPUT-02 | Phase 1 | Complete |
+| INPUT-03 | Phase 1 | Complete |
+| INPUT-04 | Phase 1 | Complete |
+| INPUT-05 | Phase 1 | Complete |
+| INPUT-06 | Phase 1 | Complete |
+| OWNER-01 | Phase 1 | Complete |
+| OWNER-02 | Phase 1 | Complete |
+| OWNER-03 | Phase 1 | Complete |
+| PERSONA-01 | Phase 1 | Complete |
+| PERSONA-02 | Phase 1 | Complete |
+| PERSONA-03 | Phase 1 | Complete |
+| PERSONA-04 | Phase 1 | Complete |
+| LAYOUT-01 | Phase 1 | Complete |
+| LAYOUT-02 | Phase 1 | Complete |
+| LAYOUT-03 | Phase 1 | Complete |
 | LAYOUT-04 | Phase 1 | Complete |
 | REC-01 | Phase 2 | Pending |
 | REC-02 | Phase 2 | Pending |
