@@ -26,7 +26,7 @@ export function TextArea({
     <div>
       <label
         htmlFor={textareaId}
-        className="block text-[13px] font-medium text-gray-500 mb-1.5"
+        className="block text-[12px] font-semibold text-indigo-400/80 uppercase tracking-[0.05em] mb-1.5"
       >
         {label}
       </label>
@@ -37,7 +37,7 @@ export function TextArea({
         placeholder={placeholder}
         rows={rows}
         disabled={disabled}
-        className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200/80 bg-gray-50/50 text-[14px] leading-relaxed placeholder:text-gray-300 resize-none transition-all duration-200 hover:border-gray-300 focus:bg-white focus:border-blue-400 focus:ring-2 focus:ring-blue-500/10 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-4 py-3 rounded-xl border-0 bg-indigo-50/40 text-[14px] leading-relaxed placeholder:text-gray-300 resize-none transition-all duration-300 ring-1 ring-indigo-100 hover:ring-indigo-200 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:shadow-lg focus:shadow-indigo-500/10 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
       />
     </div>
   );

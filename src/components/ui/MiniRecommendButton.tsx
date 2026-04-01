@@ -16,12 +16,12 @@ export function MiniRecommendButton({
       type="button"
       onClick={onClick}
       disabled={disabled || loading}
-      className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium text-gray-400 transition-all duration-150 hover:text-blue-600 hover:bg-blue-50 disabled:opacity-0 disabled:cursor-default"
+      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold text-indigo-400 transition-all duration-200 hover:bg-indigo-50 hover:text-indigo-600 active:scale-95 disabled:opacity-0 disabled:cursor-default"
     >
       {loading ? (
-        <Loader2 size={10} className="animate-spin" />
+        <Loader2 size={11} className="animate-spin" />
       ) : (
-        <Sparkles size={10} />
+        <Sparkles size={11} />
       )}
       <span>추천</span>
     </button>

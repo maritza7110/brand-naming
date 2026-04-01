@@ -16,8 +16,8 @@ const personaFields: { key: keyof PersonaState; label: string; placeholder: stri
   { key: 'customerCultureCreation', label: '고객문화창조', placeholder: '동네 사랑방 같은 커피 문화' },
   { key: 'competitiveAdvantage', label: '비교우위', placeholder: '핸드드립 전문, 아늑한 인테리어' },
   { key: 'qualityLevel', label: '품질수준', placeholder: '스페셜티 등급 원두' },
-  { key: 'priceLevel', label: '가격수준', placeholder: '아메리카노 3,500원 — 합리적 프리미엄' },
-  { key: 'functionalBenefit', label: '기능적혜택', placeholder: '출근길 빠른 픽업, 안정적 맛' },
+  { key: 'priceLevel', label: '가격수준', placeholder: '아메리카노 3,500원' },
+  { key: 'functionalBenefit', label: '기능적혜택', placeholder: '출근길 빠른 픽업' },
   { key: 'experientialBenefit', label: '경험적혜택', placeholder: '아늑한 공간, 바리스타와의 대화' },
   { key: 'symbolicBenefit', label: '상징적혜택', placeholder: '감각적 라이프스타일' },
   { key: 'brandKeyword', label: '키워드', placeholder: '정직, 따뜻함, 장인정신' },
@@ -32,14 +32,14 @@ export function PersonaSection() {
   const hasInput = Object.values(persona).some((v) => v.trim() !== '');
 
   return (
-    <section className="rounded-xl border border-gray-200/60 bg-white p-6 shadow-sm">
-      <SectionHeader title="브랜드 페르소나" />
+    <section className="rounded-2xl bg-white/80 backdrop-blur-sm p-7 shadow-sm shadow-indigo-500/5 ring-1 ring-indigo-100/50">
+      <SectionHeader title="브랜드 페르소나" icon="✨" />
 
       <div className="space-y-3">
         {personaFields.map(({ key, label, placeholder }) => (
-          <div key={key} className="group">
+          <div key={key}>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-[13px] font-medium text-gray-500">
+              <label className="text-[12px] font-semibold text-indigo-400/80 uppercase tracking-[0.05em]">
                 {label}
               </label>
               <MiniRecommendButton disabled={!persona[key].trim()} />
@@ -49,13 +49,13 @@ export function PersonaSection() {
               onChange={(e) => updatePersona(key, e.target.value)}
               placeholder={placeholder}
               rows={1}
-              className="w-full px-3.5 py-2 rounded-lg border border-gray-200/80 bg-gray-50/50 text-[14px] leading-relaxed placeholder:text-gray-300 resize-none transition-all duration-200 hover:border-gray-300 focus:bg-white focus:border-blue-400 focus:ring-2 focus:ring-blue-500/10 focus:outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border-0 bg-indigo-50/40 text-[14px] leading-relaxed placeholder:text-gray-300 resize-none transition-all duration-300 ring-1 ring-indigo-100 hover:ring-indigo-200 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:shadow-lg focus:shadow-indigo-500/10 focus:outline-none"
             />
           </div>
         ))}
       </div>
 
-      <div className="mt-5 flex justify-end">
+      <div className="mt-6 flex justify-end">
         <RecommendButton onClick={recommend} loading={isLoading} disabled={!hasInput} />
       </div>
     </section>

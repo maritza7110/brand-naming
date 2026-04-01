@@ -11,31 +11,34 @@ export function RecommendCardItem({ batch }: Props) {
   });
 
   return (
-    <div className="rounded-lg bg-white border border-gray-200/60 p-4 shadow-sm">
+    <div className="rounded-xl bg-white p-4 shadow-sm shadow-indigo-500/5 ring-1 ring-indigo-100/40">
       {batch.names.map((n, i) => (
-        <div key={i} className={i > 0 ? 'mt-2.5 pt-2.5 border-t border-gray-100' : ''}>
-          <span className="text-[15px] font-bold text-gray-900">
-            {n.brandName}
-          </span>
-          <p className="mt-0.5 text-[12px] text-gray-400 leading-relaxed">
+        <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-indigo-50' : ''}>
+          <div className="flex items-center gap-2">
+            <span className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-[10px] font-bold text-white">
+              {i + 1}
+            </span>
+            <span className="text-[15px] font-bold text-gray-900">
+              {n.brandName}
+            </span>
+          </div>
+          <p className="mt-1 ml-7 text-[12px] text-gray-500 leading-relaxed">
             {n.reasoning}
           </p>
         </div>
       ))}
 
-      <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+      <div className="mt-3 pt-2 border-t border-indigo-50/60 flex items-center gap-1.5 flex-wrap">
         {batch.basedOn.slice(0, 4).map((tag) => (
           <span
             key={tag}
-            className="px-1.5 py-0.5 rounded bg-gray-100/80 text-[10px] text-gray-400"
+            className="px-2 py-0.5 rounded-full bg-indigo-50 text-[10px] font-medium text-indigo-400"
           >
             {tag}
           </span>
         ))}
         {batch.basedOn.length > 4 && (
-          <span className="text-[10px] text-gray-300">
-            +{batch.basedOn.length - 4}
-          </span>
+          <span className="text-[10px] text-indigo-300">+{batch.basedOn.length - 4}</span>
         )}
         <span className="ml-auto text-[10px] text-gray-300">{time}</span>
       </div>

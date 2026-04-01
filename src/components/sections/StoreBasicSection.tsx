@@ -29,8 +29,8 @@ export function StoreBasicSection() {
   const hasInput = Object.values(storeBasic).some((v) => v.trim() !== '');
 
   return (
-    <section className="rounded-xl border border-gray-200/60 bg-white p-6 shadow-sm">
-      <SectionHeader title="매장 기본" />
+    <section className="rounded-2xl bg-white/80 backdrop-blur-sm p-7 shadow-sm shadow-indigo-500/5 ring-1 ring-indigo-100/50">
+      <SectionHeader title="매장 기본" icon="🏪" />
 
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
@@ -65,7 +65,7 @@ export function StoreBasicSection() {
         />
       </div>
 
-      <div className="mt-5 flex justify-end">
+      <div className="mt-6 flex justify-end">
         <RecommendButton onClick={recommend} loading={isLoading} disabled={!hasInput} />
       </div>
     </section>

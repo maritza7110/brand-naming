@@ -5,7 +5,7 @@ interface AppLayoutProps {
 
 export function AppLayout({ left, right }: AppLayoutProps) {
   return (
-    <div className="grid grid-cols-[7fr_3fr] h-screen min-w-[1024px]">
+    <div className="grid grid-cols-[7fr_3fr] min-h-screen min-w-[1024px]">
       {left}
       {right}
     </div>
