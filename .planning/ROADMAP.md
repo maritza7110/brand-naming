@@ -86,7 +86,12 @@ Plans:
   2. 대분류를 변경하면 중분류와 소분류 선택값이 자동으로 초기화된다
   3. 기존 v1.0 사용자가 앱을 열면 기존 localStorage 데이터가 자동 마이그레이션되어 정상 작동한다
   4. 선택된 업종 정보(대/중/소분류 경로)가 AI 추천 프롬프트에 반영된다
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — 타입 정의 + 산업분류 데이터 + 스토어 액션/마이그레이션
+- [ ] 04-02-PLAN.md — 계층형 드롭다운 UI + AI 프롬프트 통합 + 시각 검증
+
 **UI hint**: yes
 
 ### Phase 5: 추천 카드 그루핑
@@ -121,6 +126,6 @@ Phases execute in numeric order: 4 -> 5 -> 6
 | 1. Foundation & Input UI | v1.0 | 3/3 | Complete | 2026-04-01 |
 | 2. AI Recommendation Engine | v1.0 | -/- | Complete | 2026-04-01 |
 | 3. RAG Knowledge Base | v1.0 | -/- | Complete | 2026-04-01 |
-| 4. 산업분류 계층형 드롭다운 | v1.1 | 0/? | Not started | - |
+| 4. 산업분류 계층형 드롭다운 | v1.1 | 0/2 | Planning complete | - |
 | 5. 추천 카드 그루핑 | v1.1 | 0/? | Not started | - |
 | 6. 모바일 반응형 | v1.1 | 0/? | Not started | - |
