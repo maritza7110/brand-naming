@@ -36,14 +36,14 @@ Declared values (all multiples of 4):
 | xs | 4px | 아이콘-텍스트 간격, 인라인 패딩 |
 | sm | 8px | 라벨-입력 간격 (D-12 여백 중심) |
 | md | 16px | 기본 요소 간격 |
-| lg | 20px | 필드 간 간격 (space-y-5) |
-| xl | 24px | 섹션 헤더 -> 첫 필드 (mb-6) |
-| 2xl | 32px | 패널 내부 패딩 (p-8) |
-| 3xl | 48px | 섹션 간 간격 (py-12) |
+| lg | 24px | 필드 간 간격 (space-y-6), 섹션 헤더 -> 첫 필드 (mb-6) |
+| xl | 32px | 패널 내부 패딩 (p-8) |
+| 2xl | 48px | 섹션 간 간격 (py-12) |
+| 3xl | 64px | 페이지 레벨 간격 |
 
 Exceptions: none
 
-> Source: RESEARCH.md 섹션 4 "스페이싱 시스템". 모든 값 4의 배수.
+> Source: RESEARCH.md 섹션 4 "스페이싱 시스템". 모든 값 4의 배수, 표준 세트 {4, 8, 16, 24, 32, 48, 64} 준수.
 
 ---
 
@@ -51,15 +51,15 @@ Exceptions: none
 
 | Role | Size | Weight | Line Height | Letter Spacing | Usage |
 |------|------|--------|-------------|----------------|-------|
-| Display | 28px | 700 (Bold) | 1.2 | -0.02em | 페이지 제목 ("브랜드 네이밍") |
+| Display | 28px | 600 (SemiBold) | 1.2 | -0.02em | 페이지 제목 ("브랜드 네이밍") |
 | Heading | 22px | 600 (SemiBold) | 1.3 | -0.01em | 섹션 헤더 (매장 기본/환경, 브랜드 정체성 등) |
 | Body | 15px | 400 (Regular) | 1.6 | 0 | 본문 텍스트, textarea 입력 |
-| Label | 14px | 500 (Medium) | 1.4 | 0 | 필드 라벨, 드롭다운 선택값 |
-| Caption | 13px | 400 (Regular) | 1.5 | 0 | placeholder, 보조 안내문, 빈 상태 본문 |
+| Small | 14px | 400 (Regular) | 1.5 | 0 | 필드 라벨, 드롭다운 선택값, placeholder, 보조 안내문, 빈 상태 본문 |
 
 Font family: `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif`
 
 > Source: RESEARCH.md 섹션 4 "타이포그래피 스케일". CONTEXT.md D-13 "정교한 타이포그래피 스케일".
+> Revision: 5개 사이즈를 4개로 축소 (13px Caption과 14px Label을 14px Small로 통합). 4개 웨이트를 2개로 축소 (400 Regular + 600 SemiBold만 사용).
 
 ---
 
@@ -87,6 +87,12 @@ Font family: `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFo
 - 빈 상태 아이콘 (`text-blue-300`)
 
 > Source: RESEARCH.md 섹션 4 "컬러 팔레트". CONTEXT.md D-11, D-14.
+
+---
+
+## Visual Focal Point
+
+Primary visual focal point: 각 섹션 하단의 추천 받기 버튼 (페이지 내 유일한 `bg-blue-600` 요소) 및 오른쪽 패널 빈 상태의 Sparkles 아이콘 (`text-blue-300`, size 48). 블루 액센트가 오프화이트/화이트 배경 위에서 즉각적인 시선 유도 역할을 한다.
 
 ---
 
@@ -143,7 +149,7 @@ Font family: `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFo
 | Section divider | `bg-gradient-to-r from-transparent via-gray-200 to-transparent h-px` |
 | Section gap | 48px (`py-12`) |
 | Section header to first field | 24px (`mb-6`) |
-| Field to field gap | 20px (`space-y-5`) |
+| Field to field gap | 24px (`space-y-6`) |
 | Label to input gap | 8px (`mb-2`) |
 
 > Source: RESEARCH.md 섹션 5 "레이아웃 구현 전략". CONTEXT.md D-07, D-08, D-10.
@@ -295,4 +301,5 @@ Premium visual quality를 위한 필수 CSS 기법:
 
 *Phase: 01-foundation-input-ui*
 *Created: 2026-04-01*
+*Revised: 2026-04-01 -- checker feedback (typography 4size/2weight, spacing standard set, focal point)*
 *Sources: CONTEXT.md (D-01~D-16), RESEARCH.md (sections 1-9), REQUIREMENTS.md (INPUT, OWNER, PERSONA, LAYOUT)*
