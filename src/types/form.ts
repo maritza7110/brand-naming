@@ -21,15 +21,24 @@ export interface ProductState {
   valueProposition: string;    // 고객에게 주는 핵심 가치
 }
 
-/** 섹션 5: 브랜드 페르소나 (PERSONA-01 ~ PERSONA-04) */
+/** 섹션 5: 브랜드 페르소나 — 기존 앱 16개 항목 (브랜드명 제외) */
 export interface PersonaState {
-  philosophy: string;      // PERSONA-01 브랜드 철학
-  slogan: string;          // PERSONA-02 슬로건
-  mission: string;         // PERSONA-03 미션
-  brandStory: string;      // PERSONA-04 브랜드 스토리
-  coreValues: string;      // PERSONA-04 핵심 가치
-  differentiation: string; // PERSONA-04 차별화 포인트
-  toneAndManner: string;   // PERSONA-04 브랜드 톤앤매너
+  philosophy: string;              // 브랜드철학
+  slogan: string;                  // 슬로건
+  coreTechnology: string;          // 핵심기술
+  coreStrategy: string;            // 핵심전략
+  brandMent: string;               // 브랜드 멘트
+  customerDefinition: string;      // 고객정의(타겟)
+  customerValue: string;           // 고객가치
+  customerCultureCreation: string; // 고객문화창조
+  competitiveAdvantage: string;    // 브랜드 비교 우위 속성
+  qualityLevel: string;            // 품질수준
+  priceLevel: string;              // 가격수준
+  functionalBenefit: string;       // 고통을 해결하는 기능적혜택
+  experientialBenefit: string;     // 경험적혜택
+  symbolicBenefit: string;         // 상징적혜택
+  brandKeyword: string;            // 브랜드 키워드
+  membershipPhilosophy: string;    // 고객 관리(멤버쉽) 철학
 }
 
 /** 전체 폼 상태 */

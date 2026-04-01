@@ -32,11 +32,20 @@ const initialProduct: ProductState = {
 const initialPersona: PersonaState = {
   philosophy: '',
   slogan: '',
-  mission: '',
-  brandStory: '',
-  coreValues: '',
-  differentiation: '',
-  toneAndManner: '',
+  coreTechnology: '',
+  coreStrategy: '',
+  brandMent: '',
+  customerDefinition: '',
+  customerValue: '',
+  customerCultureCreation: '',
+  competitiveAdvantage: '',
+  qualityLevel: '',
+  priceLevel: '',
+  functionalBenefit: '',
+  experientialBenefit: '',
+  symbolicBenefit: '',
+  brandKeyword: '',
+  membershipPhilosophy: '',
 };
 
 interface FormActions {
