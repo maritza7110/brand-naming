@@ -2,33 +2,18 @@
 
 @theme {
   --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-
-  --color-bg: #0C0C0C;
-  --color-surface: #161616;
-  --color-surface-hover: #1C1C1C;
-  --color-border: #262626;
-  --color-border-light: #1F1F1F;
-  --color-gold: #D4A853;
-  --color-gold-dim: #B8943E;
-  --color-text: #E8E8E8;
-  --color-text-sub: #707070;
-  --color-text-muted: #4A4A4A;
 }
 
 html {
   font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: #F6F4F0;
+  color: #2C2825;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-::selection {
-  background: rgba(212, 168, 83, 0.25);
-  color: #fff;
-}
+::selection { background: rgba(180, 140, 80, 0.2); }
 
-::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #555; }
+::-webkit-scrollbar-thumb { background: #D5CEC4; border-radius: 3px; }

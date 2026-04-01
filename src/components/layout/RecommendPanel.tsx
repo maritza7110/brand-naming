@@ -4,16 +4,13 @@ interface RecommendPanelProps {
 
 export function RecommendPanel({ children }: RecommendPanelProps) {
   return (
-    <aside className="sticky top-0 h-screen overflow-y-auto bg-[#111111] border-l border-[#1F1F1F]">
-      <div className="sticky top-0 z-10 px-6 pt-7 pb-4 bg-[#111111]/90 backdrop-blur-md border-b border-[#1F1F1F]">
-        <div className="flex items-center gap-2.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#D4A853]" />
-          <h2 className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#606060]">
-            추천 결과
-          </h2>
-        </div>
+    <aside className="sticky top-0 h-screen overflow-y-auto bg-white border-l border-[#EAE6E0]">
+      <div className="sticky top-0 z-10 px-6 pt-7 pb-4 bg-white/90 backdrop-blur-md border-b border-[#EAE6E0]">
+        <h2 className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#B48C50]">
+          추천 결과
+        </h2>
       </div>
-      <div className="px-6 pb-6 pt-4">{children}</div>
+      <div className="px-6 pb-6 pt-3">{children}</div>
     </aside>
   );
 }

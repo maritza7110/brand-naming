@@ -1,16 +1,12 @@
 interface SectionHeaderProps {
   title: string;
-  icon?: string;
 }
 
-export function SectionHeader({ title, icon }: SectionHeaderProps) {
+export function SectionHeader({ title }: SectionHeaderProps) {
   return (
-    <div className="flex items-center gap-3 mb-6">
-      {icon && <span className="text-[14px] grayscale opacity-40">{icon}</span>}
-      <h2 className="text-[14px] font-semibold text-[#888] tracking-[-0.01em]">
-        {title}
-      </h2>
-      <div className="flex-1 h-px bg-[#222]" />
+    <div className="flex items-center gap-3 mb-5 pb-3 border-b border-[#E8E4DE]">
+      <div className="w-1 h-4 rounded-full bg-[#B48C50]" />
+      <h2 className="text-[15px] font-bold text-[#2C2825]">{title}</h2>
     </div>
   );
 }
