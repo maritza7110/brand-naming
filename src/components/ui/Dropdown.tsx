@@ -21,7 +21,7 @@ export function Dropdown({ label, value, onChange, options, placeholder = 'ì„ íƒ
       <div className="relative">
         <select id={selectId} value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled}
           className={`w-full px-4 py-3 rounded-xl bg-[#4A4640] text-[14px] leading-relaxed appearance-none cursor-pointer border border-[#4A4640] transition-all duration-200 hover:border-[#A09890] focus:border-[#B48C50] focus:bg-[#504A44] focus:outline-none disabled:opacity-40 pr-10 ${
-            value === '' ? 'text-[#B5AFA8]' : 'text-[#2C2825]'
+            value === '' ? 'text-[#B5AFA8]' : 'text-white'
           }`}>
           <option value="" disabled>{placeholder}</option>
           {options.map((o) => <option key={o} value={o}>{o}</option>)}
