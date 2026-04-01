@@ -69,6 +69,10 @@
 - [ ] **GROUP-02**: 그룹을 클릭하면 접기/펼치기 애니메이션으로 전환된다
 - [ ] **GROUP-03**: 업종을 변경하면 이전 업종 그룹이 자동으로 접힌다
 
+### 네이밍 초기화 (RESET)
+
+- [ ] **RESET-01**: "네이밍 초기화" 버튼(API 설정 하단)으로 모든 입력 필드를 초기화하고, 기존 추천 카드를 하나의 접힌 컨테이너로 묶는다
+
 ### 모바일 반응형 (MOBILE)
 
 - [ ] **MOBILE-01**: 모바일에서 입력(위) + 추천(아래) 세로 스택 레이아웃이 표시된다
@@ -115,6 +119,7 @@
 | GROUP-01 | Phase 5 (v1.1) | Pending |
 | GROUP-02 | Phase 5 (v1.1) | Pending |
 | GROUP-03 | Phase 5 (v1.1) | Pending |
+| RESET-01 | Phase 5 (v1.1) | Pending |
 | MOBILE-01 | Phase 6 (v1.1) | Pending |
 | MOBILE-02 | Phase 6 (v1.1) | Pending |
 | MOBILE-03 | Phase 6 (v1.1) | Pending |
