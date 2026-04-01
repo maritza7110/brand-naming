@@ -97,12 +97,18 @@ Plans:
 ### Phase 5: 추천 카드 그루핑
 **Goal**: 추천 카드가 소분류 업종별로 그룹 묶여 표시되고, 사용자가 그룹을 접거나 펼칠 수 있으며 업종 변경 시 이전 그룹이 자동 접힌다
 **Depends on**: Phase 4
-**Requirements**: GROUP-01, GROUP-02, GROUP-03
+**Requirements**: GROUP-01, GROUP-02, GROUP-03, RESET-01
 **Success Criteria** (what must be TRUE):
   1. 오른쪽 추천 패널에서 같은 소분류 업종의 카드가 그룹 헤더 아래 묶여 표시된다
   2. 그룹 헤더를 클릭하면 해당 그룹이 애니메이션과 함께 접히거나 펼쳐진다
   3. 사용자가 업종을 변경하면 이전 업종의 카드 그룹이 자동으로 접힌다
-**Plans**: TBD
+  4. "네이밍 초기화" 버튼으로 모든 입력을 초기화하고 기존 추천 카드가 접힌 컨테이너로 묶인다
+**Plans**: 2 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — 타입 확장 + persist v2 마이그레이션 + 그룹핑 유틸 + RecommendGroup 컴포넌트
+- [ ] 05-02-PLAN.md — App.tsx 그룹 렌더링 통합 + 업종 변경 자동 접힘 + 네이밍 초기화 + 시각 검증
+
 **UI hint**: yes
 
 ### Phase 6: 모바일 반응형
@@ -126,6 +132,6 @@ Phases execute in numeric order: 4 -> 5 -> 6
 | 1. Foundation & Input UI | v1.0 | 3/3 | Complete | 2026-04-01 |
 | 2. AI Recommendation Engine | v1.0 | -/- | Complete | 2026-04-01 |
 | 3. RAG Knowledge Base | v1.0 | -/- | Complete | 2026-04-01 |
-| 4. 산업분류 계층형 드롭다운 | v1.1 | 1/2 | In Progress|  |
-| 5. 추천 카드 그루핑 | v1.1 | 0/? | Not started | - |
+| 4. 산업분류 계층형 드롭다운 | v1.1 | 2/2 | Complete |  |
+| 5. 추천 카드 그루핑 | v1.1 | 0/2 | Not started | - |
 | 6. 모바일 반응형 | v1.1 | 0/? | Not started | - |
