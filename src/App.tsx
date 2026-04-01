@@ -32,15 +32,12 @@ function App() {
           <RecommendPanel>
             {isLoading && (
               <div className="flex items-center gap-2 text-[#B48C50] text-[12px] mb-3">
-                <Loader2 size={12} className="animate-spin" />
-                <span>생성 중...</span>
+                <Loader2 size={12} className="animate-spin" /><span>생성 중...</span>
               </div>
             )}
-            {error && <div className="p-3 mb-3 rounded-xl bg-red-50 text-red-600 text-[12px] border border-red-100">{error}</div>}
+            {error && <div className="p-3 mb-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-[12px]">{error}</div>}
             {batches.length === 0 && !isLoading ? <EmptyState /> : (
-              <div className="space-y-3">
-                {batches.map((b) => <RecommendCardItem key={b.id} batch={b} />)}
-              </div>
+              <div className="space-y-3">{batches.map((b) => <RecommendCardItem key={b.id} batch={b} />)}</div>
             )}
           </RecommendPanel>
         }
