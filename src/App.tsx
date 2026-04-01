@@ -1,11 +1,30 @@
+import { AppLayout } from './components/layout/AppLayout';
+import { InputPanel } from './components/layout/InputPanel';
+import { RecommendPanel } from './components/layout/RecommendPanel';
+import { EmptyState } from './components/recommend/EmptyState';
+import { StoreBasicSection } from './components/sections/StoreBasicSection';
+import { BrandVisionSection } from './components/sections/BrandVisionSection';
+import { ProductSection } from './components/sections/ProductSection';
+import { PersonaSection } from './components/sections/PersonaSection';
+
 function App() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-gray-900">
-        브랜드 네이밍
-      </h1>
-    </div>
-  )
+    <AppLayout
+      left={
+        <InputPanel>
+          <StoreBasicSection />
+          <BrandVisionSection />
+          <ProductSection />
+          <PersonaSection />
+        </InputPanel>
+      }
+      right={
+        <RecommendPanel>
+          <EmptyState />
+        </RecommendPanel>
+      }
+    />
+  );
 }
 
-export default App
+export default App;
