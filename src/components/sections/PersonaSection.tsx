@@ -1,6 +1,6 @@
 import { useFormStore } from '../../store/useFormStore';
+import { useRecommend } from '../../hooks/useRecommend';
 import { SectionHeader } from '../ui/SectionHeader';
-import { TextArea } from '../ui/TextArea';
 import { RecommendButton } from '../ui/RecommendButton';
 import { MiniRecommendButton } from '../ui/MiniRecommendButton';
 import type { PersonaState } from '../../types/form';
@@ -27,6 +27,7 @@ const personaFields: { key: keyof PersonaState; label: string; placeholder: stri
 export function PersonaSection() {
   const persona = useFormStore((s) => s.persona);
   const updatePersona = useFormStore((s) => s.updatePersona);
+  const { recommend, isLoading } = useRecommend();
 
   const hasInput = Object.values(persona).some((v) => v.trim() !== '');
 
@@ -57,7 +58,7 @@ export function PersonaSection() {
       </div>
 
       <div className="mt-8">
-        <RecommendButton disabled={!hasInput} />
+        <RecommendButton onClick={recommend} loading={isLoading} disabled={!hasInput} />
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import { useFormStore } from '../../store/useFormStore';
+import { useRecommend } from '../../hooks/useRecommend';
 import { SectionHeader } from '../ui/SectionHeader';
 import { Dropdown } from '../ui/Dropdown';
-import { TextField } from '../ui/TextField';
 import { TextArea } from '../ui/TextArea';
 import { RecommendButton } from '../ui/RecommendButton';
 
@@ -42,6 +42,7 @@ const PRICE_RANGE_OPTIONS = [
 export function StoreBasicSection() {
   const storeBasic = useFormStore((s) => s.storeBasic);
   const updateStoreBasic = useFormStore((s) => s.updateStoreBasic);
+  const { recommend, isLoading } = useRecommend();
 
   const hasInput = Object.values(storeBasic).some((v) => v.trim() !== '');
 
@@ -56,12 +57,6 @@ export function StoreBasicSection() {
           onChange={(v) => updateStoreBasic('category', v)}
           options={CATEGORY_OPTIONS}
           placeholder="업종을 선택하세요"
-        />
-        <TextField
-          label="위치/지역"
-          value={storeBasic.location}
-          onChange={(v) => updateStoreBasic('location', v)}
-          placeholder="예: 서울 마포구 연남동"
         />
         <Dropdown
           label="매장 규모"
@@ -84,17 +79,10 @@ export function StoreBasicSection() {
           options={PRICE_RANGE_OPTIONS}
           placeholder="가격대를 선택하세요"
         />
-        <TextArea
-          label="타겟 고객"
-          value={storeBasic.targetCustomer}
-          onChange={(v) => updateStoreBasic('targetCustomer', v)}
-          placeholder="예: 20-30대 직장인, 감성 카페를 즐기는 MZ세대"
-          rows={3}
-        />
       </div>
 
       <div className="mt-8">
-        <RecommendButton disabled={!hasInput} />
+        <RecommendButton onClick={recommend} loading={isLoading} disabled={!hasInput} />
       </div>
     </section>
   );

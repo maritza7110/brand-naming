@@ -49,16 +49,17 @@ export interface FormState {
   persona: PersonaState;
 }
 
-/** 추천 카드 (Phase 2 대비) */
-export interface RecommendCard {
+/** 추천 배치 — 한 번의 "추천 받기"로 생성된 결과 묶음 */
+export interface RecommendBatch {
   id: string;
-  brandName: string;
-  reasoning: string;
-  basedOn: string[];
+  names: { brandName: string; reasoning: string }[];
+  basedOn: string[];   // 작명 근거 (입력된 항목명)
   createdAt: Date;
 }
 
 /** 전체 앱 상태 */
 export interface AppState extends FormState {
-  recommendations: RecommendCard[];
+  batches: RecommendBatch[];
+  isLoading: boolean;
+  error: string | null;
 }
