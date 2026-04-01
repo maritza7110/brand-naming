@@ -40,7 +40,7 @@
 - [ ] **LAYOUT-01**: 왼쪽 70% 입력 패널 / 오른쪽 30% 추천 패널
 - [ ] **LAYOUT-02**: 왼쪽 패널 -- 한 화면 세로 스크롤
 - [ ] **LAYOUT-03**: 오른쪽 패널 -- 추천 카드 누적 (최신이 상단)
-- [ ] **LAYOUT-04**: 심플하고 고급스러운 디자인 (Pretendard 폰트)
+- [x] **LAYOUT-04**: 심플하고 고급스러운 디자인 (Pretendard 폰트)
 
 ### RAG 지식 기반 (RAG)
 
@@ -97,7 +97,7 @@
 | LAYOUT-01 | Phase 1 | Pending |
 | LAYOUT-02 | Phase 1 | Pending |
 | LAYOUT-03 | Phase 1 | Pending |
-| LAYOUT-04 | Phase 1 | Pending |
+| LAYOUT-04 | Phase 1 | Complete |
 | REC-01 | Phase 2 | Pending |
 | REC-02 | Phase 2 | Pending |
 | REC-03 | Phase 2 | Pending |
