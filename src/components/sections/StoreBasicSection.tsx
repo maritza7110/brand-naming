@@ -16,7 +16,7 @@ export function StoreBasicSection() {
   const hasInput = Object.values(s).some((v) => v.trim() !== '');
 
   return (
-    <section className="rounded-2xl bg-[#332F2C] p-7 border border-[#3E3A36]">
+    <section className="rounded-2xl bg-[#332F2C] p-7 border border-[#504A44]">
       <SectionHeader title="매장 기본" />
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">

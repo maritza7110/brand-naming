@@ -19,14 +19,14 @@ export function InputPanel({ children, onSettingsClick }: InputPanelProps) {
               <h1 className="text-[26px] font-bold tracking-[-0.03em] text-[#F0EBE3]">
                 브랜드 네이밍
               </h1>
-              <p className="mt-2 text-[13px] text-[#8A8178] leading-relaxed">
+              <p className="mt-2 text-[13px] text-[#A09890] leading-relaxed">
                 페르소나 항목을 채워가면 AI가 점점 정교한 브랜드명을 추천합니다
               </p>
             </div>
             <button
               type="button"
               onClick={onSettingsClick}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[#6A6158] text-[11px] font-medium transition hover:text-[#B48C50] hover:bg-[#3E3A36]"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[#A09890] text-[11px] font-medium transition hover:text-[#B48C50] hover:bg-[#504A44]"
             >
               <span>API설정</span>
               <Settings size={14} />
