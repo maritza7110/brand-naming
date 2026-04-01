@@ -109,22 +109,22 @@
 | REC-01~05 | Phase 2 (v1.0) | Complete |
 | AI-01~03 | Phase 2 (v1.0) | Complete |
 | RAG-01~04 | Phase 3 (v1.0) | Complete |
-| INDUSTRY-01 | TBD | Pending |
-| INDUSTRY-02 | TBD | Pending |
-| INDUSTRY-03 | TBD | Pending |
-| GROUP-01 | TBD | Pending |
-| GROUP-02 | TBD | Pending |
-| GROUP-03 | TBD | Pending |
-| MOBILE-01 | TBD | Pending |
-| MOBILE-02 | TBD | Pending |
-| MOBILE-03 | TBD | Pending |
+| INDUSTRY-01 | Phase 4 (v1.1) | Pending |
+| INDUSTRY-02 | Phase 4 (v1.1) | Pending |
+| INDUSTRY-03 | Phase 4 (v1.1) | Pending |
+| GROUP-01 | Phase 5 (v1.1) | Pending |
+| GROUP-02 | Phase 5 (v1.1) | Pending |
+| GROUP-03 | Phase 5 (v1.1) | Pending |
+| MOBILE-01 | Phase 6 (v1.1) | Pending |
+| MOBILE-02 | Phase 6 (v1.1) | Pending |
+| MOBILE-03 | Phase 6 (v1.1) | Pending |
 
 **Coverage:**
 - v1.0 requirements: 29 total (all complete)
 - v1.1 requirements: 9 total
-- Mapped to phases: 0 (awaiting roadmap)
-- Unmapped: 9
+- Mapped to phases: 9/9
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-01*
-*Last updated: 2026-04-01 after v1.1 milestone requirements*
+*Last updated: 2026-04-01 after v1.1 roadmap creation*

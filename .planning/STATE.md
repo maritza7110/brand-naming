@@ -2,12 +2,12 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: UX 개선
-status: defining
+status: ready_to_plan
 stopped_at: null
 last_updated: "2026-04-01T00:00:00.000Z"
 last_activity: 2026-04-01
 progress:
-  total_phases: 0
+  total_phases: 3
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -21,14 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** 페르소나 항목을 채워갈수록 점점 정교해지는 브랜드명 추천
-**Current focus:** Milestone v1.1 — UX 개선
+**Current focus:** Phase 4 — 산업분류 계층형 드롭다운
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-04-01 — Milestone v1.1 started
+Phase: 4 of 6 (산업분류 계층형 드롭다운)
+Plan: — (awaiting planning)
+Status: Ready to plan
+Last activity: 2026-04-01 — v1.1 roadmap created
+
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
@@ -50,7 +52,6 @@ Last activity: 2026-04-01 — Milestone v1.1 started
 - Trend: -
 
 *Updated after each plan completion*
-| Phase 01 P02 | 2min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -61,10 +62,11 @@ Recent decisions affecting current work:
 
 - Tech stack: React 19 + Vite + TypeScript + Tailwind CSS + Zustand
 - AI: Gemini 3.1 Pro API via Vercel Serverless Functions
-- RAG: Gemini 임베딩 + 인메모리 벡터 검색
-- 디자인: Pretendard 폰트, 심플 + 고급스러움
-- [Phase 01]: Section components use individual Zustand selectors for granular re-renders
+- [Phase 01]: Section components use individual Zustand selectors
 - [Phase 01]: AppLayout uses explicit left/right props for slot composition
+- [v1.1]: 새 npm 패키지 추가 없음 -- 기존 스택만으로 구현
+- [v1.1]: 네이티브 <select> 3개 연쇄로 계층형 드롭다운 구현
+- [v1.1]: CSS Grid 0fr/1fr 트랜지션으로 접기/펼치기 애니메이션
 
 ### Pending Todos
 
@@ -72,10 +74,11 @@ None yet.
 
 ### Blockers/Concerns
 
-None yet.
+- localStorage 스키마 변경 시 기존 사용자 데이터 파손 주의 (Phase 4에서 migrate 함수 필수)
+- AppLayout의 min-w-[1024px] 제거 필요 (Phase 6에서 최우선 처리)
 
 ## Session Continuity
 
-Last session: 2026-04-01T06:16:46.928Z
-Stopped at: Completed 01-02-PLAN.md
+Last session: 2026-04-01
+Stopped at: v1.1 roadmap created
 Resume file: None
