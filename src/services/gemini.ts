@@ -1,9 +1,8 @@
 import { GoogleGenAI } from '@google/genai';
-import type { FormState, RecommendBatch } from '../types/form';
+import type { FormState, RecommendBatch, IndustrySelection } from '../types/form';
 import { useSettingsStore } from '../store/useSettingsStore';
 
 const FIELD_LABELS: Record<string, string> = {
-  category: '업종',
   location: '위치',
   scale: '매장규모',
   mainProduct: '주력상품',
@@ -32,19 +31,46 @@ const FIELD_LABELS: Record<string, string> = {
   membershipPhilosophy: '멤버쉽철학',
 };
 
+/** 업종 선택 경로를 AI 프롬프트용 문자열로 포맷 (D-08) */
+function formatIndustryPath(ind: IndustrySelection): string {
+  const parts = [ind.major, ind.medium, ind.minor].filter(Boolean);
+  if (parts.length === 0) return '';
+  let result = parts.join(' > ');
+  if (ind.note) result += ` (비고: ${ind.note})`;
+  return result;
+}
+
 /** 입력된 필드만 모아서 프롬프트 텍스트로 변환 */
 function buildInputSummary(form: FormState): { text: string; filledFields: string[] } {
   const filledFields: string[] = [];
   const lines: string[] = [];
 
-  const sections = [
-    { title: '매장 기본/환경', data: form.storeBasic },
+  // 매장 기본 -- industry 별도 처리 (D-08, D-09)
+  const industryPath = formatIndustryPath(form.storeBasic.industry);
+  const basicEntries = Object.entries(form.storeBasic)
+    .filter(([k, v]) => k !== 'industry' && typeof v === 'string' && v.trim() !== '');
+
+  if (industryPath || basicEntries.length > 0) {
+    lines.push('\n## 매장 기본/환경');
+    if (industryPath) {
+      lines.push(`- 업종: ${industryPath}`);
+      filledFields.push('업종');
+    }
+    for (const [key, value] of basicEntries) {
+      const label = FIELD_LABELS[key] ?? key;
+      lines.push(`- ${label}: ${value as string}`);
+      filledFields.push(label);
+    }
+  }
+
+  // 나머지 섹션은 모든 필드가 string이므로 기존 로직 유지
+  const otherSections = [
     { title: '브랜드 정체성 및 비전', data: form.brandVision },
     { title: '브랜드 페르소나', data: form.persona },
   ];
 
-  for (const section of sections) {
-    const entries = Object.entries(section.data).filter(([, v]) => v.trim() !== '');
+  for (const section of otherSections) {
+    const entries = Object.entries(section.data).filter(([, v]) => (v as string).trim() !== '');
     if (entries.length === 0) continue;
 
     lines.push(`\n## ${section.title}`);
