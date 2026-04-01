@@ -89,7 +89,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — 타입 정의 + 산업분류 데이터 + 스토어 액션/마이그레이션
+- [x] 04-01-PLAN.md — 타입 정의 + 산업분류 데이터 + 스토어 액션/마이그레이션
 - [ ] 04-02-PLAN.md — 계층형 드롭다운 UI + AI 프롬프트 통합 + 시각 검증
 
 **UI hint**: yes
@@ -126,6 +126,6 @@ Phases execute in numeric order: 4 -> 5 -> 6
 | 1. Foundation & Input UI | v1.0 | 3/3 | Complete | 2026-04-01 |
 | 2. AI Recommendation Engine | v1.0 | -/- | Complete | 2026-04-01 |
 | 3. RAG Knowledge Base | v1.0 | -/- | Complete | 2026-04-01 |
-| 4. 산업분류 계층형 드롭다운 | v1.1 | 0/2 | Planning complete | - |
+| 4. 산업분류 계층형 드롭다운 | v1.1 | 1/2 | In Progress|  |
 | 5. 추천 카드 그루핑 | v1.1 | 0/? | Not started | - |
 | 6. 모바일 반응형 | v1.1 | 0/? | Not started | - |

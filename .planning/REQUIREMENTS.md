@@ -60,8 +60,8 @@
 ### 산업분류 (INDUSTRY)
 
 - [ ] **INDUSTRY-01**: 사용자가 대분류 > 중분류 > 소분류 3단 계층형 드롭다운으로 업종을 선택할 수 있다
-- [ ] **INDUSTRY-02**: 247개 소분류 산업분류 데이터가 정적 TypeScript 파일로 포함된다
-- [ ] **INDUSTRY-03**: 기존 localStorage 데이터가 새 IndustrySelection 스키마로 자동 마이그레이션된다
+- [x] **INDUSTRY-02**: 247개 소분류 산업분류 데이터가 정적 TypeScript 파일로 포함된다
+- [x] **INDUSTRY-03**: 기존 localStorage 데이터가 새 IndustrySelection 스키마로 자동 마이그레이션된다
 
 ### 카드 그루핑 (GROUP)
 
@@ -110,8 +110,8 @@
 | AI-01~03 | Phase 2 (v1.0) | Complete |
 | RAG-01~04 | Phase 3 (v1.0) | Complete |
 | INDUSTRY-01 | Phase 4 (v1.1) | Pending |
-| INDUSTRY-02 | Phase 4 (v1.1) | Pending |
-| INDUSTRY-03 | Phase 4 (v1.1) | Pending |
+| INDUSTRY-02 | Phase 4 (v1.1) | Complete |
+| INDUSTRY-03 | Phase 4 (v1.1) | Complete |
 | GROUP-01 | Phase 5 (v1.1) | Pending |
 | GROUP-02 | Phase 5 (v1.1) | Pending |
 | GROUP-03 | Phase 5 (v1.1) | Pending |
