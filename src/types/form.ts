@@ -63,6 +63,7 @@ export interface RecommendBatch {
   names: { brandName: string; reasoning: string }[];
   basedOn: string[];   // 작명 근거 (입력된 항목명)
   createdAt: Date;
+  industry?: IndustrySelection;  // 배치 생성 시점의 업종 스냅샷
 }
 
 /** 전체 앱 상태 */
@@ -70,4 +71,5 @@ export interface AppState extends FormState {
   batches: RecommendBatch[];
   isLoading: boolean;
   error: string | null;
+  resetTimestamp: Date | null;  // 네이밍 초기화 시점 (RESET-01)
 }

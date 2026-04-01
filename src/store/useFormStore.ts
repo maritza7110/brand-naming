@@ -57,6 +57,7 @@ interface FormActions {
   updateProduct: (field: keyof ProductState, value: string) => void;
   updatePersona: (field: keyof PersonaState, value: string) => void;
   resetAll: () => void;
+  resetNaming: () => void;  // 폼 초기화 + resetTimestamp 기록
   addBatch: (batch: RecommendBatch) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
@@ -72,6 +73,7 @@ export const useFormStore = create<AppState & FormActions>()(
       batches: [],
       isLoading: false,
       error: null,
+      resetTimestamp: null,
 
       updateStoreBasic: (field, value) =>
         set((state) => ({ storeBasic: { ...state.storeBasic, [field]: value } })),
@@ -98,6 +100,15 @@ export const useFormStore = create<AppState & FormActions>()(
           persona: { ...initialPersona },
         }),
 
+      resetNaming: () =>
+        set({
+          storeBasic: { ...initialStoreBasic },
+          brandVision: { ...initialBrandVision },
+          product: { ...initialProduct },
+          persona: { ...initialPersona },
+          resetTimestamp: new Date(),
+        }),
+
       addBatch: (batch) =>
         set((state) => ({ batches: [batch, ...state.batches] })),
 
@@ -106,21 +117,36 @@ export const useFormStore = create<AppState & FormActions>()(
     }),
     {
       name: 'brand-naming-data',
-      version: 1,
-      partialize: (state) => ({ batches: state.batches }),
-      migrate: (persisted: unknown, _version: number) => {
-        // v0: batches만 persist됨, category는 persist 안 됨
-        // batches.basedOn은 string[] 라벨이므로 호환성 유지 (D-12)
-        // 변환 없이 그대로 통과
+      version: 2,
+      partialize: (state) => ({
+        batches: state.batches,
+        resetTimestamp: state.resetTimestamp,
+      }),
+      migrate: (persisted: unknown, version: number) => {
+        if (version < 2) {
+          // v1 -> v2: resetTimestamp 추가, 기존 배치 보존 (industry=undefined)
+          const p = persisted as { batches?: RecommendBatch[] };
+          return { ...p, resetTimestamp: null };
+        }
         return persisted;
       },
       merge: (persisted, current) => {
-        const p = persisted as { batches?: RecommendBatch[] } | undefined;
+        const p = persisted as {
+          batches?: RecommendBatch[];
+          resetTimestamp?: string | null;
+        } | undefined;
         const restoredBatches = (p?.batches ?? []).map((b) => ({
           ...b,
           createdAt: new Date(b.createdAt),
         }));
-        return { ...current, batches: restoredBatches };
+        const restoredTimestamp = p?.resetTimestamp
+          ? new Date(p.resetTimestamp)
+          : null;
+        return {
+          ...current,
+          batches: restoredBatches,
+          resetTimestamp: restoredTimestamp,
+        };
       },
     },
   ),
