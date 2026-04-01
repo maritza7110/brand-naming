@@ -31,17 +31,17 @@ export function PersonaSection() {
   const hasInput = Object.values(p).some((v) => v.trim() !== '');
 
   return (
-    <section className="rounded-2xl bg-[#3E3A36] p-7 border border-[#4A4640]">
+    <section className="rounded-2xl bg-[#E8E4DE] p-7 border border-[#C5BFB7]">
       <SectionHeader title="브랜드 페르소나" />
       <div className="space-y-3">
         {F.map(({ key, label, ph }) => (
           <div key={key}>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-[12px] font-medium text-[#A09890]">{label}</label>
+              <label className="text-[12px] font-semibold text-[#5A5550]">{label}</label>
               <MiniRecommendButton onClick={recommend} loading={isLoading} disabled={!p[key].trim()} />
             </div>
             <textarea value={p[key]} onChange={(e) => u(key, e.target.value)} placeholder={ph} rows={1}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#4A4640] text-[14px] text-[#F0EBE3] leading-relaxed placeholder:text-[#7A7570] border border-[#4A4640] resize-none transition-all duration-200 hover:border-[#504A44] focus:border-[#B48C50]/60 focus:bg-[#504A44] focus:outline-none" />
+              className="w-full px-4 py-2.5 rounded-xl bg-[#F5F3F0] text-[14px] text-[#2C2825] leading-relaxed placeholder:text-[#B5AFA8] border border-[#C5BFB7] resize-none transition-all duration-200 hover:border-[#A09890] focus:border-[#B48C50] focus:bg-white focus:outline-none" />
           </div>
         ))}
       </div>
