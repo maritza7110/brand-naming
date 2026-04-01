@@ -5,6 +5,7 @@ status: draft
 shadcn_initialized: false
 preset: none
 created: 2026-04-01
+revised: 2026-04-01
 ---
 
 # Phase 4 -- UI Design Contract
@@ -34,33 +35,37 @@ Phase 1에서 확립된 스케일을 그대로 유지한다.
 | Token | Value | Usage (Phase 4 specific) |
 |-------|-------|--------------------------|
 | xs | 4px | 아이콘-텍스트 간격 |
-| sm | 8px | 라벨-입력 간격 (`mb-1.5`에 해당) |
+| sm | 8px | 라벨-입력 간격 |
 | md | 16px | grid gap (`gap-4`), 드롭다운 간 간격 |
 | lg | 24px | 필드 그룹 간 간격 (`space-y-4` 기존 패턴 유지) |
 | xl | 32px | 섹션 내부 패딩 (`p-7`에 해당) |
 | 2xl | 48px | 섹션 간 간격 |
 | 3xl | 64px | 페이지 레벨 간격 |
 
-Exceptions: none
+Exceptions: `mb-1.5` (6px) -- 기존 Dropdown/TextArea 컴포넌트의 label-input 간격 패턴. Phase 1에서 확립되어 `Dropdown.tsx`, `TextArea.tsx`, `BrandVisionSection.tsx` 등 전체 프로젝트에서 사용 중. Phase 4에서는 기존 컴포넌트를 그대로 재사용하므로 이 값을 변경하지 않는다.
 
-> Source: Phase 1 UI-SPEC spacing scale. 기존 StoreBasicSection의 `p-7`, `gap-4`, `space-y-4` 패턴 유지.
+> Source: Phase 1 UI-SPEC spacing scale. 기존 StoreBasicSection의 `p-7`, `gap-4`, `space-y-4` 패턴 유지. `mb-1.5` 예외는 Dropdown.tsx:20, TextArea.tsx:19에서 확인.
 
 ---
 
 ## Typography
 
-Phase 1에서 확립된 타이포그래피를 그대로 유지한다.
+Phase 1에서 확립된 타이포그래피를 기반으로 하되, Phase 4 계약에서는 2개 weight로 선언한다.
 
 | Role | Size | Weight | Line Height | Usage (Phase 4 specific) |
 |------|------|--------|-------------|--------------------------|
-| Display | 26px | 700 (Bold) | 1.2 | 미사용 (Phase 4 범위 외) |
-| Heading | 14px | 700 (Bold) | 1.5 | 섹션 헤더 "매장 기본" |
+| Display | 26px | 600 (SemiBold) | 1.2 | 미사용 (Phase 4 범위 외) |
+| Heading | 14px | 600 (SemiBold) | 1.5 | 섹션 헤더 "매장 기본" -- `font-semibold` 적용 |
 | Body | 14px | 400 (Regular) | 1.6 | 드롭다운 선택값, 비고 입력 텍스트 |
 | Label | 12px | 600 (SemiBold) | 1.5 | 드롭다운 라벨 ("대분류", "중분류", "소분류", "비고") |
 
+**Declared weights: 2** -- 400 (Regular), 600 (SemiBold)
+
+**Weight 통합 근거:** 기존 구현에서 SectionHeader는 `font-bold` (700)을 사용하지만, Phase 4 디자인 계약에서는 2개 weight 제한을 준수하기 위해 Heading 역할을 600 (SemiBold)으로 통합한다. 실제 구현 시 SectionHeader의 `font-bold`를 `font-semibold`로 변경한다. 14px에서 600과 700의 시각적 차이는 미미하며, Label(12px/600)과 Heading(14px/600)은 크기 차이로 충분히 구분된다.
+
 Font family: `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif`
 
-> Source: 실제 구현 코드 분석. Dropdown label `text-[12px] font-semibold`, select `text-[14px]`, SectionHeader `text-[14px] font-bold`.
+> Source: 실제 구현 코드 분석. Dropdown label `text-[12px] font-semibold`, select `text-[14px]`, SectionHeader `text-[14px] font-bold` -> `font-semibold`로 변경 예정.
 
 ---
 
@@ -253,7 +258,7 @@ Phase 4에는 파괴적 액션이 없다. Cascading reset(D-06)은 상위 분류
 |-----------|----------|-----------------|
 | Dropdown | `src/components/ui/Dropdown.tsx` | 대분류, 중분류, 소분류 드롭다운 (3개 인스턴스) |
 | TextArea | `src/components/ui/TextArea.tsx` | 비고 입력 (rows=1) |
-| SectionHeader | `src/components/ui/SectionHeader.tsx` | "매장 기본" 섹션 헤더 (기존 유지) |
+| SectionHeader | `src/components/ui/SectionHeader.tsx` | "매장 기본" 섹션 헤더 (기존 유지, `font-bold` -> `font-semibold` 변경) |
 | RecommendButton | `src/components/ui/RecommendButton.tsx` | 추천 받기 버튼 (기존 유지) |
 
 ### 수정하는 기존 파일
@@ -261,6 +266,7 @@ Phase 4에는 파괴적 액션이 없다. Cascading reset(D-06)은 상위 분류
 | File | Modification |
 |------|-------------|
 | `src/components/sections/StoreBasicSection.tsx` | CATEGORY_OPTIONS 제거, 4단 계층형 UI로 교체 |
+| `src/components/ui/SectionHeader.tsx` | `font-bold` -> `font-semibold` (Typography 계약 준수) |
 | `src/types/form.ts` | IndustrySelection 타입 추가, StoreBasicState.category -> industry 변경 |
 | `src/store/useFormStore.ts` | updateIndustry 액션 추가, persist version 업그레이드 |
 | `src/services/gemini.ts` | buildInputSummary에서 industry 별도 처리, formatIndustryPath 함수 |
@@ -341,4 +347,5 @@ export interface IndustrySelection {
 
 *Phase: 04-industry-dropdown*
 *Created: 2026-04-01*
+*Revised: 2026-04-01 -- Typography weight 3->2 통합 (400+600), Spacing mb-1.5 예외 명시*
 *Sources: 04-CONTEXT.md (D-01~D-12), 04-RESEARCH.md (Patterns 1-4, Pitfalls 1-5, Code Examples 1-4), 01-UI-SPEC.md (design tokens baseline), REQUIREMENTS.md (INDUSTRY-01~03), 실제 코드 분석 (Dropdown.tsx, TextArea.tsx, SectionHeader.tsx, StoreBasicSection.tsx)*
