@@ -6,29 +6,53 @@ export interface BatchGroup {
   batches: RecommendBatch[];
 }
 
-/** 업종 선택에서 그룹 키를 추출 (소분류 > 중분류 > 대분류 > '미분류') */
-export function getGroupKey(industry?: IndustrySelection): string {
-  if (!industry) return '미분류';
-  return industry.minor || industry.medium || industry.major || '미분류';
+/** 업종 선택에서 그룹 키를 추출. 업종 없으면 null 반환 */
+export function getGroupKey(industry?: IndustrySelection): string | null {
+  if (!industry) return null;
+  return industry.minor || industry.medium || industry.major || null;
 }
 
-/** 배치 목록을 업종별 그룹으로 변환 (등장 순서 유지) */
+/** 날짜 키 생성 (같은 날 배치를 하나로 묶기 위함) */
+function toDateKey(date: Date): string {
+  return `_date_${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+}
+
+/** 날짜를 "N월 D일" 포맷으로 변환 */
+export function formatDateLabel(date: Date): string {
+  return `${date.getMonth() + 1}월 ${date.getDate()}일`;
+}
+
+/** 배치 목록을 업종별 그룹으로 변환 (등장 순서 유지). 업종 없는 배치는 같은 날짜끼리 묶음 */
 export function groupBatches(batches: RecommendBatch[]): BatchGroup[] {
   const map = new Map<string, RecommendBatch[]>();
   const order: string[] = [];
+  const labelMap = new Map<string, string>();
 
   for (const batch of batches) {
-    const key = getGroupKey(batch.industry);
-    if (!map.has(key)) {
-      map.set(key, []);
-      order.push(key);
+    const industryKey = getGroupKey(batch.industry);
+
+    if (industryKey) {
+      if (!map.has(industryKey)) {
+        map.set(industryKey, []);
+        order.push(industryKey);
+        labelMap.set(industryKey, industryKey);
+      }
+      map.get(industryKey)!.push(batch);
+    } else {
+      // 업종 없는 배치 → 같은 날짜끼리 하나의 그룹
+      const dateKey = toDateKey(batch.createdAt);
+      if (!map.has(dateKey)) {
+        map.set(dateKey, []);
+        order.push(dateKey);
+        labelMap.set(dateKey, formatDateLabel(batch.createdAt));
+      }
+      map.get(dateKey)!.push(batch);
     }
-    map.get(key)!.push(batch);
   }
 
   return order.map((key) => ({
     key,
-    label: key,
+    label: labelMap.get(key) ?? key,
     batches: map.get(key)!,
   }));
 }

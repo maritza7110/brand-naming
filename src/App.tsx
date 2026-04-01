@@ -61,10 +61,16 @@ function App() {
     [currentBatches],
   );
 
-  // 네이밍 초기화 핸들러
+  const archivedGroups = useMemo(
+    () => groupBatches(archivedBatches),
+    [archivedBatches],
+  );
+
+  // 네이밍 초기화 핸들러 — 기존 그룹을 모두 접기
   const handleResetNaming = () => {
+    const keysToCollapse = currentGroups.map((g) => `archived-${g.key}`);
     resetNaming();
-    setCollapsedGroups((prev) => new Set([...prev, '__archived__']));
+    setCollapsedGroups((prev) => new Set([...prev, ...keysToCollapse]));
   };
 
   return (
@@ -93,7 +99,7 @@ function App() {
                 {error}
               </div>
             )}
-            {currentGroups.length === 0 && archivedBatches.length === 0 && !isLoading ? (
+            {currentGroups.length === 0 && archivedGroups.length === 0 && !isLoading ? (
               <EmptyState />
             ) : (
               <div className="space-y-3">
@@ -108,17 +114,17 @@ function App() {
                   />
                 ))}
 
-                {/* 아카이브 — 이전 추천 (초기화 이전 배치) */}
-                {archivedBatches.length > 0 && (
+                {/* 아카이브 — 초기화 이전 배치도 업종별 그룹 */}
+                {archivedGroups.map((group) => (
                   <RecommendGroup
-                    key="__archived__"
-                    label="이전 추천"
-                    batches={archivedBatches}
-                    isOpen={!collapsedGroups.has('__archived__')}
-                    onToggle={() => toggleGroup('__archived__')}
-                    count={archivedBatches.length}
+                    key={`archived-${group.key}`}
+                    label={group.label}
+                    batches={group.batches}
+                    isOpen={!collapsedGroups.has(`archived-${group.key}`)}
+                    onToggle={() => toggleGroup(`archived-${group.key}`)}
+                    count={group.batches.length}
                   />
-                )}
+                ))}
               </div>
             )}
           </RecommendPanel>

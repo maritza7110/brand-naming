@@ -11,6 +11,12 @@ interface RecommendGroupProps {
 }
 
 export function RecommendGroup({ label, batches, isOpen, onToggle, count }: RecommendGroupProps) {
+  const latestDate = batches.reduce(
+    (latest, b) => (b.createdAt > latest ? b.createdAt : latest),
+    batches[0].createdAt,
+  );
+  const dateStr = `${latestDate.getMonth() + 1}월 ${latestDate.getDate()}일`;
+
   return (
     <div className="rounded-xl border border-[#4A4440] overflow-hidden">
       {/* 그룹 헤더 */}
@@ -28,7 +34,7 @@ export function RecommendGroup({ label, batches, isOpen, onToggle, count }: Reco
           />
           <span className="text-[12px] font-semibold text-[#E8E2DA]">{label}</span>
         </div>
-        <span className="text-[10px] text-[#7A7570]">{count}건</span>
+        <span className="text-[10px] text-[#7A7570]">{dateStr} · {count}건</span>
       </button>
 
       {/* CSS Grid 0fr/1fr 접기/펼치기 */}
