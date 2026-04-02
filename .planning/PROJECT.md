@@ -29,10 +29,14 @@
 
 ### Active
 
-- [ ] 업종 입력을 산업분류 계층형 드롭다운으로 교체 (대분류 > 중분류 > 소분류)
-- [ ] 추천 카드 소분류 업종별 그루핑 (접기/펼치기)
-- [ ] 업종 변경 시 이전 업종 추천 자동 접힘
-- [ ] 모바일 반응형 레이아웃 (세로 스택)
+(All v1.1 requirements validated — see below)
+
+### Validated (v1.1)
+
+- ✓ 업종 입력을 산업분류 계층형 드롭다운으로 교체 (대분류 > 중분류 > 소분류) — Phase 4
+- ✓ 추천 카드 소분류 업종별 그루핑 (접기/펼치기) — Phase 5
+- ✓ 업종 변경 시 이전 업종 추천 자동 접힘 — Phase 5
+- ✓ 모바일 반응형 레이아웃 (세로 스택) — Phase 6
 
 ### Out of Scope
 
@@ -87,4 +91,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-01 after milestone v1.1 start*
+*Last updated: 2026-04-02 after Phase 6 complete — all v1.1 phases done*
