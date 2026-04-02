@@ -4,7 +4,7 @@ milestone: v1.1
 milestone_name: UX 개선
 status: verifying
 stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-04-02T02:35:45.593Z"
+last_updated: "2026-04-02T04:00:44.229Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 3
