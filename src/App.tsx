@@ -36,6 +36,10 @@ function App() {
     });
   };
 
+  // 모바일 자동 스크롤 ref (D-02)
+  const recommendPanelRef = useRef<HTMLDivElement>(null);
+  const prevBatchCountRef = useRef(batches.length);
+
   // 업종 변경 자동 접힘 (GROUP-03)
   const prevMinorRef = useRef(currentIndustry.minor);
 
@@ -49,6 +53,24 @@ function App() {
       setCollapsedGroups((prev) => new Set([...prev, prevMinor]));
     }
   }, [currentIndustry.minor]);
+
+  // 모바일 자동 스크롤 -- 추천 완료 시 추천 패널로 이동 (D-02)
+  useEffect(() => {
+    const prevCount = prevBatchCountRef.current;
+    prevBatchCountRef.current = batches.length;
+
+    // 새 배치가 추가되었을 때 (로딩 완료 후)
+    if (!isLoading && batches.length > prevCount && prevCount > 0) {
+      if (window.innerWidth < 1024 && recommendPanelRef.current) {
+        setTimeout(() => {
+          recommendPanelRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }, 100);
+      }
+    }
+  }, [isLoading, batches.length]);
 
   // resetTimestamp 기반 current/archived 분리
   const { current: currentBatches, archived: archivedBatches } = useMemo(
@@ -88,6 +110,7 @@ function App() {
           </InputPanel>
         }
         right={
+          <div ref={recommendPanelRef} className="scroll-mt-4">
           <RecommendPanel>
             {isLoading && (
               <div className="flex items-center gap-2 text-[#B48C50] text-[12px] mb-3">
@@ -128,6 +151,7 @@ function App() {
               </div>
             )}
           </RecommendPanel>
+          </div>
         }
       />
     </>
