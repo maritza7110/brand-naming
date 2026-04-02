@@ -64,20 +64,26 @@ Exceptions:
 
 ## Typography
 
-기존 값 유지. 모바일에서의 크기 조정만 명시.
+3단계 타입 스케일 + 1 반응형 쌍. 굵기는 2종만 사용한다.
 
-| Role | Desktop | Mobile | Weight | Line Height |
-|------|---------|--------|--------|-------------|
-| Body | 14px | 14px (유지) | 400 (regular) | 1.625 (leading-relaxed) |
-| Label | 12px | 12px (유지) | 600 (semibold) | 1.5 |
-| Heading (Section) | 14px | 14px (유지) | 600 (semibold) | 1.2 |
-| Display (Hero) | 26px | 22px | 700 (bold) | 1.2 |
-| Sub-label | 11px | 11px (유지) | 600 (semibold) | 1.5 |
-| Caption | 10px | 10px (유지) | 700 (bold) | 1.2 |
+| Role | Size | Weight | Line Height | 적용 대상 |
+|------|------|--------|-------------|----------|
+| Caption | 11px | 600 (semibold) | 1.5 | Brand Naming 라벨, 추천 패널 헤더, API설정/초기화 버튼 텍스트, MiniRecommendButton, EmptyState 안내, 도움말 텍스트, 파일 크기, 날짜/건수 메타, 태그, 시간 표시 |
+| Body | 14px | 400 (regular) | 1.625 (leading-relaxed) | 본문 입력, 드롭다운, 섹션 헤더(semibold 600), 폼 라벨(semibold 600, 12px에서 14px로 통합), 추천 그룹 라벨(semibold 600), 추천 이유 텍스트, 상태 텍스트 |
+| Display | 22px (mobile) / 26px (desktop) | 600 (semibold) | 1.2 | 히어로 제목 전용 — `text-[22px] lg:text-[26px]` |
+
+**고유 크기 수:** 3개 (11px, 14px, 22/26px 반응형 쌍은 1개로 계산)
+**고유 굵기 수:** 2개 (400 regular, 600 semibold)
 
 모바일에서 변경되는 값:
 - 히어로 제목 `text-[26px]` -> `text-[22px] lg:text-[26px]`
 - 그 외 텍스트 크기는 변경 없음 (14px body는 모바일에서도 적절)
+
+구현 참고 — 코드베이스 매핑:
+- 기존 `text-[10px]` (Brand Naming 라벨, 파일 크기, 메타 텍스트) -> `text-[11px]`로 통합
+- 기존 `text-[12px]` (폼 라벨, 그룹 라벨, 추천 이유) -> `text-[14px]`로 통합 (Phase 6 범위 외; 이 Phase에서는 기존 값 유지하되 계약상 목표 스케일을 선언)
+- 기존 `font-bold` (700) -> `font-semibold` (600)으로 교체
+- 이 Phase는 반응형 레이아웃이 주 목적이므로, 타이포 통합은 각 컴포넌트의 className 변경 시 함께 적용
 
 ---
 
@@ -244,7 +250,7 @@ grid grid-cols-2 gap-4  ->  grid grid-cols-1 lg:grid-cols-2 gap-4
 | Empty state heading | 추천 대기 중 | 유지 |
 | Empty state body | 왼쪽 항목을 입력하고 추천 받기를 눌러보세요 | 모바일: "위의 항목을 입력하고 추천 받기를 눌러보세요" |
 | Error state | {error 메시지 그대로 표시} | 유지 |
-| Destructive | 네이밍 초기화 | 유지 |
+| Destructive: 네이밍 초기화 | 확인 없이 즉시 실행 | 기존 Phase(01/03)에서 확정된 동작. 초기화는 폼 입력값 리셋 + 기존 추천 그룹 접기만 수행하며 추천 히스토리는 삭제하지 않으므로, 별도 확인 다이얼로그 없이 즉시 실행한다. |
 
 **모바일 전용 카피 변경 1건:**
 - EmptyState 안내 문구: "왼쪽 항목을" -> 모바일에서 "위의 항목을" (레이아웃이 세로 스택이므로)
