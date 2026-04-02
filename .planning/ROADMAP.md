@@ -119,7 +119,12 @@ Plans:
   1. 1024px 미만 화면에서 입력 패널이 위, 추천 패널이 아래인 세로 스택 레이아웃으로 전환된다
   2. 데스크톱(1024px 이상)에서는 기존 70/30 좌우 분할 레이아웃이 유지된다
   3. 모바일에서 버튼, 드롭다운, 입력 필드의 터치 타겟이 충분히 크고 패딩/폰트 크기가 터치에 최적화된다
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — 레이아웃 셸 반응형 전환 (AppLayout + InputPanel + RecommendPanel)
+- [ ] 06-02-PLAN.md — 내부 컴포넌트 터치 UX + 자동 스크롤 + 시각 검증
+
 **UI hint**: yes
 
 ## Progress
@@ -134,4 +139,4 @@ Phases execute in numeric order: 4 -> 5 -> 6
 | 3. RAG Knowledge Base | v1.0 | -/- | Complete | 2026-04-01 |
 | 4. 산업분류 계층형 드롭다운 | v1.1 | 2/2 | Complete |  |
 | 5. 추천 카드 그루핑 | v1.1 | 2/2 | Complete   | 2026-04-01 |
-| 6. 모바일 반응형 | v1.1 | 0/? | Not started | - |
+| 6. 모바일 반응형 | v1.1 | 0/2 | Planning complete | - |
