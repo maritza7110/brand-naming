@@ -43,18 +43,18 @@ export function StoreBasicSection() {
   }
 
   return (
-    <section className="rounded-2xl bg-[#E8E4DE] p-7 border border-[#C5BFB7]">
+    <section className="rounded-2xl bg-[#E8E4DE] p-5 lg:p-7 border border-[#C5BFB7]">
       <SectionHeader title="매장 기본" />
       <div className="space-y-4">
         {/* 업종 선택 -- 2x2 grid (D-04) */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Dropdown label="대분류" value={industry.major}
             onChange={handleMajorChange} options={majorOptions} />
           <Dropdown label="중분류" value={industry.medium}
             onChange={handleMediumChange} options={mediumOptions}
             disabled={!industry.major} />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Dropdown label="소분류" value={industry.minor}
             onChange={handleMinorChange} options={minorOptions}
             disabled={!industry.medium} />
@@ -64,7 +64,7 @@ export function StoreBasicSection() {
             rows={1} disabled={!industry.minor} />
         </div>
         {/* 나머지 필드 -- 기존 레이아웃 */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Dropdown label="규모" value={s.scale}
             onChange={(v) => updateField('scale', v)} options={SCALE_OPTIONS} />
           <Dropdown label="가격대" value={s.priceRange}

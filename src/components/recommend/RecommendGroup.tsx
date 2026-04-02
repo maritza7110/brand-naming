@@ -23,7 +23,7 @@ export function RecommendGroup({ label, batches, isOpen, onToggle, count }: Reco
       <button
         type="button"
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-4 py-3 bg-[#332F2C] hover:bg-[#3E3A36] transition-colors"
+        className="w-full flex items-center justify-between px-4 py-3.5 lg:py-3 bg-[#332F2C] hover:bg-[#3E3A36] transition-colors"
       >
         <div className="flex items-center gap-2">
           <ChevronDown

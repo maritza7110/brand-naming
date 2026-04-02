@@ -17,7 +17,7 @@ export function BrandVisionSection() {
   const hasInput = Object.values(bv).some((v) => v.trim() !== '');
 
   return (
-    <section className="rounded-2xl bg-[#E8E4DE] p-7 border border-[#C5BFB7]">
+    <section className="rounded-2xl bg-[#E8E4DE] p-5 lg:p-7 border border-[#C5BFB7]">
       <SectionHeader title="브랜드 비전" />
       <div className="space-y-4">
         {fields.map(({ key, label, ph }) => (
