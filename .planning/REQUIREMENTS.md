@@ -77,7 +77,7 @@
 
 - [x] **MOBILE-01**: 모바일에서 입력(위) + 추천(아래) 세로 스택 레이아웃이 표시된다
 - [x] **MOBILE-02**: AppLayout의 하드코딩 min-w가 제거되고 lg: 브레이크포인트 반응형으로 전환된다
-- [ ] **MOBILE-03**: 모바일에서 터치 타겟, 패딩, 폰트 크기 등 터치 UX가 최적화된다
+- [x] **MOBILE-03**: 모바일에서 터치 타겟, 패딩, 폰트 크기 등 터치 UX가 최적화된다
 
 ## v2 Requirements
 
@@ -122,7 +122,7 @@
 | RESET-01 | Phase 5 (v1.1) | Complete |
 | MOBILE-01 | Phase 6 (v1.1) | Complete |
 | MOBILE-02 | Phase 6 (v1.1) | Complete |
-| MOBILE-03 | Phase 6 (v1.1) | Pending |
+| MOBILE-03 | Phase 6 (v1.1) | Complete |
 
 **Coverage:**
 - v1.0 requirements: 29 total (all complete)

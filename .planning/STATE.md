@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: UX 개선
-status: executing
-stopped_at: Completed 06-01-PLAN.md
-last_updated: "2026-04-02T02:27:36.730Z"
+status: verifying
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-04-02T02:31:51.827Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 3
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 6
-  completed_plans: 5
+  completed_plans: 6
   percent: 60
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 
 Phase: 06 (mobile-responsive) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-02
 
 Progress: [██████░░░░] 60%
@@ -56,6 +56,7 @@ Progress: [██████░░░░] 60%
 | Phase 05 P01 | 4min | 2 tasks | 5 files |
 | Phase 05 P02 | 2min | 2 tasks | 2 files |
 | Phase 06 P01 | 2min | 2 tasks | 3 files |
+| Phase 06 P02 | 2min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,8 @@ Recent decisions affecting current work:
 - [Phase 05]: 업종 변경 감지를 useRef + useEffect 패턴으로 구현 -- collapsedGroups(React state)와 자연스러운 통합
 - [Phase 06]: lg: (1024px) 브레이크포인트로 모바일/데스크톱 전환 통일
 - [Phase 06]: font-bold -> font-semibold 2-weight 타이포그래피 시스템 적용 (InputPanel 히어로)
+- [Phase 06]: lg:hidden/hidden lg:inline 패턴으로 EmptyState 반응형 카피 (CSS-only)
+- [Phase 06]: prevBatchCountRef 기반 모바일 자동 스크롤 -- prevCount > 0 조건으로 최초 로드 시 스크롤 방지
 
 ### Pending Todos
 
@@ -96,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T02:27:36.727Z
-Stopped at: Completed 06-01-PLAN.md
+Last session: 2026-04-02T02:31:51.824Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None

@@ -123,7 +123,7 @@ Plans:
 
 Plans:
 - [x] 06-01-PLAN.md — 레이아웃 셸 반응형 전환 (AppLayout + InputPanel + RecommendPanel)
-- [ ] 06-02-PLAN.md — 내부 컴포넌트 터치 UX + 자동 스크롤 + 시각 검증
+- [x] 06-02-PLAN.md — 내부 컴포넌트 터치 UX + 자동 스크롤 + 시각 검증
 
 **UI hint**: yes
 
