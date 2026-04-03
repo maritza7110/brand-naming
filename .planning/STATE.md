@@ -1,17 +1,17 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.1
-milestone_name: UX 개선
-status: verifying
-stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-04-02T04:00:44.229Z"
-last_activity: 2026-04-02
+milestone: v2.0
+milestone_name: milestone
+status: completed
+stopped_at: Phase 8 context gathered
+last_updated: "2026-04-03T04:08:11.933Z"
+last_activity: 2026-04-03
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 6
-  completed_plans: 6
-  percent: 60
+  total_phases: 4
+  completed_phases: 1
+  total_plans: 3
+  completed_plans: 3
+  percent: 25
 ---
 
 # Project State
@@ -21,84 +21,52 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** 페르소나 항목을 채워갈수록 점점 정교해지는 브랜드명 추천
-**Current focus:** Phase 06 — mobile-responsive
+**Current focus:** Phase 08 — Strategic Naming Logic (Intelligence)
 
 ## Current Position
 
-Phase: 06
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-04-02
+Phase: 07
+Plan: 03
+Status: Phase 07 complete — moving to Phase 08
+Last activity: 2026-04-03
 
-Progress: [██████░░░░] 60%
+Progress: [██░░░░░░░░] 25% (Milestone v2.0)
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 1
-- Average duration: 5min
-- Total execution time: 0.08 hours
+- Total plans completed: 9 (v1.0: 3, v1.1: 6, v2.0: 3)
+- Phase 07 execution time: ~1 hour
 
 **By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| Phase 04 P01 | 5min | 3 tasks | 4 files |
-
-**Recent Trend:**
-
-- Last 5 plans: -
-- Trend: -
-
-*Updated after each plan completion*
-| Phase 04 P02 | 2min | 3 tasks | 3 files |
-| Phase 05 P01 | 4min | 2 tasks | 5 files |
-| Phase 05 P02 | 2min | 2 tasks | 2 files |
-| Phase 06 P01 | 2min | 2 tasks | 3 files |
-| Phase 06 P02 | 2min | 3 tasks | 7 files |
+| Phase | Plans | Total Tasks | Total Files | Status |
+|-------|-------|-------------|-------------|--------|
+| Phase 07 | 3 | 9 | 16 | Complete |
 
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
-- Tech stack: React 19 + Vite + TypeScript + Tailwind CSS + Zustand
-- AI: Gemini 3.1 Pro API via Vercel Serverless Functions
-- [Phase 01]: Section components use individual Zustand selectors
-- [Phase 01]: AppLayout uses explicit left/right props for slot composition
-- [v1.1]: 새 npm 패키지 추가 없음 -- 기존 스택만으로 구현
-- [v1.1]: 네이티브 <select> 3개 연쇄로 계층형 드롭다운 구현
-- [v1.1]: CSS Grid 0fr/1fr 트랜지션으로 접기/펼치기 애니메이션
-- [Phase 04]: StoreBasicState.category -> industry: IndustrySelection 구조체로 변경
-- [Phase 04]: updateStoreBasic Exclude<> 타입으로 industry 필드 보호
-- [Phase 04]: 상권업종분류 기반 237개 산업분류 정적 데이터
-- [Phase 04]: 2x2 grid 레이아웃으로 4단 계층형 업종 선택 UI 배치 (D-04)
-- [Phase 04]: buildInputSummary에서 IndustrySelection 객체를 별도 처리하여 TypeError 방지
-- [Phase 04]: SectionHeader font-bold -> font-semibold: 2-weight 타이포그래피 시스템 통합
-- [Phase 05]: getGroupKey는 소분류 > 중분류 > 대분류 > 미분류 우선순위로 그룹 키 결정
-- [Phase 05]: 업종 미선택 시 industry=undefined 저장 -> 미분류 그룹
-- [Phase 05]: resetNaming 별도 액션으로 resetTimestamp 기록하여 아카이브 분리 지원
-- [Phase 05]: collapsedGroups를 Zustand 대신 React state(Set)로 관리 -- 세션 UI 상태이므로 persist 불필요
-- [Phase 05]: 업종 변경 감지를 useRef + useEffect 패턴으로 구현 -- collapsedGroups(React state)와 자연스러운 통합
-- [Phase 06]: lg: (1024px) 브레이크포인트로 모바일/데스크톱 전환 통일
-- [Phase 06]: font-bold -> font-semibold 2-weight 타이포그래피 시스템 적용 (InputPanel 히어로)
-- [Phase 06]: lg:hidden/hidden lg:inline 패턴으로 EmptyState 반응형 카피 (CSS-only)
-- [Phase 06]: prevBatchCountRef 기반 모바일 자동 스크롤 -- prevCount > 0 조건으로 최초 로드 시 스크롤 방지
+- [Phase 07]: Supabase를 인증 및 데이터 저장소 핵심 엔진으로 채택
+- [Phase 07]: profiles, sessions, naming_results 등의 계층형 RLS 보안 모델 수립
+- [Phase 07]: Zustand + Supabase Listener를 통한 실시간 인증 상태 동기화
+- [Phase 07]: React Router v7 도입 및 Protected Route 기반의 페이지 보안 적용
+- [Phase 07]: 한글 중심의 사용자 친화적 대시보드 및 인증 UI 구현
 
 ### Pending Todos
 
-None yet.
+- Phase 08: 3단계 입력 위저드 UI 개발
+- Phase 08: 논리적 프레임워크 기반 프롬프트 엔지니어링 고도화
+- Phase 09: 소셜 갤러리 공유 시스템 구축
 
 ### Blockers/Concerns
 
-- localStorage 스키마 변경 시 기존 사용자 데이터 파손 주의 (Phase 4에서 migrate 함수 필수)
-- AppLayout의 min-w-[1024px] 제거 필요 (Phase 6에서 최우선 처리)
+- Supabase 환경 변수 미설정 시 기능 작동 불가 (.env.example 참조)
+- naming_results RLS 정책의 복잡성 (subquery Join 사용 중)
 
 ## Session Continuity
 
-Last session: 2026-04-02T02:31:51.824Z
-Stopped at: Completed 06-02-PLAN.md
-Resume file: None
+Last session: 2026-04-03T04:08:11.930Z
+Stopped at: Phase 8 context gathered
+Resume file: .planning/phases/08-strategic-naming-logic-intelligence/08-CONTEXT.md
