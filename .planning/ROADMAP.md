@@ -11,14 +11,18 @@
 ### Phase 7: Foundation & Authentication
 - **Goal:** Supabase 기반의 인증 인프라 구축 및 개인 대시보드 구현
 - **Plans:** 3 plans
-- [ ] 07-01-PLAN.md — Supabase 연동 및 DB 스키마/RLS 설정
-- [ ] 07-02-PLAN.md — 인증(Auth) UI 및 전역 상태 관리 구현
-- [ ] 07-03-PLAN.md — 개인 대시보드 UI 및 데이터 연동 로직
+- [x] 07-01-PLAN.md — Supabase 연동 및 DB 스키마/RLS 설정
+- [x] 07-02-PLAN.md — 인증(Auth) UI 및 전역 상태 관리 구현
+- [x] 07-03-PLAN.md — 개인 대시보드 UI 및 데이터 연동 로직
 
 ### Phase 8: Strategic Naming Logic (Intelligence)
-- [ ] **3단계 입력 위저드:** 분석-정체성-표현 단계별 폼 UI 개발.
-- [ ] **Gemini 프롬프트 엔지니어링:** 리서치된 논리적 프레임워크 기반 프롬프트 고도화.
-- [ ] **Rationale UI:** 네이밍 근거 및 타당성 설명 컴포넌트 추가.
+- **Goal:** 3단계 탭 위저드(분석-정체성-표현) 전환, 프롬프트 고도화, Rationale UI 추가
+- **Plans:** 1/4 plans executed
+Plans:
+- [x] 08-01-PLAN.md — 타입 시스템 확장 + Zustand 스토어 확장 + 신규 UI 프리미티브
+- [ ] 08-02-PLAN.md — 3단계 탭 위저드 UI + 신규 섹션 + InputPanel/NamingPage 전환
+- [ ] 08-03-PLAN.md — Gemini 프롬프트 고도화 + 구조화 응답 + 키워드 가중치
+- [ ] 08-04-PLAN.md — Rationale 확장 카드 UI + EmptyState 업데이트 + 전체 검증
 
 ### Phase 9: Social Gallery & Collaboration
 - [ ] **공유 시스템:** 네이밍 프로젝트의 공개 발행(Publish) 로직.
@@ -36,7 +40,7 @@
 |-------|-----------|---------------|--------|-----------|
 | 1-3. MVP | v1.0 | 3/3 | Complete | 2026-04-01 |
 | 4-6. UX 개선 | v1.1 | 6/6 | Complete | 2026-04-02 |
-| **7. Auth & DB** | **v2.0** | **0/3** | **Pending** | **2026-04-06** |
-| **8. Naming Logic** | **v2.0** | **0/1** | **Pending** | **2026-04-10** |
+| **7. Auth & DB** | **v2.0** | **3/3** | **Complete** | **2026-04-03** |
+| **8. Naming Logic** | **v2.0** | **0/4** | **Planned** | **2026-04-10** |
 | **9. Social Gallery** | **v2.0** | **0/1** | **Pending** | **2026-04-15** |
 | **10. Refinement** | **v2.0** | **0/1** | **Pending** | **2026-04-20** |
