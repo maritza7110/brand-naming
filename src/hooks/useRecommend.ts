@@ -10,13 +10,13 @@ export function useRecommend() {
 
   const recommend = useCallback(async () => {
     // 호출 시점에 최신 상태를 직접 가져옴 (셀렉터 재렌더 방지)
-    const { storeBasic, brandVision, product, persona } = useFormStore.getState();
-    const form = { storeBasic, brandVision, product, persona };
+    const { storeBasic, brandVision, product, persona, analysis, identity, expression, keywordWeights } = useFormStore.getState();
+    const form = { storeBasic, brandVision, product, persona, analysis, identity, expression };
 
     setLoading(true);
     setError(null);
     try {
-      const batch = await generateBrandNames(form);
+      const batch = await generateBrandNames(form, keywordWeights);
       addBatch(batch);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'AI 추천에 실패했습니다.';
