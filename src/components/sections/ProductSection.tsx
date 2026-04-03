@@ -1,15 +1,10 @@
 import { useFormStore } from '../../store/useFormStore';
-import { useRecommend } from '../../hooks/useRecommend';
 import { SectionHeader } from '../ui/SectionHeader';
 import { TextArea } from '../ui/TextArea';
-import { RecommendButton } from '../ui/RecommendButton';
 
 export function ProductSection() {
   const product = useFormStore((s) => s.product);
   const updateProduct = useFormStore((s) => s.updateProduct);
-  const { recommend, isLoading } = useRecommend();
-
-  const hasInput = Object.values(product).some((v) => v.trim() !== '');
 
   return (
     <section className="py-12">
@@ -30,10 +25,6 @@ export function ProductSection() {
           placeholder="예: 바쁜 일상 속 여유로운 한 잔의 시간"
           rows={4}
         />
-      </div>
-
-      <div className="mt-8">
-        <RecommendButton onClick={recommend} loading={isLoading} disabled={!hasInput} />
       </div>
     </section>
   );

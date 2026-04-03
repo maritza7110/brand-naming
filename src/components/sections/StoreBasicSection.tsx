@@ -1,10 +1,8 @@
 import { useFormStore } from '../../store/useFormStore';
-import { useRecommend } from '../../hooks/useRecommend';
 import { getMajorCategories, getMediumCategories, getMinorCategories } from '../../data/industryData';
 import { SectionHeader } from '../ui/SectionHeader';
 import { Dropdown } from '../ui/Dropdown';
-import { TextArea } from '../ui/TextArea';
-import { RecommendButton } from '../ui/RecommendButton';
+import { TextField } from '../ui/TextField';
 
 const SCALE_OPTIONS = ['1인 창업','소형 (5인 미만)','중형 (5~20인)','대형 (20인 이상)','프랜차이즈'];
 const PRICE_RANGE_OPTIONS = ['저가','중저가','중가','중고가','고가','프리미엄'];
@@ -14,13 +12,6 @@ export function StoreBasicSection() {
   const updateField = useFormStore((st) => st.updateStoreBasic);
   const industry = useFormStore((st) => st.storeBasic.industry);
   const updateIndustry = useFormStore((st) => st.updateIndustry);
-  const { recommend, isLoading } = useRecommend();
-
-  const hasInput =
-    industry.major !== '' ||
-    Object.entries(s)
-      .filter(([k]) => k !== 'industry')
-      .some(([, v]) => typeof v === 'string' && v.trim() !== '');
 
   // 계층형 옵션 계산
   const majorOptions = getMajorCategories();
@@ -58,10 +49,10 @@ export function StoreBasicSection() {
           <Dropdown label="소분류" value={industry.minor}
             onChange={handleMinorChange} options={minorOptions}
             disabled={!industry.medium} />
-          <TextArea label="비고" value={industry.note}
+          <TextField label="비고" value={industry.note}
             onChange={handleNoteChange}
             placeholder="예: 떡볶이 전문, 고양이카페"
-            rows={1} disabled={!industry.minor} />
+            disabled={!industry.minor} />
         </div>
         {/* 나머지 필드 -- 기존 레이아웃 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -70,12 +61,9 @@ export function StoreBasicSection() {
           <Dropdown label="가격대" value={s.priceRange}
             onChange={(v) => updateField('priceRange', v)} options={PRICE_RANGE_OPTIONS} />
         </div>
-        <TextArea label="주력 상품/서비스" value={s.mainProduct}
+        <TextField label="주력 상품/서비스" value={s.mainProduct}
           onChange={(v) => updateField('mainProduct', v)}
-          placeholder="수제 드립커피, 시그니처 디저트" rows={2} />
-      </div>
-      <div className="mt-6 flex justify-end">
-        <RecommendButton onClick={recommend} loading={isLoading} disabled={!hasInput} />
+          placeholder="수제 드립커피, 시그니처 디저트" />
       </div>
     </section>
   );

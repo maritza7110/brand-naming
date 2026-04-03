@@ -1,8 +1,8 @@
 import { useFormStore } from '../../store/useFormStore';
 import { useRecommend } from '../../hooks/useRecommend';
 import { SectionHeader } from '../ui/SectionHeader';
-import { RecommendButton } from '../ui/RecommendButton';
 import { MiniRecommendButton } from '../ui/MiniRecommendButton';
+import { TextField } from '../ui/TextField';
 import type { PersonaState } from '../../types/form';
 
 const F: { key: keyof PersonaState; label: string; ph: string }[] = [
@@ -28,25 +28,15 @@ export function PersonaSection() {
   const p = useFormStore((s) => s.persona);
   const u = useFormStore((s) => s.updatePersona);
   const { recommend, isLoading } = useRecommend();
-  const hasInput = Object.values(p).some((v) => v.trim() !== '');
 
   return (
     <section className="rounded-2xl bg-[#E8E4DE] p-5 lg:p-7 border border-[#C5BFB7]">
       <SectionHeader title="브랜드 페르소나" />
-      <div className="space-y-3">
+      <div className="space-y-4">
         {F.map(({ key, label, ph }) => (
-          <div key={key}>
-            <div className="flex items-center justify-between mb-1">
-              <label className="text-[12px] font-semibold text-[#5A5550]">{label}</label>
-              <MiniRecommendButton onClick={recommend} loading={isLoading} disabled={!p[key].trim()} />
-            </div>
-            <textarea value={p[key]} onChange={(e) => u(key, e.target.value)} placeholder={ph} rows={1}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#F5F3F0] text-[14px] text-[#2C2825] leading-relaxed placeholder:text-[#B5AFA8] border border-[#C5BFB7] resize-none transition-all duration-200 hover:border-[#A09890] focus:border-[#B48C50] focus:bg-white focus:outline-none" />
-          </div>
+          <TextField key={key} label={label} value={p[key]} onChange={(v) => u(key, v)} placeholder={ph}
+            labelAction={<MiniRecommendButton onClick={recommend} loading={isLoading} disabled={!p[key].trim()} />} />
         ))}
-      </div>
-      <div className="mt-6 flex justify-end">
-        <RecommendButton onClick={recommend} loading={isLoading} disabled={!hasInput} />
       </div>
     </section>
   );
