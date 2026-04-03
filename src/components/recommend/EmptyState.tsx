@@ -8,9 +8,8 @@ export function EmptyState() {
       </div>
       <p className="text-[13px] font-medium text-[#A09890] mb-1">추천 대기 중</p>
       <p className="text-[11px] text-[#A09890] leading-relaxed">
-        <span className="lg:hidden">위의</span>
-        <span className="hidden lg:inline">왼쪽</span>
-        {' '}항목을 입력하고<br />추천 받기를 눌러보세요
+        각 탭의 항목을 입력하고 추천 받기를 눌러보세요.<br />
+        단계가 진행될수록 더 정교한 이름이 나옵니다.
       </p>
     </div>
   );
