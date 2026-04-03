@@ -49,18 +49,53 @@ export interface PersonaState {
   membershipPhilosophy: string;    // 고객 관리(멤버쉽) 철학
 }
 
+/** 탭 ID 타입 (3단계 위저드) */
+export type TabId = 'analysis' | 'identity' | 'expression';
+
+/** 분석 탭 — 신규 필드 */
+export interface AnalysisState {
+  competitors: string;  // 경쟁사 분석 텍스트
+  usp: string;          // USP/차별화 요소 텍스트
+}
+
+/** 정체성 탭 — 신규 필드 */
+export interface IdentityState {
+  marketTrend: string;          // 시장 트렌드 텍스트
+  brandPersonality: string[];   // 브랜드 퍼스널리티 칩 선택 (최대 3개)
+}
+
+/** 표현 탭 — 신규 필드 (고급 옵션) */
+export interface ExpressionState {
+  namingStyle: string[];        // 네이밍 스타일 칩 선택 (최대 2개)
+  languageConstraint: string;   // 언어 제약 텍스트
+}
+
+/** 키워드별 가중치 (1~5) */
+export type KeywordWeights = Record<string, number>;
+
+/** 논리적 타당성 데이터 */
+export interface RationaleData {
+  validityScore: number;      // 0~100 (%)
+  namingTechnique: string;    // "합성어", "은유/상징" 등
+  meaningAnalysis: string;    // 의미 분석 설명
+  reflectedInputs: string[];  // 반영된 입력 항목명
+}
+
 /** 전체 폼 상태 */
 export interface FormState {
   storeBasic: StoreBasicState;
   brandVision: BrandVisionState;
   product: ProductState;
   persona: PersonaState;
+  analysis: AnalysisState;
+  identity: IdentityState;
+  expression: ExpressionState;
 }
 
 /** 추천 배치 — 한 번의 "추천 받기"로 생성된 결과 묶음 */
 export interface RecommendBatch {
   id: string;
-  names: { brandName: string; reasoning: string }[];
+  names: { brandName: string; reasoning: string; rationale?: RationaleData }[];
   basedOn: string[];   // 작명 근거 (입력된 항목명)
   createdAt: Date;
   industry?: IndustrySelection;  // 배치 생성 시점의 업종 스냅샷
@@ -72,4 +107,6 @@ export interface AppState extends FormState {
   isLoading: boolean;
   error: string | null;
   resetTimestamp: Date | null;  // 네이밍 초기화 시점 (RESET-01)
+  activeTab: TabId;
+  keywordWeights: KeywordWeights;
 }
