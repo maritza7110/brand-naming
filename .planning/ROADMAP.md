@@ -17,12 +17,12 @@
 
 ### Phase 8: Strategic Naming Logic (Intelligence)
 - **Goal:** 3단계 탭 위저드(분석-정체성-표현) 전환, 프롬프트 고도화, Rationale UI 추가
-- **Plans:** 3/4 plans executed
+- **Plans:** 4/4 plans complete
 Plans:
 - [x] 08-01-PLAN.md — 타입 시스템 확장 + Zustand 스토어 확장 + 신규 UI 프리미티브
 - [x] 08-02-PLAN.md — 3단계 탭 위저드 UI + 신규 섹션 + InputPanel/NamingPage 전환
 - [x] 08-03-PLAN.md — Gemini 프롬프트 고도화 + 구조화 응답 + 키워드 가중치
-- [ ] 08-04-PLAN.md — Rationale 확장 카드 UI + EmptyState 업데이트 + 전체 검증
+- [x] 08-04-PLAN.md — Rationale 확장 카드 UI + EmptyState 업데이트 + 전체 검증
 
 ### Phase 9: Social Gallery & Collaboration
 - [ ] **공유 시스템:** 네이밍 프로젝트의 공개 발행(Publish) 로직.
