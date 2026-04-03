@@ -8,6 +8,11 @@ import type {
   PersonaState,
   RecommendBatch,
   IndustrySelection,
+  AnalysisState,
+  IdentityState,
+  ExpressionState,
+  TabId,
+  KeywordWeights,
 } from '../types/form';
 
 // 초기값 (모든 필드 빈 문자열)
@@ -50,12 +55,35 @@ const initialPersona: PersonaState = {
   membershipPhilosophy: '',
 };
 
+const initialAnalysis: AnalysisState = {
+  competitors: '',
+  usp: '',
+};
+
+const initialIdentity: IdentityState = {
+  marketTrend: '',
+  brandPersonality: [],
+};
+
+const initialExpression: ExpressionState = {
+  namingStyle: [],
+  languageConstraint: '',
+};
+
 interface FormActions {
   updateStoreBasic: (field: Exclude<keyof StoreBasicState, 'industry'>, value: string) => void;
   updateIndustry: (selection: IndustrySelection) => void;
   updateBrandVision: (field: keyof BrandVisionState, value: string) => void;
   updateProduct: (field: keyof ProductState, value: string) => void;
   updatePersona: (field: keyof PersonaState, value: string) => void;
+  updateAnalysis: (field: keyof AnalysisState, value: string) => void;
+  updateIdentityText: (field: 'marketTrend', value: string) => void;
+  updateIdentityChips: (field: 'brandPersonality', value: string[]) => void;
+  updateExpressionChips: (field: 'namingStyle', value: string[]) => void;
+  updateExpressionText: (field: 'languageConstraint', value: string) => void;
+  setActiveTab: (tab: TabId) => void;
+  setKeywordWeight: (keyword: string, weight: number) => void;
+  resetKeywordWeights: () => void;
   resetAll: () => void;
   resetNaming: () => void;  // 폼 초기화 + resetTimestamp 기록
   addBatch: (batch: RecommendBatch) => void;
@@ -70,10 +98,15 @@ export const useFormStore = create<AppState & FormActions>()(
       brandVision: { ...initialBrandVision },
       product: { ...initialProduct },
       persona: { ...initialPersona },
+      analysis: { ...initialAnalysis },
+      identity: { ...initialIdentity },
+      expression: { ...initialExpression },
       batches: [],
       isLoading: false,
       error: null,
       resetTimestamp: null,
+      activeTab: 'analysis' as TabId,
+      keywordWeights: {} as KeywordWeights,
 
       updateStoreBasic: (field, value) =>
         set((state) => ({ storeBasic: { ...state.storeBasic, [field]: value } })),
@@ -92,12 +125,39 @@ export const useFormStore = create<AppState & FormActions>()(
       updatePersona: (field, value) =>
         set((state) => ({ persona: { ...state.persona, [field]: value } })),
 
+      updateAnalysis: (field, value) =>
+        set((state) => ({ analysis: { ...state.analysis, [field]: value } })),
+
+      updateIdentityText: (field, value) =>
+        set((state) => ({ identity: { ...state.identity, [field]: value } })),
+
+      updateIdentityChips: (field, value) =>
+        set((state) => ({ identity: { ...state.identity, [field]: value } })),
+
+      updateExpressionChips: (field, value) =>
+        set((state) => ({ expression: { ...state.expression, [field]: value } })),
+
+      updateExpressionText: (field, value) =>
+        set((state) => ({ expression: { ...state.expression, [field]: value } })),
+
+      setActiveTab: (tab) => set({ activeTab: tab }),
+
+      setKeywordWeight: (keyword, weight) =>
+        set((state) => ({ keywordWeights: { ...state.keywordWeights, [keyword]: weight } })),
+
+      resetKeywordWeights: () => set({ keywordWeights: {} }),
+
       resetAll: () =>
         set({
           storeBasic: { ...initialStoreBasic },
           brandVision: { ...initialBrandVision },
           product: { ...initialProduct },
           persona: { ...initialPersona },
+          analysis: { ...initialAnalysis },
+          identity: { ...initialIdentity },
+          expression: { ...initialExpression },
+          keywordWeights: {},
+          activeTab: 'analysis' as TabId,
         }),
 
       resetNaming: () =>
@@ -106,6 +166,11 @@ export const useFormStore = create<AppState & FormActions>()(
           brandVision: { ...initialBrandVision },
           product: { ...initialProduct },
           persona: { ...initialPersona },
+          analysis: { ...initialAnalysis },
+          identity: { ...initialIdentity },
+          expression: { ...initialExpression },
+          keywordWeights: {},
+          activeTab: 'analysis' as TabId,
           resetTimestamp: new Date(),
         }),
 
@@ -117,7 +182,7 @@ export const useFormStore = create<AppState & FormActions>()(
     }),
     {
       name: 'brand-naming-data',
-      version: 2,
+      version: 3,
       partialize: (state) => ({
         batches: state.batches,
         resetTimestamp: state.resetTimestamp,
@@ -127,6 +192,10 @@ export const useFormStore = create<AppState & FormActions>()(
           // v1 -> v2: resetTimestamp 추가, 기존 배치 보존 (industry=undefined)
           const p = persisted as { batches?: RecommendBatch[] };
           return { ...p, resetTimestamp: null };
+        }
+        if (version < 3) {
+          // v2 -> v3: rationale 필드 없는 기존 배치 호환 (optional이므로 자동 호환)
+          return persisted;
         }
         return persisted;
       },
