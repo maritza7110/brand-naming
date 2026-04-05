@@ -51,27 +51,29 @@ Declared values (all multiples of 4, matching Phase 8 conventions):
 
 **Exceptions:**
 - Tab bar height `44px` is a touch-target exception (Apple HIG minimum), retained from Phase 8. Not a 4-multiple of 8 but a hard touch-target requirement.
+- 20px/28px/44px lie outside the canonical 4/8/16/24/32/48/64 scale but are all multiples of 4. 20px/28px inherit from Phase 8 Tailwind `p-5`/`lg:p-7` card padding tokens; 44px is the Apple HIG touch-target floor for the tab bar. Each is individually justified and locked by prior phases.
 - 5-group persona stack uses `space-y-8` (32px) — stronger than intra-section `space-y-6` to make group boundaries unambiguous without an accordion.
 
 ---
 
 ## Typography
 
-Single type ramp — 3 sizes, 2 weights (matches Phase 8 contract). No new sizes introduced.
+Single type ramp — **exactly 2 sizes, 2 weights** (matches Phase 8 contract). No new sizes introduced. De-emphasis of the 12px eyebrow comes from smaller size + muted color `#6B6560`, not from a third weight.
 
 | Role | Size | Weight | Line Height | Phase 11 usage |
 |------|------|--------|-------------|----------------|
-| Body / Field value | 14px | 400 regular | 1.5 | TextField/TextArea input text, 관점 helper 문구 |
-| Label / Group header title | 14px | 600 semibold | 1.4 | SectionHeader h2, 필드 라벨 |
-| Subheading / Group eyebrow | 12px | 500 medium | 1.4 | 그룹 헤더 상단 eyebrow ("그룹 1 · 브랜드 정체성"), 관점 배지 텍스트 |
-| Tab label | 14px | 600 semibold | 1.0 | WizardTabs 버튼 |
+| Body / Field value | 14px | 400 regular | 1.5 | TextField/TextArea input text, 관점 helper 문구, 관점 배지 텍스트, placeholders |
+| Label / Group header / Eyebrow / Tab | 14px / 12px | 600 semibold | 1.4 (14px) · 1.4 (12px eyebrow) · 1.0 (tab) | SectionHeader h2 (14px), 필드 라벨 (14px), 그룹 헤더 상단 eyebrow "1 / 5 · 브랜드 정체성" (12px), WizardTabs 버튼 (14px) |
+
+**Weight count: 2 only — `400 regular` and `600 semibold`. No 500 medium anywhere in Phase 11.**
 
 **Hierarchy rule for persona tab:**
 - Group header (SectionHeader h2) = **14px semibold** ← same level as any other section on other tabs. The group is a section, not a sub-section.
+- Group eyebrow = **12px semibold** in muted `#6B6560` ← smaller size + muted color provide de-emphasis without needing a separate weight.
 - Field label (inside TextField) = existing 12–13px regular (untouched).
 - No "page title" typography — the tab itself is the page-level context.
 
-**What changes for Phase 11:** SectionHeader gains an optional `subtitle` prop slot for the 12px eyebrow text used by persona group cards (e.g. "1 / 5 · 브랜드 정체성"). Implementation is additive; existing call sites unaffected.
+**What changes for Phase 11:** SectionHeader gains an optional `subtitle` prop slot for the 12px eyebrow text used by persona group cards (e.g. "1 / 5 · 브랜드 정체성"). Eyebrow renders as `text-[12px] font-semibold text-[#6B6560]`. Implementation is additive; existing call sites unaffected.
 
 ---
 
@@ -340,8 +342,8 @@ Phase 11 is a pure refactor. No shadcn init, no third-party blocks, no new npm d
 - [ ] Dimension 1 Copywriting: PASS (all Korean strings specified; tab labels, group headers, 관점 badges, helper text, CTA variants, empty state)
 - [ ] Dimension 2 Visuals: PASS (single card style reused 5×, no per-group color drift, icon differentiation only)
 - [ ] Dimension 3 Color: PASS (zero new hues; 60/30/10 preserved; accent reserved list enforced)
-- [ ] Dimension 4 Typography: PASS (3 sizes × 2 weights; subtitle eyebrow slot is additive)
-- [ ] Dimension 5 Spacing: PASS (all multiples of 4; 32px inter-group gap documented; 44px tab-height exception noted)
+- [ ] Dimension 4 Typography: PASS (2 sizes × 2 weights; 400 regular + 600 semibold only; eyebrow de-emphasis via size + muted color, not weight)
+- [ ] Dimension 5 Spacing: PASS (all multiples of 4; 32px inter-group gap documented; 20/28/44 exceptions individually justified)
 - [ ] Dimension 6 Registry Safety: PASS (no registry used; pure in-repo refactor)
 
 **Approval:** pending (awaiting gsd-ui-checker)
