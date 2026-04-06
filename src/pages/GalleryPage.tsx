@@ -6,6 +6,7 @@ import { useSocialStore } from '../store/useSocialStore';
 import { useAuthStore } from '../store/useAuthStore';
 import GalleryGrid from '../components/gallery/GalleryGrid';
 import GallerySortTabs from '../components/gallery/GallerySortTabs';
+import GalleryModal from '../components/gallery/GalleryModal';
 import type { GallerySession } from '../types/gallery';
 
 export default function GalleryPage() {
@@ -72,9 +73,12 @@ export default function GalleryPage() {
           )}
         </div>
 
-        {/* GalleryModal은 Plan 04에서 구현 — selectedSession 상태만 준비 */}
-        {/* {selectedSession && <GalleryModal session={selectedSession} onClose={() => setSelectedSession(null)} />} */}
-        {selectedSession && null}
+        {selectedSession && (
+          <GalleryModal
+            session={selectedSession}
+            onClose={() => setSelectedSession(null)}
+          />
+        )}
       </main>
     </div>
   );

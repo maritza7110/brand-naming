@@ -1,5 +1,6 @@
-import { Heart } from 'lucide-react';
 import type { GallerySession } from '../../types/gallery';
+import LikeButton from './LikeButton';
+import BookmarkButton from './BookmarkButton';
 
 interface GalleryCardProps {
   session: GallerySession;
@@ -33,14 +34,14 @@ export default function GalleryCard({ session, likeCount, onClick }: GalleryCard
       {/* Divider */}
       <div className="border-t border-[#4A4440] mt-3 pt-3" />
 
-      {/* Footer row — Plan 04에서 LikeButton/BookmarkButton으로 교체 예정 */}
+      {/* Footer row */}
       <div className="flex justify-between items-center">
         <span className="text-[12px] text-[#A09890] truncate max-w-[60%]">
           {session.profiles?.full_name || '익명'}
         </span>
-        <div className="flex items-center gap-1 text-[#A09890]">
-          <Heart size={14} />
-          <span className="text-[12px]">{likeCount}</span>
+        <div className="flex items-center gap-0">
+          <LikeButton sessionId={session.id} count={likeCount} />
+          <BookmarkButton sessionId={session.id} />
         </div>
       </div>
 
