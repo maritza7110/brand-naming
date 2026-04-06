@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import type { CommentData } from '../types/gallery';
 
 export const socialService = {
   getMyLikedIds: async (userId: string): Promise<Set<string>> => {
@@ -65,5 +66,30 @@ export const socialService = {
 
     if (error) throw error;
     return data ?? [];
+  },
+
+  getComments: async (sessionId: string): Promise<CommentData[]> => {
+    const { data, error } = await supabase
+      .from('comments')
+      .select('id, content, created_at, user_id, session_id, profiles:user_id(full_name)')
+      .eq('session_id', sessionId)
+      .order('created_at', { ascending: true });
+    if (error) throw error;
+    return (data ?? []) as CommentData[];
+  },
+
+  addComment: async (sessionId: string, userId: string, content: string): Promise<void> => {
+    const { error } = await supabase
+      .from('comments')
+      .insert({ session_id: sessionId, user_id: userId, content });
+    if (error) throw error;
+  },
+
+  deleteComment: async (commentId: string): Promise<void> => {
+    const { error } = await supabase
+      .from('comments')
+      .delete()
+      .eq('id', commentId);
+    if (error) throw error;
   },
 };
