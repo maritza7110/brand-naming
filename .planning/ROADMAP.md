@@ -29,12 +29,12 @@ Plans:
 **Goal:** 네이밍 프로젝트의 공개 발행(Publish) + 무한 스크롤 갤러리 피드 + 좋아요/북마크 피드백 시스템 구축
 **Requirements**: SOCIAL-PUBLISH, SOCIAL-GALLERY, SOCIAL-LIKE, SOCIAL-BOOKMARK
 **Depends on:** Phase 7
-**Plans:** 1/4 plans executed
+**Plans:** 3/4 plans executed
 
 Plans:
 - [x] 09-01-PLAN.md — 타입 정의 + DB 마이그레이션 SQL + 서비스/스토어/훅 데이터 레이어
-- [ ] 09-02-PLAN.md — 대시보드 발행/철회 UI + 북마크 탭
-- [ ] 09-03-PLAN.md — 갤러리 페이지 + 카드 그리드 + 정렬 탭 + 무한 스크롤
+- [x] 09-02-PLAN.md — 대시보드 발행/철회 UI + 북마크 탭
+- [x] 09-03-PLAN.md — 갤러리 페이지 + 카드 그리드 + 정렬 탭 + 무한 스크롤
 - [ ] 09-04-PLAN.md — 좋아요/북마크 버튼 + 상세 모달
 
 ### Phase 10: Refinement & Data Visualization
