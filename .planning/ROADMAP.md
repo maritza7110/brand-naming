@@ -51,9 +51,9 @@ Plans:
 **Goal:** 3탭 위저드를 4탭(분석/정체성/페르소나/표현)으로 재설계하고, 16개 페르소나 필드를 5그룹 컨테이너로 분리하며, 시장트렌드를 분석탭으로 이동하고, 관점 차이 배지로 중복 필드를 해소한다
 **Requirements**: UX-TAB-REDESIGN, UX-PERSONA-TAB, UX-TAB-CONTENT-RESHUFFLE
 **Depends on:** Phase 8
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 11-01-PLAN.md — TabId 타입 확장 + SectionHeader subtitle + WizardTabs 4탭 + NamingPage 라우팅
 - [x] 11-02-PLAN.md — PersonaTab + 5개 페르소나 그룹 컴포넌트 생성
-- [ ] 11-03-PLAN.md — 분석탭 MarketTrend 이동 + 관점 배지 + 정체성탭 슬림화
+- [x] 11-03-PLAN.md — 분석탭 MarketTrend 이동 + 관점 배지 + 정체성탭 슬림화
