@@ -2,6 +2,7 @@ import { useFormStore } from '../../store/useFormStore';
 import { StoreBasicSection } from '../sections/StoreBasicSection';
 import { CompetitorSection } from '../sections/CompetitorSection';
 import { USPSection } from '../sections/USPSection';
+import { MarketTrendSection } from '../sections/MarketTrendSection';
 import { KeywordWeightSlider } from '../ui/KeywordWeightSlider';
 import { RecommendButton } from '../ui/RecommendButton';
 import { useRecommend } from '../../hooks/useRecommend';
@@ -22,6 +23,7 @@ const STORE_BASIC_LABELS: Record<string, string> = {
 export function AnalysisTab() {
   const storeBasic = useFormStore((s) => s.storeBasic);
   const analysis = useFormStore((s) => s.analysis);
+  const identity = useFormStore((s) => s.identity);
   const keywordWeights = useFormStore((s) => s.keywordWeights);
   const setKeywordWeight = useFormStore((s) => s.setKeywordWeight);
   const { recommend, isLoading } = useRecommend();
@@ -50,6 +52,9 @@ export function AnalysisTab() {
     const label = ANALYSIS_LABELS.usp;
     keywords.push({ label, weight: keywordWeights[label] ?? 3 });
   }
+  if (identity.marketTrend.trim() !== '') {
+    keywords.push({ label: '시장트렌드', weight: keywordWeights['시장트렌드'] ?? 3 });
+  }
 
   const hasInput =
     storeBasic.industry.major !== '' ||
@@ -57,13 +62,15 @@ export function AnalysisTab() {
       .filter(([k]) => k !== 'industry')
       .some(([, v]) => typeof v === 'string' && v.trim() !== '') ||
     analysis.competitors.trim() !== '' ||
-    analysis.usp.trim() !== '';
+    analysis.usp.trim() !== '' ||
+    identity.marketTrend.trim() !== '';
 
   return (
     <div className="space-y-5">
       <StoreBasicSection />
       <CompetitorSection />
       <USPSection />
+      <MarketTrendSection />
       {keywords.length > 0 && (
         <div className="rounded-2xl bg-[#363230] p-5 lg:p-7 border border-[#4A4440]">
           <KeywordWeightSlider keywords={keywords} onChange={setKeywordWeight} />
