@@ -25,9 +25,17 @@ Plans:
 - [x] 08-04-PLAN.md — Rationale 확장 카드 UI + EmptyState 업데이트 + 전체 검증
 
 ### Phase 9: Social Gallery & Collaboration
-- [ ] **공유 시스템:** 네이밍 프로젝트의 공개 발행(Publish) 로직.
-- [ ] **Public Gallery UI:** 타 사용자의 공유 데이터를 탐색할 수 있는 무한 스크롤 피드.
-- [ ] **피드백 루프:** 좋아요, 댓글, 북마크 기능 구현.
+
+**Goal:** 네이밍 프로젝트의 공개 발행(Publish) + 무한 스크롤 갤러리 피드 + 좋아요/북마크 피드백 시스템 구축
+**Requirements**: SOCIAL-PUBLISH, SOCIAL-GALLERY, SOCIAL-LIKE, SOCIAL-BOOKMARK
+**Depends on:** Phase 7
+**Plans:** 1/4 plans executed
+
+Plans:
+- [x] 09-01-PLAN.md — 타입 정의 + DB 마이그레이션 SQL + 서비스/스토어/훅 데이터 레이어
+- [ ] 09-02-PLAN.md — 대시보드 발행/철회 UI + 북마크 탭
+- [ ] 09-03-PLAN.md — 갤러리 페이지 + 카드 그리드 + 정렬 탭 + 무한 스크롤
+- [ ] 09-04-PLAN.md — 좋아요/북마크 버튼 + 상세 모달
 
 ### Phase 10: Refinement & Data Visualization
 - [ ] **분류 필터링:** 고도화된 검색 및 태그 필터 시스템.
@@ -42,7 +50,7 @@ Plans:
 | 4-6. UX 개선 | v1.1 | 6/6 | Complete | 2026-04-02 |
 | **7. Auth & DB** | **v2.0** | **3/3** | **Complete** | **2026-04-03** |
 | **8. Naming Logic** | **v2.0** | **0/4** | **Planned** | **2026-04-10** |
-| **9. Social Gallery** | **v2.0** | **0/1** | **Pending** | **2026-04-15** |
+| **9. Social Gallery** | **v2.0** | **0/4** | **Planned** | **2026-04-15** |
 | **10. Refinement** | **v2.0** | **0/1** | **Pending** | **2026-04-20** |
 | **11. UX 재설계** | **v2.0** | **3/3** | **Complete** | **2026-04-06** |
 
