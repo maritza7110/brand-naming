@@ -42,8 +42,14 @@ See: .planning/milestones/v2.0-phases/ for full phase decision history.
 
 - Supabase 환경 변수 미설정 시 기능 작동 불가 (.env.example 참조)
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260406-jft | 이메일 인증 없이 바로 가입 승인으로 변경 | 2026-04-06 | c5af0cd | [260406-jft-email-verification-skip](.planning/quick/260406-jft-email-verification-skip/) |
+
 ## Session Continuity
 
 Last session: 2026-04-06
-Stopped at: v2.0 milestone complete
+Stopped at: v2.0 milestone complete + quick task 260406-jft (이메일 인증 제거)
 Resume file: None
