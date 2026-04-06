@@ -7,6 +7,7 @@ import { socialService } from '../services/socialService';
 import { useSocialStore } from '../store/useSocialStore';
 import type { SessionData } from '../services/sessionService';
 import ProjectList from '../components/dashboard/ProjectList';
+import StatsSection from '../components/dashboard/StatsSection';
 
 export default function Dashboard() {
   const [sessions, setSessions] = useState<SessionData[]>([]);
@@ -180,6 +181,11 @@ export default function Dashboard() {
               })}
             </div>
           )
+        )}
+
+        {/* 통계 섹션 — 프로젝트 3개 이상일 때만 표시 (per D-09) */}
+        {sessions.length >= 3 && (
+          <StatsSection sessions={sessions} />
         )}
       </main>
     </div>
