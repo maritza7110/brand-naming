@@ -42,12 +42,12 @@ Plans:
 **Goal:** 갤러리 필터링(업종/스타일/키워드) + 댓글 피드백 + 대시보드 데이터 시각화(차트) + 인기 랭킹 리더보드 구현
 **Requirements**: FILTER-DATA, FILTER-UI, COMMENT-DATA, COMMENT-UI, LEADERBOARD-DATA, LEADERBOARD-UI, STATS-UI
 **Depends on:** Phase 9
-**Plans:** 1/4 plans executed
+**Plans:** 3/4 plans executed
 
 Plans:
 - [x] 10-01-PLAN.md — 타입 + DB 마이그레이션 + 서비스/스토어 데이터 레이어 (필터/리더보드/댓글)
-- [ ] 10-02-PLAN.md — 갤러리 FilterBar + Leaderboard UI + GalleryPage 통합
-- [ ] 10-03-PLAN.md — CommentSection + GalleryModal 댓글 통합
+- [x] 10-02-PLAN.md — 갤러리 FilterBar + Leaderboard UI + GalleryPage 통합
+- [x] 10-03-PLAN.md — CommentSection + GalleryModal 댓글 통합
 - [ ] 10-04-PLAN.md — recharts 설치 + StatsSection + Dashboard 통계 시각화
 
 ### Phase 11: 위저드 탭 UX 재설계 — 3탭→4탭 전환, 페르소나 5그룹 분리, 탭 간 역할 명확화
