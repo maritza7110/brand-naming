@@ -7,18 +7,23 @@ import { useAuthStore } from '../store/useAuthStore';
 import GalleryGrid from '../components/gallery/GalleryGrid';
 import GallerySortTabs from '../components/gallery/GallerySortTabs';
 import GalleryModal from '../components/gallery/GalleryModal';
+import GalleryFilterBar from '../components/gallery/GalleryFilterBar';
+import GalleryLeaderboard from '../components/gallery/GalleryLeaderboard';
 import type { GallerySession } from '../types/gallery';
 
 export default function GalleryPage() {
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  const { sessions, sortBy, isLoading, hasMore, error, likeCounts, fetchNextPage, setSortBy } =
+  const { sessions, sortBy, isLoading, hasMore, error, likeCounts, filters, fetchNextPage, setSortBy } =
     useGalleryStore();
   const [selectedSession, setSelectedSession] = useState<GallerySession | null>(null);
+
+  const hasActiveFilters = !!(filters.industry || filters.namingStyle || filters.keyword);
 
   useEffect(() => {
     useGalleryStore.getState().reset();
     fetchNextPage();
+    useGalleryStore.getState().fetchLeaderboard();
 
     if (user) {
       useSocialStore.getState().initSocialState(user.id);
@@ -48,18 +53,34 @@ export default function GalleryPage() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-8">
+        <GalleryLeaderboard />
         <GallerySortTabs activeSort={sortBy} onSortChange={setSortBy} />
+        <GalleryFilterBar />
         <div className="mt-6">
           {error ? (
-            <p className="text-[14px] text-red-400 text-center py-8">
-              갤러리를 불러오지 못했습니다. 새로고침 후 다시 시도해 주세요.
-            </p>
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+              <p className="text-[14px] text-[#A09890] mb-4">
+                데이터를 불러오지 못했습니다. 다시 시도해 주세요
+              </p>
+              <button
+                onClick={fetchNextPage}
+                className="text-[14px] text-[#B48C50] hover:text-[#C5A06B] transition-colors"
+              >
+                다시 시도
+              </button>
+            </div>
           ) : sessions.length === 0 && !isLoading ? (
             <div className="flex flex-col items-center justify-center py-20 text-center">
-              <p className="text-[#A09890] mb-2">아직 공개된 프로젝트가 없습니다</p>
-              <p className="text-[#B48C50] text-sm">
-                첫 번째 발행자가 되어보세요. 내 프로젝트에서 &apos;갤러리에 발행&apos; 버튼을 눌러보세요.
-              </p>
+              {hasActiveFilters ? (
+                <p className="text-[#A09890]">조건에 맞는 프로젝트가 없습니다</p>
+              ) : (
+                <>
+                  <p className="text-[#A09890] mb-2">아직 공개된 프로젝트가 없습니다</p>
+                  <p className="text-[#B48C50] text-sm">
+                    첫 번째 발행자가 되어보세요. 내 프로젝트에서 &apos;갤러리에 발행&apos; 버튼을 눌러보세요.
+                  </p>
+                </>
+              )}
             </div>
           ) : (
             <GalleryGrid
