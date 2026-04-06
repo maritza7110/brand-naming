@@ -1,21 +1,32 @@
 import { create } from 'zustand';
 import { socialService } from '../services/socialService';
 import { useGalleryStore } from './useGalleryStore';
+import type { CommentData } from '../types/gallery';
 
 interface SocialState {
   likedIds: Set<string>;
   bookmarkedIds: Set<string>;
   isInitialized: boolean;
 
+  comments: CommentData[];
+  isCommentsLoading: boolean;
+
   initSocialState: (userId: string) => Promise<void>;
   toggleLike: (sessionId: string, userId: string) => Promise<void>;
   toggleBookmark: (sessionId: string, userId: string) => Promise<void>;
+
+  fetchComments: (sessionId: string) => Promise<void>;
+  addComment: (sessionId: string, userId: string, content: string, userName: string) => Promise<void>;
+  deleteComment: (commentId: string) => Promise<void>;
 }
 
 export const useSocialStore = create<SocialState>((set, get) => ({
   likedIds: new Set<string>(),
   bookmarkedIds: new Set<string>(),
   isInitialized: false,
+
+  comments: [],
+  isCommentsLoading: false,
 
   initSocialState: async (userId: string) => {
     const [likedIds, bookmarkedIds] = await Promise.all([
@@ -62,6 +73,48 @@ export const useSocialStore = create<SocialState>((set, get) => ({
       const rollbackIds = new Set(get().bookmarkedIds);
       wasBookmarked ? rollbackIds.add(sessionId) : rollbackIds.delete(sessionId);
       set({ bookmarkedIds: rollbackIds });
+    }
+  },
+
+  fetchComments: async (sessionId: string) => {
+    set({ isCommentsLoading: true });
+    try {
+      const comments = await socialService.getComments(sessionId);
+      set({ comments, isCommentsLoading: false });
+    } catch {
+      set({ isCommentsLoading: false });
+    }
+  },
+
+  addComment: async (sessionId: string, userId: string, content: string, userName: string) => {
+    const tempId = crypto.randomUUID();
+    const tempComment: CommentData = {
+      id: tempId,
+      session_id: sessionId,
+      user_id: userId,
+      content,
+      created_at: new Date().toISOString(),
+      profiles: { full_name: userName },
+    };
+    set((state) => ({ comments: [...state.comments, tempComment] }));
+    try {
+      await socialService.addComment(sessionId, userId, content);
+      // re-fetch로 실제 ID 동기화
+      const comments = await socialService.getComments(sessionId);
+      set({ comments });
+    } catch {
+      // 롤백
+      set((state) => ({ comments: state.comments.filter((c) => c.id !== tempId) }));
+    }
+  },
+
+  deleteComment: async (commentId: string) => {
+    const prev = get().comments;
+    set((state) => ({ comments: state.comments.filter((c) => c.id !== commentId) }));
+    try {
+      await socialService.deleteComment(commentId);
+    } catch {
+      set({ comments: prev });
     }
   },
 }));
