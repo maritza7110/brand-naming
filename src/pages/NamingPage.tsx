@@ -10,20 +10,11 @@ import { AnalysisTab } from '../components/wizard/AnalysisTab';
 import { IdentityTab } from '../components/wizard/IdentityTab';
 import { ExpressionTab } from '../components/wizard/ExpressionTab';
 import { SettingsModal } from '../components/settings/SettingsModal';
+import { PersonaTab } from '../components/wizard/PersonaTab';
 import { useFormStore } from '../store/useFormStore';
 import { useAuthStore } from '../store/useAuthStore';
 import { groupBatches, splitByReset } from '../utils/groupBatches';
 import { Loader2 } from 'lucide-react';
-
-// TODO: Plan 02에서 실제 PersonaTab으로 대체
-function PersonaTabPlaceholder() {
-  return (
-    <div className="text-center py-20 text-[#A09890] text-[14px]">
-      <p className="font-semibold mb-2">페르소나 탭</p>
-      <p>Plan 02에서 구현 예정</p>
-    </div>
-  );
-}
 
 export default function NamingPage() {
   const navigate = useNavigate();
@@ -145,7 +136,7 @@ export default function NamingPage() {
             )}
             {activeTab === 'persona' && (
               <div className="animate-fadeIn">
-                <PersonaTabPlaceholder />
+                <PersonaTab />
               </div>
             )}
             {activeTab === 'expression' && (
