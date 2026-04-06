@@ -3,7 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 MVP** — 기초 UI 및 AI 추천 엔진 (shipped 2026-04-01)
-- ✅ **v1.1 UX 개선** — 산업분류 및 모바일 반응형 (shipped 2026-04-02)
+- ✅ **v1.1 UX ���선** — 산업분류 및 모바일 반응형 (shipped 2026-04-02)
 - 🚀 **v2.0 Logic & Social** — 논리적 프레임워크 및 소셜 기능을 통한 협업 (In Planning)
 
 ## Phases (v2.0)
@@ -38,25 +38,21 @@ Plans:
 - [x] 09-04-PLAN.md — 좋아요/북마크 버튼 + 상세 모달
 
 ### Phase 10: Refinement & Data Visualization
-- [ ] **분류 필터링:** 고도화된 검색 및 태그 필터 시스템.
-- [ ] **데이터 대시보드:** 나의 네이밍 트렌드 및 인기 키워드 시각화.
-- [ ] **최종 QA & 배포:** 전체 프로세스 검증 및 v2.0 정식 런칭.
 
-## Progress
+**Goal:** 갤러리 필터링(업종/스타일/키워드) + 댓글 피드백 + 대시보드 데이터 시각화(차트) + 인기 랭킹 리더보드 구현
+**Requirements**: FILTER-DATA, FILTER-UI, COMMENT-DATA, COMMENT-UI, LEADERBOARD-DATA, LEADERBOARD-UI, STATS-UI
+**Depends on:** Phase 9
+**Plans:** 1/4 plans executed
 
-| Phase | Milestone | Plans Complete | Status | Expected |
-|-------|-----------|---------------|--------|-----------|
-| 1-3. MVP | v1.0 | 3/3 | Complete | 2026-04-01 |
-| 4-6. UX 개선 | v1.1 | 6/6 | Complete | 2026-04-02 |
-| **7. Auth & DB** | **v2.0** | **3/3** | **Complete** | **2026-04-03** |
-| **8. Naming Logic** | **v2.0** | **0/4** | **Planned** | **2026-04-10** |
-| **9. Social Gallery** | **v2.0** | **0/4** | **Planned** | **2026-04-15** |
-| **10. Refinement** | **v2.0** | **0/1** | **Pending** | **2026-04-20** |
-| **11. UX 재설계** | **v2.0** | **3/3** | **Complete** | **2026-04-06** |
+Plans:
+- [x] 10-01-PLAN.md — 타입 + DB 마이그레이션 + 서비스/스토어 데이터 레이어 (필터/리더보드/댓글)
+- [ ] 10-02-PLAN.md — 갤러리 FilterBar + Leaderboard UI + GalleryPage 통합
+- [ ] 10-03-PLAN.md — CommentSection + GalleryModal 댓글 통합
+- [ ] 10-04-PLAN.md — recharts 설치 + StatsSection + Dashboard 통계 시각화
 
 ### Phase 11: 위저드 탭 UX 재설계 — 3탭→4탭 전환, 페르소나 5그룹 분리, 탭 간 역할 명확화
 
-**Goal:** 3탭 위저드를 4탭(분석/정체성/페르소나/표현)으로 재설계하고, 16개 페르소나 필드를 5그룹 컨테이너로 분리하며, 시장트렌드를 분석탭으로 이동하고, 관점 차이 배지로 중복 필드를 해소한다
+**Goal:** 3탭 위저드를 4탭(분석/정체성/페르소나/표현)으로 재설계하고, 16개 페르소나 필드를 5그룹 컨테���너로 분리하며, 시장트렌드를 분석탭으로 이동하고, 관점 차이 배지로 중복 필드를 해소한다
 **Requirements**: UX-TAB-REDESIGN, UX-PERSONA-TAB, UX-TAB-CONTENT-RESHUFFLE
 **Depends on:** Phase 8
 **Plans:** 3/3 plans complete
@@ -65,3 +61,15 @@ Plans:
 - [x] 11-01-PLAN.md — TabId 타입 확장 + SectionHeader subtitle + WizardTabs 4탭 + NamingPage 라우팅
 - [x] 11-02-PLAN.md — PersonaTab + 5개 페르소나 그룹 컴포넌트 생성
 - [x] 11-03-PLAN.md — 분석탭 MarketTrend 이동 + 관점 배지 + 정체성탭 슬림화
+
+## Progress
+
+| Phase | Milestone | Plans Complete | Status | Expected |
+|-------|-----------|---------------|--------|-----------|
+| 1-3. MVP | v1.0 | 3/3 | Complete | 2026-04-01 |
+| 4-6. UX 개선 | v1.1 | 6/6 | Complete | 2026-04-02 |
+| **7. Auth & DB** | **v2.0** | **3/3** | **Complete** | **2026-04-03** |
+| **8. Naming Logic** | **v2.0** | **4/4** | **Complete** | **2026-04-10** |
+| **9. Social Gallery** | **v2.0** | **4/4** | **Complete** | **2026-04-15** |
+| **10. Refinement** | **v2.0** | **0/4** | **Planned** | **2026-04-20** |
+| **11. UX 재���계** | **v2.0** | **3/3** | **Complete** | **2026-04-06** |
