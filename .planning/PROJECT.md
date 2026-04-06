@@ -1,72 +1,83 @@
-# 브랜드 네이밍 앱 v2.0: 지능형 로직 및 소셜 협업 플랫폼
+# 브랜드 네이밍 앱: 지능형 로직 및 소셜 협업 플랫폼
 
 ## What This Is
 
-소상공인과 브랜드 기획자를 위한 전문 브랜드 네이밍 솔루션. 단순히 이름을 생성하는 것을 넘어, 시장 분석-페르소나 정의-핵심 가치 도출로 이어지는 **논리적 네이밍 프레임워크**를 제공한다. 개인별 네이밍 프로젝트 관리와 타 사용자의 결과물을 참고할 수 있는 **소셜 공유 기능**을 통해 협업적 네이밍 경험을 구현한다.
+소상공인과 브랜드 기획자를 위한 전문 브랜드 네이밍 솔루션. 4단계 위저드(분석/정체성/페르소나/표현)를 통한 **논리적 네이밍 프레임워크**, 개인 대시보드와 ��션 관리, 공개 갤러리를 통한 **소셜 공유·피드백**, 데이터 시각화를 통한 **네이밍 인사이트**를 제공한다.
 
 ## Core Value
 
-1.  **Logical Validity:** 데이터에 기반한 체계적인 네이밍 프로세스 (Naming Logic 2.0).
-2.  **Social Inspiration:** 다른 기획자들의 네이밍 결과와 로직을 참고하여 영감을 얻는 커뮤니티 공간.
-3.  **Persistent Management:** 개인별 네이밍 세션 저장 및 체계적인 분류(카테고리/태그).
+1.  **Logical Validity:** 데이터에 기반한 체계적인 네이밍 프로세스 (4탭 위저드 + Rationale).
+2.  **Social Inspiration:** 갤러리·댓글·리더보드를 통해 동료들의 네이밍에서 영감을 얻는 커뮤니티.
+3.  **Persistent Management:** 개인 세션 저장, 북마크, 통계 시각화를 통한 자산 관리.
 
 ## Current State
 
-**v1.1 Shipped:** UX 및 반응형 레이아웃 개선 완료.
-**v2.0 Phase 9 Complete:** 소셜 갤러리 & 협업 — 공개 발행/철회, 무한 스크롤 갤러리 피드, 좋아요/북마크 시스템, 상세 모달.
-**v2.0 Phase 10 Complete:** Refinement & Data Visualization — 갤러리 필터링(업종/스타일/키워드), 댓글 시스템, 리더보드(주간/전체), 대시보드 통계 차트(recharts).
-**Status:** Phase 10 complete, advancing to Phase 11 (UX).
+**v2.0 Shipped (2026-04-06):** 지능형 로직 및 소셜 협업 플랫폼 완성.
+- 75개 TypeScript/TSX 소스 파일, 5,170 LOC
+- Supabase Auth + DB, Gemini 3.1 Pro, recharts
 
 ## Requirements
 
-### Active (v2.0)
-
-- **지능형 네이밍 로직:**
-    - [ ] 시장 분석(경쟁사), 타겟 페르소나, 핵심 가치(USP) 데이터 입력 항목 고도화.
-    - [ ] 입력 데이터와 생성 결과 간의 논리적 연결성 강화 (Gemini 프롬프트 최적화).
-    - [ ] 네이밍 기법(합성어, 추상어 등) 선택 기능.
-- **데이터 관리 및 저장:**
-    - [ ] '네이밍 세션' 단위의 프로젝트 저장 및 관리 기능.
-    - [ ] 결과물 분류 체계 도입 (산업군, 스타일, 네이밍 기법).
-    - [ ] 개인별 네이밍 아카이브 (Private Vault).
-- **소셜 및 협업:**
-    - [ ] 사용자 인증 및 개인 프로필 (로그인 기능).
-    - [ ] 공개 게시판 (Public Gallery): 선별된 네이밍 결과 공유 및 레퍼런스 활용.
-    - [ ] 피드백 시스템: 좋아요, 댓글, 추천 점수.
-- **UI/UX 고도화:**
-    - [ ] 전문가용 대시보드 형태의 UI 구성.
-    - [ ] 네이밍 프로세스 단계별 가이드 제공.
+### Validated (v2.0)
+- ✓ Supabase 기반 인증 + 사용자 프로필 — v2.0 (Phase 7)
+- ✓ 개인 대시보드 + 세션 관리 — v2.0 (Phase 7)
+- ✓ 3단계 위저드(분석/정체성/표현) 도입 — v2.0 (Phase 8)
+- ✓ 경쟁사·USP·브랜드 퍼스낼리티 등 신규 입력 항목 — v2.0 (Phase 8)
+- ✓ 네이밍 기법 선택 + 키워드 가중치 — v2.0 (Phase 8)
+- ✓ Rationale UI (논리적 타당성 근거 제시) — v2.0 (Phase 8)
+- ✓ 공개 갤러리 + 발행/철회 — v2.0 (Phase 9)
+- ✓ 좋아요·북마크·무한 스크롤 — v2.0 (Phase 9)
+- ✓ 갤러리 필터링(업종/스타일/키워드) — v2.0 (Phase 10)
+- ✓ 댓글 시스템(플랫 댓글) — v2.0 (Phase 10)
+- ✓ 인기 랭킹 리더보드(주간/전체) — v2.0 (Phase 10)
+- ✓ 대시보드 데이터 시각화(recharts 차트 3종) — v2.0 (Phase 10)
+- ✓ 4탭 위저드 재설계(분석/정체성/페르소나/표현) — v2.0 (Phase 11)
+- ✓ 페르소나 5그룹 분리 + 관점 차이 배지 — v2.0 (Phase 11)
 
 ### Validated (v1.x)
-- ✓ 산업분류 계층형 드롭다운 (v1.1)
-- ✓ 추천 카드 그루핑 및 애니메이션 (v1.1)
-- ✓ 모바일 반응형 레이아웃 (v1.1)
+- ✓ 산업분류 계층형 드롭다운 — v1.1
+- ✓ 추천 카드 그루핑 및 애니메이션 — v1.1
+- ✓ 모바일 반응형 레이아웃 — v1.1
+- ✓ 기본 정보 입력 및 AI 추천 엔진 — v1.0
+- ✓ pdf.js 기반 RAG — v1.0
+
+### Active (next milestone)
+- (다음 마일스톤에서 정의)
+
+### Out of Scope
+- 실시간 자동 상표권 검색 API 연동 (복잡도 이슈로 v3.0 이후 검토)
+- 모바일 네��티브 앱 개발 (PWA 수준으로 대응)
+- 기업용 유료 구독 모델 (초��에는 모든 직원 무료 접근)
 
 ## Context
 
-- **AI**: Gemini 3.1 Pro (논리적 추론 엔진 고도화 필요).
-- **Storage**: Supabase 또는 Firebase 기반 Auth 및 DB 연동 (v2.0 검토 중).
-- **Frontend**: React 19 + Tailwind 4 + Zustand.
-- **Design**: 'Pro' 지향적인 심플 + 고급스러운 UI.
+- **AI**: Gemini 3.1 Pro — 네이밍 추론 + Rationale 생성
+- **Storage**: Supabase (Auth + PostgreSQL + Row Level Security)
+- **Frontend**: React 19 + Tailwind CSS 4 + Zustand + React Router v7
+- **Charts**: recharts 3.8.x
+- **Design**: 다크 테마 (#0F0F11), 골드 포인트 (#B48C50), Pretendard 폰트
+- **Deploy**: Vercel
 
 ## Constraints
 
-- **언어**: 한국어 기반 (글로벌 확장성 고려한 아키텍처).
-- **성능**: 대량의 네이밍 데이터 로딩 시 최적화.
-- **보안**: 개인 네이밍 데이터의 철저한 비공개 보장.
-
+- **파일 제한**: 모든 소스 파일 500줄 이하
+- **언어**: 한국어 UI, 한국어 문서
+- **사용자**: 100인 ���내 직원
+- **성능**: 무한 스크롤 + ���관적 업데이트 패턴
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
 | 기존 페르소나 항목 그대로 사용 | 일관성, 기존 앱과 연계 | ✓ Good |
-| 한 화면 스크롤 레이아웃 | 탭/단계 전환 없이 자연스러운 흐름 | ✓ Good |
-| 노트북LM 방식 RAG | 업로드 자료 기반 신뢰성 확보 | ✓ Good |
 | Gemini 3.1 Pro | 브랜드명 추론 엔진 | ✓ Good |
 | 237개 정적 산업분류 데이터 | 서버 불필요, 빠른 탐색 | ✓ Good (v1.1) |
-| lg: 1024px 브레이크포인트 | Tailwind 기본값, 태블릿/데스크톱 자연 분기 | ✓ Good (v1.1) |
 | mobile-first 반응형 | 모바일 기본 → lg: 데스크톱 확장 | ✓ Good (v1.1) |
+| Supabase Auth + RLS | 서버���스 인증, 행 수준 보안 | ✓ Good (v2.0) |
+| 3→4탭 위저드 재설계 | 페르소나 분리로 입력 부담 감소 | ✓ Good (v2.0) |
+| recharts 차트 라이브러리 | 가볍고 React 네이티브, ��크 테마 호환 | ✓ Good (v2.0) |
+| 플랫 댓글 (대댓글 없음) | 100인 사내 앱에 충분, ���잡도 최소화 | ✓ Good (v2.0) |
+| 좋아요 수 단순 ���렬 리더보드 | 복합 점수 없이 직관적 | ✓ Good (v2.0) |
 
 ## Evolution
 
@@ -86,4 +97,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-06 after Phase 10 complete*
+*Last updated: 2026-04-06 after v2.0 milestone complete*
