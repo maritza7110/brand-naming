@@ -141,8 +141,8 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
   }
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] overflow-y-auto bg-black/60 backdrop-blur-sm" onClick={handleClose}>
-      <div className="min-h-full flex items-start justify-center py-10 px-4">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={handleClose}>
+      <div className="max-h-[85vh] overflow-y-auto px-4">
         <div
           className="relative w-full max-w-lg rounded-2xl bg-[#3E3A36] border border-[#4A4640] shadow-2xl flex flex-col"
           onClick={(e) => e.stopPropagation()}
@@ -164,12 +164,10 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
             <p className="text-[11px] font-semibold text-[#6A6460] uppercase tracking-widest mb-2">F-1 식별력 등급</p>
             <div className="space-y-1.5">
               {IDENTITY_GRADES.map((g) => (
-                <div key={g.grade} className="flex items-start gap-2.5 p-2.5 rounded-xl bg-[#2C2825] border border-[#4A4440]">
-                  <div className={`w-2 h-2 rounded-full mt-1 shrink-0 ${g.dot}`} />
-                  <div>
-                    <p className="text-[12px] font-semibold text-[#D0CAC2]">{g.grade}</p>
-                    <p className="text-[11px] text-[#7A7570] mt-0.5">{g.desc}</p>
-                  </div>
+                <div key={g.grade} className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#2C2825] border border-[#4A4440]">
+                  <div className={`w-2 h-2 rounded-full shrink-0 ${g.dot}`} />
+                  <span className="text-[12px] font-semibold text-[#D0CAC2] shrink-0">{g.grade}</span>
+                  <span className="text-[11px] text-[#7A7570]">{g.desc}</span>
                 </div>
               ))}
             </div>

@@ -81,13 +81,6 @@ export function RecommendCardItem({ batch, isGroupOpen }: Props) {
         );
       })}
 
-      {/* processNote (문서 기반 모드) */}
-      {batch.processNote && (
-        <div className="mt-3 pt-2 border-t border-[#332F2C]">
-          <p className="text-[12px] text-[#A09890] leading-relaxed">{batch.processNote}</p>
-        </div>
-      )}
-
       {/* 소비자 테스트 체크리스트 (문서 기반 모드) */}
       {batch.consumerChecklist && batch.consumerChecklist.length > 0 && (
         <div className="mt-2 border-t border-[#332F2C] pt-2">
@@ -141,6 +134,11 @@ export function RecommendCardItem({ batch, isGroupOpen }: Props) {
         {batch.basedOn.length > 4 && <span className="text-[12px] text-[#D0CAC2]">+{batch.basedOn.length - 4}</span>}
         <span className="ml-auto text-[12px] text-[#B5AFA8]">{time}</span>
       </div>
+
+      {/* processNote (문서 기반 모드) — 카드 최하단 */}
+      {batch.processNote && (
+        <p className="mt-2 text-[11px] text-[#6A6460] italic leading-relaxed">{batch.processNote}</p>
+      )}
     </div>
   );
 }
