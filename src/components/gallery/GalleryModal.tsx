@@ -5,6 +5,7 @@ import { sessionService } from '../../services/sessionService';
 import { useGalleryStore } from '../../store/useGalleryStore';
 import LikeButton from './LikeButton';
 import BookmarkButton from './BookmarkButton';
+import CommentSection from './CommentSection';
 
 interface GalleryModalProps {
   session: GallerySession;
@@ -53,7 +54,7 @@ export default function GalleryModal({ session, onClose }: GalleryModalProps) {
     >
       {/* Modal container */}
       <div
-        className="bg-[#1A1A1E] border border-[#4A4440] rounded-2xl max-w-[720px] w-full max-h-[80vh] overflow-y-auto animate-fadeIn p-8"
+        className="bg-[#1A1A1E] border border-[#4A4440] rounded-2xl max-w-[720px] w-full max-h-[90vh] overflow-y-auto animate-fadeIn p-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -116,6 +117,10 @@ export default function GalleryModal({ session, onClose }: GalleryModalProps) {
             {session.profiles?.full_name || '익명'} · {sessionService.formatDate(session.created_at)}
           </span>
         </div>
+
+        {/* 댓글 섹션 (per D-06) */}
+        <hr className="border-[#4A4440] my-4" />
+        <CommentSection sessionId={session.id} />
       </div>
     </div>
   );
