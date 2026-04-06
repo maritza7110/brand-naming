@@ -49,8 +49,8 @@ export interface PersonaState {
   membershipPhilosophy: string;    // 고객 관리(멤버쉽) 철학
 }
 
-/** 탭 ID 타입 (3단계 위저드) */
-export type TabId = 'analysis' | 'identity' | 'expression';
+/** 탭 ID 타입 (4단계 위저드) */
+export type TabId = 'analysis' | 'identity' | 'persona' | 'expression';
 
 /** 분석 탭 — 신규 필드 */
 export interface AnalysisState {
