@@ -73,12 +73,21 @@ export interface ExpressionState {
 /** 키워드별 가중치 (1~5) */
 export type KeywordWeights = Record<string, number>;
 
+/** 상표 위험도 판정 (doc_f 기반) */
+export interface TrademarkRisk {
+  riskLevel: '낮음' | '보통' | '높음';  // 위험도
+  identityGrade: string;                  // 식별력 등급 (예: "조어상표", "암시상표")
+  note: string;                           // 판정 근거 한 줄
+}
+
 /** 논리적 타당성 데이터 */
 export interface RationaleData {
-  validityScore: number;      // 0~100 (%)
-  namingTechnique: string;    // "합성어", "은유/상징" 등
-  meaningAnalysis: string;    // 의미 분석 설명
-  reflectedInputs: string[];  // 반영된 입력 항목명
+  validityScore: number;        // 0~100 (%)
+  namingTechnique: string;      // "합성어", "은유/상징" 등
+  meaningAnalysis: string;      // 의미 분석 설명
+  reflectedInputs: string[];    // 반영된 입력 항목명
+  documentReference?: string;   // 어느 문서·원칙 적용 (문서 기반 모드)
+  trademarkRisk?: TrademarkRisk; // 상표 위험도 (문서 기반 모드)
 }
 
 /** 전체 폼 상태 */
@@ -96,9 +105,11 @@ export interface FormState {
 export interface RecommendBatch {
   id: string;
   names: { brandName: string; reasoning: string; rationale?: RationaleData }[];
-  basedOn: string[];   // 작명 근거 (입력된 항목명)
+  basedOn: string[];              // 작명 근거 (입력된 항목명)
   createdAt: Date;
-  industry?: IndustrySelection;  // 배치 생성 시점의 업종 스냅샷
+  industry?: IndustrySelection;   // 배치 생성 시점의 업종 스냅샷
+  consumerChecklist?: string[];   // 소비자 테스트 항목 (doc_e, 문서 기반 모드)
+  processNote?: string;           // 적용된 원칙 요약 (문서 기반 모드)
 }
 
 /** 전체 앱 상태 */

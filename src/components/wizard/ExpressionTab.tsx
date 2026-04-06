@@ -50,6 +50,14 @@ export function ExpressionTab() {
 
   return (
     <div className="space-y-5">
+      <div className="mb-4">
+        <h3 className="text-[14px] font-semibold text-[#D0CAC2] mb-2">
+          브랜드가 전달하는 것을 정의해주세요
+        </h3>
+        <p className="text-[14px] text-[#A09890]">
+          제품·서비스의 강점과 고객 가치를 입력하면 네이밍에 직접 반영됩니다. 고급 옵션에서 스타일과 언어 제약도 설정할 수 있습니다.
+        </p>
+      </div>
       <ProductSection />
       <div className="rounded-2xl bg-[#E8E4DE] p-5 lg:p-7 border border-[#C5BFB7]">
         <AdvancedOptionsToggle>

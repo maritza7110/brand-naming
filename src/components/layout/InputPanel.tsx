@@ -74,7 +74,7 @@ export function InputPanel({
         </div>
 
         {tabBar && (
-          <div className="sticky top-0 z-10 bg-[#2C2825] -mx-5 lg:-mx-8 px-0 mb-5">
+          <div className="sticky top-0 z-10 bg-[#2C2825] -mx-5 lg:-mx-8 px-5 lg:px-8 mb-5">
             {tabBar}
           </div>
         )}

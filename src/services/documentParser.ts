@@ -1,8 +1,8 @@
 import * as pdfjsLib from 'pdfjs-dist';
 import type { UploadedDocument } from '../store/useSettingsStore';
 
-// PDF.js 워커 설정 (CDN)
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+// PDF.js 워커 설정 (public 폴더 정적 파일)
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 /** TXT 파일에서 텍스트 추출 */
 async function parseTxt(file: File): Promise<string> {

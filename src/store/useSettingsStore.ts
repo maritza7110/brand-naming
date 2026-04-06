@@ -6,7 +6,7 @@ export interface UploadedDocument {
   name: string;
   type: 'txt' | 'pdf';
   content: string;
-  uploadedAt: string; // ISO string (Date는 persist 시 직렬화 문제)
+  uploadedAt: string;
 }
 
 interface SettingsState {
@@ -16,8 +16,7 @@ interface SettingsState {
 
 interface SettingsActions {
   setApiKey: (key: string) => void;
-  addDocument: (doc: UploadedDocument) => void;
-  removeDocument: (id: string) => void;
+  setDocuments: (docs: UploadedDocument[]) => void;
 }
 
 export const useSettingsStore = create<SettingsState & SettingsActions>()(
@@ -27,15 +26,11 @@ export const useSettingsStore = create<SettingsState & SettingsActions>()(
       documents: [],
 
       setApiKey: (key) => set({ apiKey: key }),
-
-      addDocument: (doc) =>
-        set((state) => ({ documents: [...state.documents, doc] })),
-
-      removeDocument: (id) =>
-        set((state) => ({
-          documents: state.documents.filter((d) => d.id !== id),
-        })),
+      setDocuments: (docs) => set({ documents: docs }),
     }),
-    { name: 'brand-naming-settings' },
+    {
+      name: 'brand-naming-settings',
+      partialize: (state) => ({ apiKey: state.apiKey }),
+    },
   ),
 );

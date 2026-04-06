@@ -75,7 +75,7 @@ export const socialService = {
       .eq('session_id', sessionId)
       .order('created_at', { ascending: true });
     if (error) throw error;
-    return (data ?? []) as CommentData[];
+    return (data ?? []) as unknown as CommentData[];
   },
 
   addComment: async (sessionId: string, userId: string, content: string): Promise<void> => {

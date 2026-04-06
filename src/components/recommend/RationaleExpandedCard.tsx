@@ -1,12 +1,22 @@
+import { useState } from 'react';
 import type { RationaleData } from '../../types/form';
+import { TrademarkModal } from './TrademarkModal';
 
 interface RationaleExpandedCardProps {
   rationale: RationaleData;
   isOpen: boolean;
+  brandName: string;
 }
 
-export function RationaleExpandedCard({ rationale, isOpen }: RationaleExpandedCardProps) {
-  const { validityScore, namingTechnique, meaningAnalysis, reflectedInputs } = rationale;
+const RISK_COLOR: Record<string, string> = {
+  '낮음': 'text-emerald-400 bg-emerald-400/10',
+  '보통': 'text-amber-400 bg-amber-400/10',
+  '높음': 'text-red-400 bg-red-400/10',
+};
+
+export function RationaleExpandedCard({ rationale, isOpen, brandName }: RationaleExpandedCardProps) {
+  const { validityScore, namingTechnique, meaningAnalysis, reflectedInputs, documentReference, trademarkRisk } = rationale;
+  const [trademarkOpen, setTrademarkOpen] = useState(false);
 
   return (
     <div
@@ -15,52 +25,83 @@ export function RationaleExpandedCard({ rationale, isOpen }: RationaleExpandedCa
       }`}
     >
       <div className="overflow-hidden">
-        {/* 상단 구분선 */}
         <div className="border-t border-[#332F2C] mt-3 pt-3">
 
           {/* 타당성 점수 */}
           <div className="flex justify-between items-center">
-            <span className="text-[20px] font-semibold text-[#B48C50]">{validityScore}%</span>
-            <span className="text-[12px] text-[#A09890]">타당성 점수</span>
+            <span className="text-[20px] font-semibold text-[#E8E2DA]">{validityScore}%</span>
+            <span className="text-[12px] text-[#6A6460]">타당성 점수</span>
           </div>
           <div className="h-[4px] bg-[#4A4440] rounded-full mt-2">
             <div
-              className="h-full bg-[#B48C50] rounded-full transition-all duration-[600ms] ease-in-out"
+              className="h-full bg-[#7BAFD4] rounded-full transition-all duration-[600ms] ease-in-out"
               style={{ width: isOpen ? `${validityScore}%` : '0%' }}
             />
           </div>
 
           {/* 네이밍 기법 */}
           <div className="border-t border-[#332F2C] mt-3 pt-3">
-            <p className="text-[12px] font-semibold text-[#A09890] mb-1.5">네이밍 기법</p>
-            <span className="px-2 py-0.5 rounded-full bg-[#4A4440] text-[12px] text-[#D0CAC2]">
+            <p className="text-[12px] font-semibold text-[#6A6460] mb-1.5">네이밍 기법</p>
+            <span className="px-2 py-0.5 rounded-full bg-[#4A4440] text-[12px] text-[#A09890]">
               {namingTechnique}
             </span>
           </div>
 
           {/* 의미 분석 */}
           <div className="border-t border-[#332F2C] mt-3 pt-3">
-            <p className="text-[12px] font-semibold text-[#A09890] mb-1.5">의미 분석</p>
-            <p className="text-[14px] text-[#D0CAC2] leading-relaxed">{meaningAnalysis}</p>
+            <p className="text-[12px] font-semibold text-[#6A6460] mb-1.5">의미 분석</p>
+            <p className="text-[13px] text-[#A09890] leading-relaxed">{meaningAnalysis}</p>
           </div>
 
           {/* 반영된 입력 */}
           <div className="border-t border-[#332F2C] mt-3 pt-3">
-            <p className="text-[12px] font-semibold text-[#A09890] mb-1.5">반영된 입력</p>
+            <p className="text-[12px] font-semibold text-[#6A6460] mb-1.5">반영된 입력</p>
             <div className="flex flex-wrap gap-1.5">
               {reflectedInputs.map((input) => (
-                <span
-                  key={input}
-                  className="px-2 py-0.5 rounded-full bg-[rgba(180,140,80,0.1)] text-[#B48C50] text-[12px]"
-                >
+                <span key={input} className="px-2 py-0.5 rounded-full bg-[rgba(74,160,140,0.12)] text-[#4AA08C] text-[12px]">
                   {input}
                 </span>
               ))}
             </div>
           </div>
 
+          {/* 적용 원칙 */}
+          {documentReference && (
+            <div className="border-t border-[#332F2C] mt-3 pt-3">
+              <p className="text-[12px] font-semibold text-[#6A6460] mb-1.5">적용 원칙</p>
+              <p className="text-[13px] text-[#A09890]">{documentReference}</p>
+            </div>
+          )}
+
+          {/* 상표 예비 판정 */}
+          {trademarkRisk && (
+            <div className="border-t border-[#332F2C] mt-3 pt-3">
+              <div className="flex items-center justify-between mb-1.5">
+                <p className="text-[12px] font-semibold text-[#6A6460]">상표 예비 판정</p>
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setTrademarkOpen(true); }}
+                  className="text-[11px] text-[#7BAFD4] hover:text-[#9CCAE8] transition-colors underline underline-offset-2"
+                >
+                  상표등록 실사 확인
+                </button>
+              </div>
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${RISK_COLOR[trademarkRisk.riskLevel] ?? 'text-[#A09890]'}`}>
+                  위험도 {trademarkRisk.riskLevel}
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-[#4A4440] text-[11px] text-[#D0CAC2]">
+                  {trademarkRisk.identityGrade}
+                </span>
+              </div>
+              <p className="text-[13px] text-[#A09890]">{trademarkRisk.note}</p>
+            </div>
+          )}
+
         </div>
       </div>
+
+      <TrademarkModal open={trademarkOpen} onClose={() => setTrademarkOpen(false)} brandName={brandName} />
     </div>
   );
 }

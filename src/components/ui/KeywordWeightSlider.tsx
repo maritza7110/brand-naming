@@ -13,32 +13,44 @@ export function KeywordWeightSlider({ keywords, onChange }: KeywordWeightSliderP
           -webkit-appearance: none;
           appearance: none;
           width: 100%;
-          height: 4px;
-          border-radius: 2px;
-          background: #4A4440;
+          height: 16px;
+          background: transparent;
           outline: none;
           cursor: pointer;
+          padding: 0;
+          margin: 0;
         }
         .kw-slider::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
-          width: 16px;
-          height: 16px;
+          width: 14px;
+          height: 14px;
           border-radius: 50%;
-          background: #B48C50;
-          box-shadow: 0 0 0 4px rgba(180, 140, 80, 0.2);
+          background: #F5F0E8;
+          border: 2px solid #B48C50;
+          box-shadow: 0 0 0 3px rgba(180, 140, 80, 0.25);
           cursor: pointer;
+          margin-top: -5px;
         }
         .kw-slider::-moz-range-thumb {
-          width: 16px;
-          height: 16px;
-          border: none;
+          width: 14px;
+          height: 14px;
+          border: 2px solid #B48C50;
           border-radius: 50%;
-          background: #B48C50;
-          box-shadow: 0 0 0 4px rgba(180, 140, 80, 0.2);
+          background: #F5F0E8;
+          box-shadow: 0 0 0 3px rgba(180, 140, 80, 0.25);
           cursor: pointer;
         }
         .kw-slider::-webkit-slider-runnable-track {
+          background: linear-gradient(
+            to right,
+            #B48C50 calc(var(--fill) * 1%),
+            #4A4440 calc(var(--fill) * 1%)
+          );
+          height: 4px;
+          border-radius: 2px;
+        }
+        .kw-slider::-moz-range-track {
           background: linear-gradient(
             to right,
             #B48C50 calc(var(--fill) * 1%),
@@ -54,10 +66,7 @@ export function KeywordWeightSlider({ keywords, onChange }: KeywordWeightSliderP
           const fillPercent = ((weight - 1) / 4) * 100;
           return (
             <div key={label} className="flex items-center gap-3 py-1.5">
-              <span
-                className="text-[14px] text-[#D0CAC2] truncate"
-                style={{ maxWidth: '120px' }}
-              >
+              <span className="text-[14px] text-[#D0CAC2] truncate shrink-0 text-right w-24">
                 {label}
               </span>
               <input

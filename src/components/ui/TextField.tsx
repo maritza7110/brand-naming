@@ -7,6 +7,7 @@ interface TextFieldProps {
   placeholder?: string;
   disabled?: boolean;
   id?: string;
+  labelAction?: React.ReactNode;
 }
 
 export function TextField({
@@ -16,18 +17,22 @@ export function TextField({
   placeholder,
   disabled = false,
   id,
+  labelAction,
 }: TextFieldProps) {
   const autoId = useId();
   const inputId = id ?? autoId;
 
   return (
     <div>
-      <label
-        htmlFor={inputId}
-        className="block text-[14px] font-medium text-gray-900 mb-2"
-      >
-        {label}
-      </label>
+      <div className="flex items-center justify-between mb-1.5">
+        <label
+          htmlFor={inputId}
+          className="block text-[14px] font-semibold text-[#5A5550]"
+        >
+          {label}
+        </label>
+        {labelAction && <div>{labelAction}</div>}
+      </div>
       <input
         id={inputId}
         type="text"
@@ -35,7 +40,7 @@ export function TextField({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         disabled={disabled}
-        className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-[15px] leading-relaxed placeholder:text-gray-400 transition-all duration-200 hover:border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50"
+        className="w-full px-4 py-3 rounded-xl bg-[#F5F3F0] text-[15px] text-[#2C2825] leading-relaxed placeholder:text-[#A09890] border border-[#C5BFB7] transition-all duration-200 hover:border-[#A09890] focus:border-[#B48C50] focus:bg-white focus:outline-none disabled:opacity-40"
       />
     </div>
   );

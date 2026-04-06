@@ -27,14 +27,14 @@ export function RecommendGroup({ label, batches, isOpen, onToggle, count }: Reco
       >
         <div className="flex items-center gap-2">
           <ChevronDown
-            size={14}
+            size={16}
             className={`text-[#B48C50] transition-transform duration-300 ${
               isOpen ? 'rotate-0' : '-rotate-90'
             }`}
           />
-          <span className="text-[12px] font-semibold text-[#E8E2DA]">{label}</span>
+          <span className="text-[14px] font-semibold text-white">{label}</span>
         </div>
-        <span className="text-[10px] text-[#7A7570]">{dateStr} · {count}건</span>
+        <span className="text-[12px] text-[#D0CAC2]">{dateStr} · {count}건</span>
       </button>
 
       {/* CSS Grid 0fr/1fr 접기/펼치기 */}
@@ -46,7 +46,7 @@ export function RecommendGroup({ label, batches, isOpen, onToggle, count }: Reco
         <div className="overflow-hidden">
           <div className="p-3 space-y-2">
             {batches.map((b) => (
-              <RecommendCardItem key={b.id} batch={b} />
+              <RecommendCardItem key={b.id} batch={b} isGroupOpen={isOpen} />
             ))}
           </div>
         </div>

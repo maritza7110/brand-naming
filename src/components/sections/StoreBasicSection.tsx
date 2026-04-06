@@ -1,8 +1,10 @@
 import { useFormStore } from '../../store/useFormStore';
+import { useRecommend } from '../../hooks/useRecommend';
 import { getMajorCategories, getMediumCategories, getMinorCategories } from '../../data/industryData';
 import { SectionHeader } from '../ui/SectionHeader';
 import { Dropdown } from '../ui/Dropdown';
 import { TextField } from '../ui/TextField';
+import { RecommendButton } from '../ui/RecommendButton';
 
 const SCALE_OPTIONS = ['1인 창업','소형 (5인 미만)','중형 (5~20인)','대형 (20인 이상)','프랜차이즈'];
 const PRICE_RANGE_OPTIONS = ['저가','중저가','중가','중고가','고가','프리미엄'];
@@ -12,6 +14,8 @@ export function StoreBasicSection() {
   const updateField = useFormStore((st) => st.updateStoreBasic);
   const industry = useFormStore((st) => st.storeBasic.industry);
   const updateIndustry = useFormStore((st) => st.updateIndustry);
+  const { recommend, isLoading } = useRecommend();
+  const hasInput = !!industry.major || !!s.mainProduct.trim() || !!s.scale || !!s.priceRange;
 
   // 계층형 옵션 계산
   const majorOptions = getMajorCategories();
@@ -64,6 +68,9 @@ export function StoreBasicSection() {
         <TextField label="주력 상품/서비스" value={s.mainProduct}
           onChange={(v) => updateField('mainProduct', v)}
           placeholder="수제 드립커피, 시그니처 디저트" />
+      </div>
+      <div className="flex justify-end mt-4 pt-4 border-t border-[#C5BFB7]">
+        <RecommendButton onClick={recommend} loading={isLoading} disabled={!hasInput} />
       </div>
     </section>
   );
