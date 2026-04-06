@@ -44,3 +44,16 @@ Plans:
 | **8. Naming Logic** | **v2.0** | **0/4** | **Planned** | **2026-04-10** |
 | **9. Social Gallery** | **v2.0** | **0/1** | **Pending** | **2026-04-15** |
 | **10. Refinement** | **v2.0** | **0/1** | **Pending** | **2026-04-20** |
+| **11. UX 재설계** | **v2.0** | **0/3** | **Planned** | — |
+
+### Phase 11: 위저드 탭 UX 재설계 — 3탭→4탭 전환, 페르소나 5그룹 분리, 탭 간 역할 명확화
+
+**Goal:** 3탭 위저드를 4탭(분석/정체성/페르소나/표현)으로 재설계하고, 16개 페르소나 필드를 5그룹 컨테이너로 분리하며, 시장트렌드를 분석탭으로 이동하고, 관점 차이 배지로 중복 필드를 해소한다
+**Requirements**: UX-TAB-REDESIGN, UX-PERSONA-TAB, UX-TAB-CONTENT-RESHUFFLE
+**Depends on:** Phase 8
+**Plans:** 3 plans
+
+Plans:
+- [ ] 11-01-PLAN.md — TabId 타입 확장 + SectionHeader subtitle + WizardTabs 4탭 + NamingPage 라우팅
+- [ ] 11-02-PLAN.md — PersonaTab + 5개 페르소나 그룹 컴포넌트 생성
+- [ ] 11-03-PLAN.md — 분석탭 MarketTrend 이동 + 관점 배지 + 정체성탭 슬림화
