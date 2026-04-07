@@ -1,6 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
 
 export const MODEL_NAME = 'gemini-3.1-pro-preview';
+export const API_TIMEOUT_MS = 30_000; // 30초 타임아웃 (per D-01)
 import type { FormState, RecommendBatch } from '../types/form';
 import { useSettingsStore } from '../store/useSettingsStore';
 import {
@@ -215,6 +216,7 @@ export async function generateBrandNames(
     model: MODEL_NAME,
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
     config: {
+      abortSignal: AbortSignal.timeout(API_TIMEOUT_MS),
       systemInstruction: buildSystemInstruction(),
       responseMimeType: 'application/json',
       responseSchema: hasDocuments ? SCHEMA_DOC_BASED : SCHEMA_SIMPLE,

@@ -1,5 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
-import { MODEL_NAME } from './gemini';
+import { MODEL_NAME, API_TIMEOUT_MS } from './gemini';
 import { useSettingsStore } from '../store/useSettingsStore';
 import { useFormStore } from '../store/useFormStore';
 
@@ -54,6 +54,7 @@ ${context}${excludeLine}
     model: MODEL_NAME,
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
     config: {
+      abortSignal: AbortSignal.timeout(API_TIMEOUT_MS),
       responseMimeType: 'application/json',
       responseSchema: {
         type: 'object',
