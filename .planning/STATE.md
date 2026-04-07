@@ -4,10 +4,10 @@ milestone: v2.1
 milestone_name: 고급화 및 정밀화
 status: executing
 stopped_at: v2.1 로드맵 생성 완료 — Phase 12 플래닝 준비됨
-last_updated: "2026-04-07T23:23:31.107Z"
+last_updated: "2026-04-07T23:25:35.282Z"
 last_activity: 2026-04-07
 progress:
-  total_phases: 5
+  total_phases: 2
   completed_phases: 1
   total_plans: 1
   completed_plans: 1
