@@ -29,6 +29,7 @@
 - ~52개 TypeScript/TSX 소스 파일, ~3,149 LOC
 - Supabase Auth + DB, Gemini 3.1 Pro (gemini-3.1-pro-preview), recharts
 - Phase 12 완료 (2026-04-08): AI 모델 업그레이드
+- Phase 13 완료 (2026-04-08): 안정성 개선 — Gemini API 30초 타임아웃 + 2회 자동 재시도
 
 ## Requirements
 
@@ -59,7 +60,7 @@
 - [x] AI 모델 gemini-3.1-pro-preview로 업그레이드 — Validated in Phase 12
 - [ ] Supabase 자격증명 환경변수로 이동
 - [ ] unsafe-eval CSP 제거, 디버그 엔드포인트 제거
-- [ ] Gemini API 30초 타임아웃 + 2회 재시도(backoff)
+- [x] Gemini API 30초 타임아웃 + 2회 재시도 — Validated in Phase 13
 - [ ] 빈 응답/파싱 실패 시 명확한 에러 메시지
 - [ ] 구조화된 에러 로깅 (서비스 전체)
 - [ ] 세션 오염 수정 (매 추천 시 새 세션 생성 방지)
