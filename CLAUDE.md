@@ -33,7 +33,7 @@
 ### AI / RAG
 | 기술 | 버전 | 이유 | 신뢰도 |
 |------|------|------|--------|
-| @google/genai | 1.x | Gemini 3.1 Pro API 공식 SDK | ★★★ |
+| @google/genai | 1.x | Gemini 3.1 Pro API 공식 SDK (모델: gemini-3.1-pro-preview) | ★★★ |
 | LangChain.js | 0.3.x | RAG 파이프라인 구축 (문서 로딩, 청킹, 검색) | ★★☆ |
 | 대안: 직접 구현 | - | LangChain 없이 Gemini embedding + 벡터 검색 직접 구현 | ★★☆ |
 ### 벡터 저장소 (RAG용)
