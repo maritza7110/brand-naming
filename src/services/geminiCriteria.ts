@@ -1,4 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
+import { MODEL_NAME } from './gemini';
 import { useSettingsStore } from '../store/useSettingsStore';
 import { useFormStore } from '../store/useFormStore';
 
@@ -50,7 +51,7 @@ ${context}${excludeLine}
   const ai = new GoogleGenAI({ apiKey });
 
   const response = await ai.models.generateContent({
-    model: 'gemini-3.1-flash-lite-preview',
+    model: MODEL_NAME,
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
     config: {
       responseMimeType: 'application/json',

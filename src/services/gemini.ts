@@ -1,4 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
+
+export const MODEL_NAME = 'gemini-3-flash-preview';
 import type { FormState, RecommendBatch } from '../types/form';
 import { useSettingsStore } from '../store/useSettingsStore';
 import {
@@ -210,7 +212,7 @@ export async function generateBrandNames(
 
   const ai = new GoogleGenAI({ apiKey });
   const response = await ai.models.generateContent({
-    model: 'gemini-3.1-flash-lite-preview',
+    model: MODEL_NAME,
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
     config: {
       systemInstruction: buildSystemInstruction(),
