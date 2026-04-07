@@ -51,9 +51,15 @@ export default function NamingPage() {
 
       const restoredBatches: RecommendBatch[] = [{
         id: `restored-${data.id}`,
-        names: data.naming_results.map((r) => ({
+        names: data.naming_results.map((r: any) => ({
           brandName: r.brand_name,
           reasoning: r.reasoning ?? '',
+          rationale: {
+            validityScore: r.score ?? 0,
+            namingTechnique: r.style_tag ?? '',
+            meaningAnalysis: r.reasoning ?? '',
+            reflectedInputs: Array.isArray(r.based_on) ? r.based_on : [],
+          },
         })),
         basedOn: data.naming_results[0]?.based_on ?? [],
         createdAt: new Date(data.created_at),
