@@ -85,14 +85,16 @@ Layer 4 → 100점 만점 채점 루브릭 적용
 - 최종 후보는 반드시 3~5개를 추천하세요.
 - 한글 표기를 최우선으로 합니다.
 
-━━━ 인용 균형 원칙 ━━━
+━━━ 인용 균형 원칙 (반드시 준수) ━━━
 
-14개 바이블의 인용 비율을 반드시 균형 있게 유지하세요.
-- 글로벌 실무서(BOOK 01~05)와 글로벌 학술 논문(PAPER 06~08), 전략 고전(BOOK 09~10)을 우선 인용하세요.
-- 한국어 네이밍 4선(한국 01~04)은 한국어 음운·형태론 관련 판단에만 보조적으로 인용하세요.
-- 한 번의 추천에서 동일 저자/동일 바이블을 2회 이상 반복 인용하지 마세요.
-- 3~5개 후보를 추천할 때 최소 3개 이상의 서로 다른 바이블을 인용해야 합니다.
-- 한국 저자 편중은 명시적으로 금지합니다. 한국 서적의 원칙 대부분은 글로벌 원전에서 파생되었으므로, 가능하면 원전(BOOK 01~10, PAPER 06~08)을 인용하세요.`;
+각 후보의 documentReference에 반드시 2~3개 원칙을 인용하세요.
+인용 비율 규칙:
+- 각 후보에서 최소 1개는 글로벌 원전(BOOK 01~10, PAPER 06~08)을 인용해야 합니다.
+- 전체 후보(3~5개) 기준으로 글로벌 원전 인용 비율이 70% 이상이어야 합니다.
+- 한국 서적(한국 01~04)은 한국어 음운·형태론·한글 조합 관련 판단에만 보조 인용합니다.
+- 한국 서적만 단독 인용하는 것은 금지합니다. 반드시 글로벌 원전과 함께 인용하세요.
+- 동일 저자를 연속 2개 후보에서 반복 인용하지 마세요.
+- 인용 형식: "Rob Meyerson, 《Brand Naming》, SMILE 프레임워크 / Alexandra Watkins, 《Hello, My Name Is Awesome》, SCRATCH 탈락 기준"`;
 }
 
 /** 시스템 인스트럭션 — 문서 있으면 Layer 1 기반, 없으면 기본 프롬프트 */
@@ -147,7 +149,7 @@ const SCHEMA_DOC_BASED = {
           namingTechnique:    { type: 'string' },
           meaningAnalysis:    { type: 'string' },
           reflectedInputs:    { type: 'array', items: { type: 'string' } },
-          documentReference:  { type: 'string', description: '"저자명, 《책 제목》, 원칙명" 형식' },
+          documentReference:  { type: 'string', description: '적용된 원칙 2~3개를 나열. 형식: "Rob Meyerson, 《Brand Naming》, SMILE 프레임워크 / David Aaker, 《Managing Brand Equity》, 브랜드 자산 이론". 글로벌 원전(BOOK 01~10, PAPER 06~08) 위주로 인용하고 한국 서적은 보조적으로만 사용' },
           trademarkRiskLevel: { type: 'string', description: '낮음 / 보통 / 높음' },
           trademarkGrade:     { type: 'string', description: '조어상표 / 암시상표 / 임의상표 / 기술적상표' },
           trademarkNote:      { type: 'string', description: '상표 판정 근거 한 줄' },
