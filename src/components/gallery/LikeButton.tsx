@@ -13,9 +13,11 @@ export default function LikeButton({ sessionId, count, showCount = true }: LikeB
   const user = useAuthStore((s) => s.user);
   const isLiked = likedIds.has(sessionId);
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!user) return;
+    const { isInitialized, initSocialState } = useSocialStore.getState();
+    if (!isInitialized) await initSocialState(user.id);
     toggleLike(sessionId, user.id);
   };
 

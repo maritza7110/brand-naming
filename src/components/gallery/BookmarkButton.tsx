@@ -11,9 +11,11 @@ export default function BookmarkButton({ sessionId }: BookmarkButtonProps) {
   const user = useAuthStore((s) => s.user);
   const isBookmarked = bookmarkedIds.has(sessionId);
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!user) return;
+    const { isInitialized, initSocialState } = useSocialStore.getState();
+    if (!isInitialized) await initSocialState(user.id);
     toggleBookmark(sessionId, user.id);
   };
 
