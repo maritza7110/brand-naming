@@ -60,27 +60,27 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AI-01 | — | Pending |
-| AI-02 | — | Pending |
-| SEC-01 | — | Pending |
-| SEC-02 | — | Pending |
-| SEC-03 | — | Pending |
-| STB-01 | — | Pending |
-| STB-02 | — | Pending |
-| STB-03 | — | Pending |
-| STB-04 | — | Pending |
-| DATA-01 | — | Pending |
-| DATA-02 | — | Pending |
-| TEST-01 | — | Pending |
-| TEST-02 | — | Pending |
-| TEST-03 | — | Pending |
-| DSN-01 | — | Pending |
+| AI-01 | Phase 12 | Pending |
+| AI-02 | Phase 12 | Pending |
+| SEC-01 | Phase 13 | Pending |
+| SEC-02 | Phase 13 | Pending |
+| SEC-03 | Phase 13 | Pending |
+| STB-01 | Phase 14 | Pending |
+| STB-02 | Phase 14 | Pending |
+| STB-03 | Phase 14 | Pending |
+| STB-04 | Phase 14 | Pending |
+| DATA-01 | Phase 15 | Pending |
+| DATA-02 | Phase 15 | Pending |
+| TEST-01 | Phase 16 | Pending |
+| TEST-02 | Phase 16 | Pending |
+| TEST-03 | Phase 16 | Pending |
+| DSN-01 | Phase 16 | Pending |
 
 **Coverage:**
 - v2.1 requirements: 15 total
-- Mapped to phases: 0
-- Unmapped: 15 ⚠️
+- Mapped to phases: 15
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-04-08*
-*Last updated: 2026-04-08 after initial definition*
+*Last updated: 2026-04-08 after roadmap creation*
