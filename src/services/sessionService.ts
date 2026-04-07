@@ -29,9 +29,13 @@ export interface NamingResultRow {
 export const sessionService = {
   // 사용자의 세션 목록 가져오기
   getSessions: async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) throw new Error('로그인 필요');
+
     const { data, error } = await supabase
       .from('sessions')
       .select('*')
+      .eq('user_id', user.id)
       .order('created_at', { ascending: false });
 
     if (error) throw error;
