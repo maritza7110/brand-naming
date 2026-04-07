@@ -5,6 +5,34 @@ import { generateBrandNames } from '../services/gemini';
 import { sessionService } from '../services/sessionService';
 import type { FormState } from '../types/form';
 
+// ─── 재시도 헬퍼 ─────────────────────────────────────────────────────────────
+const MAX_RETRIES = 2;
+const RETRY_DELAY_MS = 1_000; // 1초 대기 후 재시도
+
+function isRetryableError(err: unknown): boolean {
+  if (err instanceof DOMException && err.name === 'TimeoutError') return true;
+  if (err instanceof DOMException && err.name === 'AbortError') return true;
+  if (err instanceof TypeError) return true; // 네트워크 오류
+  return false;
+}
+
+async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err;
+      if (attempt < MAX_RETRIES && isRetryableError(err)) {
+        await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastError;
+}
+
 export function useRecommend() {
   const isLoading = useFormStore((s) => s.isLoading);
   const setLoading = useFormStore((s) => s.setLoading);
@@ -19,7 +47,7 @@ export function useRecommend() {
     setLoading(true);
     setError(null);
     try {
-      const batch = await generateBrandNames(form, keywordWeights);
+      const batch = await withRetry(() => generateBrandNames(form, keywordWeights));
       addBatch(batch);
 
       // 로그인 상태면 자동 저장 (1회 추천 = 1개 프로젝트)
@@ -29,7 +57,14 @@ export function useRecommend() {
         await sessionService.createSession(user.id, title, form, [batch]).catch(console.error);
       }
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'AI 추천에 실패했습니다.';
+      let message: string;
+      if (err instanceof DOMException && (err.name === 'TimeoutError' || err.name === 'AbortError')) {
+        message = 'AI 응답 시간이 초과되었습니다. 잠시 후 다시 시도해 주세요.';
+      } else if (err instanceof TypeError) {
+        message = '네트워크 연결을 확인해 주세요.';
+      } else {
+        message = err instanceof Error ? err.message : 'AI 추천에 실패했습니다.';
+      }
       setError(message);
     } finally {
       setLoading(false);
