@@ -59,14 +59,17 @@ Plans:
 
 ### Phase 13: 안정성 개선
 **Goal**: AI 요청 실패, 응답 파싱 오류, 로그아웃 잔류 데이터가 사용자에게 올바르게 처리된다
-**Depends on**: Phase 13
+**Depends on**: Phase 12
 **Requirements**: STB-01, STB-02, STB-03, STB-04
 **Success Criteria** (what must be TRUE):
   1. AI 추천 요청이 30초를 초과하면 타임아웃 메시지가 표시되고 2회까지 자동 재시도된다
   2. AI 응답이 비어있거나 잘못된 형식일 때 "다시 시도해 주세요" 같은 명확한 안내가 화면에 표시된다
   3. 에러 발생 시 서비스명·오류코드·타임스탬프가 포함된 로그가 콘솔에 기록된다
   4. 로그아웃 후 브라우저 localStorage/sessionStorage에서 개인 데이터가 삭제된다
-**Plans**: TBD
+**Plans**: 1 plan
+**Note**: STB-02/03/04는 사용자 결정(D-05/D-06/D-07)에 의해 제외 — 현재 구현으로 충분
+Plans:
+- [ ] 13-01-PLAN.md — AI API 호출 30초 타임아웃 + 2회 자동 재시도
 **UI hint**: yes
 
 ### Phase 13: 데이터 정합성
@@ -103,6 +106,6 @@ Plans:
 | 10. Refinement | v2.0 | 4/4 | Complete | 2013-04-06 |
 | 11. UX 재설계 | v2.0 | 3/3 | Complete | 2013-04-06 |
 | 12. AI 모델 업그레이드 | v2.1 | 1/1 | Complete    | 2013-04-07 |
-| 13. 안정성 개선 | v2.1 | 0/TBD | Not started | - |
+| 13. 안정성 개선 | v2.1 | 0/1 | Planning | - |
 | 13. 데이터 정합성 | v2.1 | 0/TBD | Not started | - |
 | 13. 테스트 및 디자인 시스템 | v2.1 | 0/TBD | Not started | - |
