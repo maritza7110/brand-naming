@@ -14,8 +14,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const response = await fetch(url);
     const xml = await response.text();
-    // 원본 XML 중 첫 3000자를 그대로 반환
-    res.status(200).json({ url: url.replace(ACCESS_KEY, '***'), xmlPreview: xml.substring(0, 3000) });
+    // 분류코드 관련 태그 탐색
+    const classTagCandidates = ['ClassificationCode', 'Classification', 'ClassCode', 'NiceClass', 'classCode'];
+    const foundTags: Record<string, string[]> = {};
+    for (const tag of classTagCandidates) {
+      const re = new RegExp(`<${tag}>([^<]*)</${tag}>`, 'g');
+      const vals: string[] = [];
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(xml)) !== null) vals.push(m[1].trim());
+      if (vals.length > 0) foundTags[tag] = vals;
+    }
+    // 전체 태그 이름 추출
+    const allTags = [...new Set((xml.match(/<([a-zA-Z]+)>/g) || []).map(t => t.slice(1, -1)))];
+    res.status(200).json({
+      totalInXml: xml.match(/TotalSearchCount>(\d+)/)?.[1],
+      foundClassTags: foundTags,
+      allTagNames: allTags,
+      xmlFirst2000: xml.substring(0, 2000),
+    });
   } catch (err) {
     res.status(500).json({ error: String(err) });
   }
