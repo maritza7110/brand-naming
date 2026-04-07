@@ -54,7 +54,9 @@
   1. 추천 요청 시 gemini-3.1-pro-preview 모델이 실제로 사용된다
   2. CLAUDE.md의 모델명이 소스 코드에서 사용 중인 모델명과 일치한다
   3. 기존 추천 기능이 모델 교체 후에도 정상 동작한다
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 12-01-PLAN.md — MODEL_NAME 상수 변경 + CLAUDE.md 문서 동기화
 
 ### Phase 13: 보안 강화
 **Goal**: 앱이 프로덕션 보안 기준을 충족한다 — 자격증명 노출 없음, CSP 강화, 디버그 경로 없음
@@ -111,7 +113,7 @@
 | 9. Social Gallery | v2.0 | 4/4 | Complete | 2026-04-05 |
 | 10. Refinement | v2.0 | 4/4 | Complete | 2026-04-06 |
 | 11. UX 재설계 | v2.0 | 3/3 | Complete | 2026-04-06 |
-| 12. AI 모델 업그레이드 | v2.1 | 0/TBD | Not started | - |
+| 12. AI 모델 업그레이드 | v2.1 | 0/1 | Planning | - |
 | 13. 보안 강화 | v2.1 | 0/TBD | Not started | - |
 | 14. 안정성 개선 | v2.1 | 0/TBD | Not started | - |
 | 15. 데이터 정합성 | v2.1 | 0/TBD | Not started | - |
