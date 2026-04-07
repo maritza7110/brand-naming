@@ -82,11 +82,17 @@ export default function NamingPage() {
       };
       const { current } = splitByReset(state.batches, state.resetTimestamp);
 
-      if (currentSessionId) {
-        await sessionService.updateSession(currentSessionId, formState, current);
+      // 제목: 브랜드명 나열 (최대 3개)
+      const brandNames = current.flatMap((b) => b.names.map((n) => n.brandName));
+      const title = brandNames.length > 0
+        ? brandNames.slice(0, 3).join(', ') + (brandNames.length > 3 ? ` 외 ${brandNames.length - 3}개` : '')
+        : '새 프로젝트';
+
+      const sid = state.currentSessionId;
+      if (sid) {
+        await sessionService.updateSession(sid, formState, current);
+        await sessionService.updateSessionTitle(sid, title);
       } else {
-        const ind = state.storeBasic.industry;
-        const title = ind.minor || ind.medium || ind.major || '새 프로젝트';
         const id = await sessionService.createSession(user.id, title, formState, current);
         useFormStore.getState().setCurrentSessionId(id);
       }
