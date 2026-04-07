@@ -27,7 +27,8 @@
 
 **v2.0 Shipped (2026-04-06):** 지능형 로직 및 소셜 협업 플랫폼 완성.
 - ~52개 TypeScript/TSX 소스 파일, ~3,149 LOC
-- Supabase Auth + DB, Gemini 3-flash-preview (3.1 Pro로 업그레이드 예정), recharts
+- Supabase Auth + DB, Gemini 3.1 Pro (gemini-3.1-pro-preview), recharts
+- Phase 12 완료 (2026-04-08): AI 모델 업그레이드
 
 ## Requirements
 
@@ -55,7 +56,7 @@
 - ✓ pdf.js 기반 RAG — v1.0
 
 ### Active (v2.1)
-- [ ] AI 모델 gemini-3.1-pro-preview로 업그레이드
+- [x] AI 모델 gemini-3.1-pro-preview로 업그레이드 — Validated in Phase 12
 - [ ] Supabase 자격증명 환경변수로 이동
 - [ ] unsafe-eval CSP 제거, 디버그 엔드포인트 제거
 - [ ] Gemini API 30초 타임아웃 + 2회 재시도(backoff)
@@ -101,7 +102,7 @@
 | recharts 차트 라이브러리 | 가볍고 React 네이티브, ��크 테마 호환 | ✓ Good (v2.0) |
 | 플랫 댓글 (대댓글 없음) | 100인 사내 앱에 충분, ���잡도 최소화 | ✓ Good (v2.0) |
 | 좋아요 수 단순 ���렬 리더보드 | 복합 점수 없이 직관적 | ✓ Good (v2.0) |
-| gemini-3.1-pro-preview 선택 | 14바이블+4Layer 채점에 Pro 급 추론 필요 | — Pending (v2.1) |
+| gemini-3.1-pro-preview 선택 | 14바이블+4Layer 채점에 Pro 급 추론 필요 | ✓ Good (v2.1 Phase 12) |
 | HOLD SCOPE 리뷰 모드 | 새 기능 없이 품질 고급화 집중 | — Pending (v2.1) |
 
 ## Evolution
@@ -122,4 +123,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-08 after v2.1 milestone start*
+*Last updated: 2026-04-08 after Phase 12 completion*
