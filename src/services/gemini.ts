@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 
-export const MODEL_NAME = 'gemini-3-flash-preview';
+export const MODEL_NAME = 'gemini-3.1-pro-preview';
 import type { FormState, RecommendBatch } from '../types/form';
 import { useSettingsStore } from '../store/useSettingsStore';
 import {
