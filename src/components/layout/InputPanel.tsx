@@ -30,28 +30,29 @@ export function InputPanel({
                 <p className="text-[13px] font-semibold tracking-[0.25em] uppercase text-[#B48C50]">
                   Brand Naming
                 </p>
-                {onAuthClick && (
-                  <button
-                    onClick={onAuthClick}
-                    className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#B48C50]/10 text-[#B48C50] text-[11px] font-bold hover:bg-[#B48C50]/20 transition-colors"
-                  >
-                    {isLoggedIn ? <Layout size={12} /> : <User size={12} />}
-                    <span>{authLabel}</span>
-                  </button>
-                )}
               </div>
               <h1 className="text-2xl lg:text-3xl font-semibold tracking-[-0.03em] text-[#F0EBE3]">
                 브랜드 네이밍
               </h1>
             </div>
             <div className="flex flex-row gap-2 shrink-0">
+              {onAuthClick && (
+                <button
+                  type="button"
+                  onClick={onAuthClick}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[#C5BFB7] text-[13px] font-medium transition hover:text-[#B48C50] hover:bg-[#504A44] whitespace-nowrap"
+                >
+                  {isLoggedIn ? <Layout size={16} /> : <User size={16} />}
+                  <span>{authLabel}</span>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={onSettingsClick}
                 className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[#C5BFB7] text-[13px] font-medium transition hover:text-[#B48C50] hover:bg-[#504A44] whitespace-nowrap"
               >
-                <span>API설정</span>
                 <Settings size={16} />
+                <span>API설정</span>
               </button>
               {onResetClick && (
                 <button
