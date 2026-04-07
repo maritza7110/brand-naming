@@ -20,10 +20,10 @@
 
 ### 안정성
 
-- [ ] **STB-01**: AI 추천 요청이 30초 타임아웃 + 2회 재시도로 안정적으로 처리된다
-- [ ] **STB-02**: AI 응답이 비었거나 잘못된 형식일 때 사용자에게 명확한 안내가 표시된다
-- [ ] **STB-03**: 모든 서비스에서 에러 발생 시 원인 파악 가능한 로그가 남는다
-- [ ] **STB-04**: 로그아웃 시 브라우저에 저장된 개인 데이터가 정리된다
+- [x] **STB-01**: AI 추천 요청이 30초 타임아웃 + 2회 재시도로 안정적으로 처리된다
+- [x] **STB-02**: AI 응답이 비었거나 잘못된 형식일 때 사용자에게 명확한 안내가 표시된다
+- [x] **STB-03**: 모든 서비스에서 에러 발생 시 원인 파악 가능한 로그가 남는다
+- [x] **STB-04**: 로그아웃 시 브라우저에 저장된 개인 데이터가 정리된다
 
 ### 데이터 정합성
 
@@ -65,10 +65,10 @@
 | SEC-01 | Phase 13 | Pending |
 | SEC-02 | Phase 13 | Pending |
 | SEC-03 | Phase 13 | Pending |
-| STB-01 | Phase 14 | Pending |
-| STB-02 | Phase 14 | Pending |
-| STB-03 | Phase 14 | Pending |
-| STB-04 | Phase 14 | Pending |
+| STB-01 | Phase 14 | Complete |
+| STB-02 | Phase 14 | Complete |
+| STB-03 | Phase 14 | Complete |
+| STB-04 | Phase 14 | Complete |
 | DATA-01 | Phase 15 | Pending |
 | DATA-02 | Phase 15 | Pending |
 | TEST-01 | Phase 16 | Pending |
