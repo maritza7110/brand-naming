@@ -37,7 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const titles = extractAll(xml, 'Title');
     const applicants = extractAll(xml, 'ApplicantName');
     const appDates = extractAll(xml, 'ApplicationDate');
-    const classCodes = extractAll(xml, 'ClassificationCode');
+    const classCodes = extractAll(xml, 'GoodClassificationCode');
 
     let items = titles.map((title, i) => ({
       title,
