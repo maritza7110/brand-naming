@@ -10,11 +10,24 @@
 2.  **Social Inspiration:** 갤러리·댓글·리더보드를 통해 동료들의 네이밍에서 영감을 얻는 커뮤니티.
 3.  **Persistent Management:** 개인 세션 저장, 북마크, 통계 시각화를 통한 자산 관리.
 
+## Current Milestone: v2.1 사내 앱 고급화 및 정밀화
+
+**Goal:** 기존 v2.0 기능을 상용 수준의 안정성, 보안, AI 품질로 끌어올리기
+
+**Target features:**
+- AI 모델을 gemini-3.1-pro-preview로 업그레이드
+- 보안 취약점 전면 수정 (환경변수, CSP, 디버그 제거)
+- 에러 처리 완비 (타임아웃, 재시도, 구조화 로깅)
+- 세션 오염 수정 (매 추천마다 새 세션 생성 문제)
+- 리더보드 성능 수정 (전체 테이블 풀스캔 → 서버사이드 집계)
+- 테스트 기반 구축 (Vitest + 핵심 경로 테스트)
+- 디자인 시스템화 (CSS 변수 토큰)
+
 ## Current State
 
 **v2.0 Shipped (2026-04-06):** 지능형 로직 및 소셜 협업 플랫폼 완성.
-- 75개 TypeScript/TSX 소스 파일, 5,170 LOC
-- Supabase Auth + DB, Gemini 3.1 Pro, recharts
+- ~52개 TypeScript/TSX 소스 파일, ~3,149 LOC
+- Supabase Auth + DB, Gemini 3-flash-preview (3.1 Pro로 업그레이드 예정), recharts
 
 ## Requirements
 
@@ -41,8 +54,18 @@
 - ✓ 기본 정보 입력 및 AI 추천 엔진 — v1.0
 - ✓ pdf.js 기반 RAG — v1.0
 
-### Active (next milestone)
-- (다음 마일스톤에서 정의)
+### Active (v2.1)
+- [ ] AI 모델 gemini-3.1-pro-preview로 업그레이드
+- [ ] Supabase 자격증명 환경변수로 이동
+- [ ] unsafe-eval CSP 제거, 디버그 엔드포인트 제거
+- [ ] Gemini API 30초 타임아웃 + 2회 재시도(backoff)
+- [ ] 빈 응답/파싱 실패 시 명확한 에러 메시지
+- [ ] 구조화된 에러 로깅 (서비스 전체)
+- [ ] 세션 오염 수정 (매 추천 시 새 세션 생성 방지)
+- [ ] 리더보드 풀스캔 → 서버사이드 집계
+- [ ] 테스트 인프라 (Vitest) + 핵심 경로 테스트
+- [ ] 색상 CSS 변수 토큰화
+- [ ] 로그아웃 시 로컬 데이터 정리
 
 ### Out of Scope
 - 실시간 자동 상표권 검색 API 연동 (복잡도 이슈로 v3.0 이후 검토)
@@ -78,6 +101,8 @@
 | recharts 차트 라이브러리 | 가볍고 React 네이티브, ��크 테마 호환 | ✓ Good (v2.0) |
 | 플랫 댓글 (대댓글 없음) | 100인 사내 앱에 충분, ���잡도 최소화 | ✓ Good (v2.0) |
 | 좋아요 수 단순 ���렬 리더보드 | 복합 점수 없이 직관적 | ✓ Good (v2.0) |
+| gemini-3.1-pro-preview 선택 | 14바이블+4Layer 채점에 Pro 급 추론 필요 | — Pending (v2.1) |
+| HOLD SCOPE 리뷰 모드 | 새 기능 없이 품질 고급화 집중 | — Pending (v2.1) |
 
 ## Evolution
 
@@ -97,4 +122,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-06 after v2.0 milestone complete*
+*Last updated: 2026-04-08 after v2.1 milestone start*
