@@ -3,6 +3,7 @@ export interface TrademarkItem {
   status: string;
   applicant: string;
   applicationDate: string;
+  classCode?: string;
 }
 
 export interface TrademarkResult {

@@ -21,31 +21,38 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
   const name = String(req.query.name ?? '').trim();
-  const classCode = String(req.query.classCode ?? '').trim();
   if (!name) { res.status(400).json({ error: 'name 파라미터 필요' }); return; }
   if (!ACCESS_KEY) { res.status(500).json({ error: 'KIPRIS API 키 미설정' }); return; }
 
-  let url = `${KIPRIS_BASE}?accessKey=${encodeURIComponent(ACCESS_KEY)}&trademarkName=${encodeURIComponent(name)}&numOfRows=5`;
-  if (classCode) url += `&classification=${encodeURIComponent(classCode)}`;
+  // classCode 파라미터는 서버사이드 필터링용 (KIPRIS API 자체는 상품류 필터 미지원)
+  const classCode = String(req.query.classCode ?? '').trim();
+
+  const url = `${KIPRIS_BASE}?accessKey=${encodeURIComponent(ACCESS_KEY)}&trademarkName=${encodeURIComponent(name)}&numOfRows=30`;
 
   try {
     const response = await fetch(url);
     const xml = await response.text();
 
-    const totalCount = parseInt(extractText(xml, 'TotalSearchCount') || '0', 10);
     const statuses = extractAll(xml, 'ApplicationStatus');
     const titles = extractAll(xml, 'Title');
     const applicants = extractAll(xml, 'ApplicantName');
     const appDates = extractAll(xml, 'ApplicationDate');
+    const classCodes = extractAll(xml, 'ClassificationCode');
 
-    const items = titles.map((title, i) => ({
+    let items = titles.map((title, i) => ({
       title,
       status: statuses[i] ?? '',
       applicant: applicants[i] ?? '',
       applicationDate: appDates[i] ?? '',
+      classCode: classCodes[i] ?? '',
     }));
 
-    res.status(200).json({ totalCount, items });
+    // 상품류 필터링 (클라이언트가 classCode를 지정한 경우)
+    if (classCode) {
+      items = items.filter((item) => item.classCode.includes(classCode));
+    }
+
+    res.status(200).json({ totalCount: items.length, items: items.slice(0, 10) });
   } catch (err) {
     res.status(500).json({ error: String(err) });
   }
