@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type {
   AppState,
+  FormState,
   StoreBasicState,
   BrandVisionState,
   ProductState,
@@ -89,6 +90,10 @@ interface FormActions {
   addBatch: (batch: RecommendBatch) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
+  // 세션 저장/복원
+  currentSessionId: string | null;
+  setCurrentSessionId: (id: string | null) => void;
+  restoreSession: (formState: FormState, batches: RecommendBatch[]) => void;
 }
 
 export const useFormStore = create<AppState & FormActions>()(
@@ -107,6 +112,7 @@ export const useFormStore = create<AppState & FormActions>()(
       resetTimestamp: null,
       activeTab: 'analysis' as TabId,
       keywordWeights: {} as KeywordWeights,
+      currentSessionId: null as string | null,
 
       updateStoreBasic: (field, value) =>
         set((state) => ({ storeBasic: { ...state.storeBasic, [field]: value } })),
@@ -179,23 +185,40 @@ export const useFormStore = create<AppState & FormActions>()(
 
       setLoading: (loading) => set({ isLoading: loading }),
       setError: (error) => set({ error }),
+
+      setCurrentSessionId: (id) => set({ currentSessionId: id }),
+
+      restoreSession: (formState, batches) =>
+        set({
+          storeBasic: formState.storeBasic,
+          brandVision: formState.brandVision,
+          product: formState.product,
+          persona: formState.persona,
+          analysis: formState.analysis,
+          identity: formState.identity,
+          expression: formState.expression,
+          batches,
+          resetTimestamp: null,
+          activeTab: 'analysis' as TabId,
+          keywordWeights: {},
+        }),
     }),
     {
       name: 'brand-naming-data',
-      version: 3,
+      version: 4,
       partialize: (state) => ({
         batches: state.batches,
         resetTimestamp: state.resetTimestamp,
+        currentSessionId: state.currentSessionId,
       }),
       migrate: (persisted: unknown, version: number) => {
         if (version < 2) {
-          // v1 -> v2: resetTimestamp 추가, 기존 배치 보존 (industry=undefined)
           const p = persisted as { batches?: RecommendBatch[] };
-          return { ...p, resetTimestamp: null };
+          return { ...p, resetTimestamp: null, currentSessionId: null };
         }
-        if (version < 3) {
-          // v2 -> v3: rationale 필드 없는 기존 배치 호환 (optional이므로 자동 호환)
-          return persisted;
+        if (version < 4) {
+          const p = persisted as Record<string, unknown>;
+          return { ...p, currentSessionId: (p as any).currentSessionId ?? null };
         }
         return persisted;
       },
@@ -203,6 +226,7 @@ export const useFormStore = create<AppState & FormActions>()(
         const p = persisted as {
           batches?: RecommendBatch[];
           resetTimestamp?: string | null;
+          currentSessionId?: string | null;
         } | undefined;
         const restoredBatches = (p?.batches ?? []).map((b) => ({
           ...b,
@@ -215,6 +239,7 @@ export const useFormStore = create<AppState & FormActions>()(
           ...current,
           batches: restoredBatches,
           resetTimestamp: restoredTimestamp,
+          currentSessionId: p?.currentSessionId ?? null,
         };
       },
     },

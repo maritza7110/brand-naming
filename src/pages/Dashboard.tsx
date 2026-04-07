@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, LogOut, Loader2, Bookmark } from 'lucide-react';
+import { Plus, LogOut, Loader2, Bookmark, LayoutGrid } from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
 import { sessionService } from '../services/sessionService';
 import { socialService } from '../services/socialService';
@@ -52,8 +52,7 @@ export default function Dashboard() {
   };
 
   const handleSelect = (session: SessionData) => {
-    console.log('Selected session:', session);
-    navigate('/');
+    navigate(`/?session=${session.id}`);
   };
 
   const handlePublishToggle = async (id: string, isPublic: boolean) => {
@@ -99,13 +98,22 @@ export default function Dashboard() {
             <p className="text-gray-500">네이밍 프로젝트를 관리하고 갤러리에 공유하세요.</p>
           </div>
 
-          <button
-            onClick={() => navigate('/')}
-            className="flex items-center justify-center gap-2 bg-[#B48C50] hover:bg-[#C5A06B] text-white px-5 py-3 rounded-2xl font-bold transition-all"
-          >
-            <Plus size={20} />
-            <span>새 프로젝트 시작</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/gallery')}
+              className="flex items-center justify-center gap-2 border border-white/10 hover:border-[#B48C50]/50 text-gray-400 hover:text-[#B48C50] px-4 py-3 rounded-2xl font-bold transition-all"
+            >
+              <LayoutGrid size={18} />
+              <span>갤러리</span>
+            </button>
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center justify-center gap-2 bg-[#B48C50] hover:bg-[#C5A06B] text-white px-5 py-3 rounded-2xl font-bold transition-all"
+            >
+              <Plus size={20} />
+              <span>새 프로젝트 시작</span>
+            </button>
+          </div>
         </div>
 
         {/* 탭 */}

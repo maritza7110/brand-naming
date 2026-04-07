@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AppLayout } from '../components/layout/AppLayout';
 import { InputPanel } from '../components/layout/InputPanel';
 import { RecommendPanel } from '../components/layout/RecommendPanel';
@@ -13,11 +13,14 @@ import { SettingsModal } from '../components/settings/SettingsModal';
 import { PersonaTab } from '../components/wizard/PersonaTab';
 import { useFormStore } from '../store/useFormStore';
 import { useAuthStore } from '../store/useAuthStore';
+import { sessionService } from '../services/sessionService';
 import { groupBatches, splitByReset } from '../utils/groupBatches';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Save, Check } from 'lucide-react';
+import type { FormState, RecommendBatch } from '../types/form';
 
 export default function NamingPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { user } = useAuthStore();
   const batches = useFormStore((s) => s.batches);
   const isLoading = useFormStore((s) => s.isLoading);
@@ -27,9 +30,75 @@ export default function NamingPage() {
   const resetNaming = useFormStore((s) => s.resetNaming);
   const activeTab = useFormStore((s) => s.activeTab);
   const setActiveTab = useFormStore((s) => s.setActiveTab);
+  const currentSessionId = useFormStore((s) => s.currentSessionId);
 
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [collapsedGroups, setCollapsedGroups] = useState<Set<string>>(new Set());
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+
+  // 세션 복원 (URL ?session=uuid)
+  const sessionId = searchParams.get('session');
+  const restoredRef = useRef(false);
+
+  useEffect(() => {
+    if (!sessionId || restoredRef.current) return;
+    restoredRef.current = true;
+
+    sessionService.getSessionWithResults(sessionId).then((data) => {
+      const stored = data.input_data?._formState as FormState | undefined;
+      if (!stored) return;
+
+      const restoredBatches: RecommendBatch[] = [{
+        id: `restored-${data.id}`,
+        names: data.naming_results.map((r) => ({
+          brandName: r.brand_name,
+          reasoning: r.reasoning ?? '',
+        })),
+        basedOn: data.naming_results[0]?.based_on ?? [],
+        createdAt: new Date(data.created_at),
+      }];
+
+      useFormStore.getState().restoreSession(stored, restoredBatches);
+      useFormStore.getState().setCurrentSessionId(sessionId);
+    }).catch(console.error);
+  }, [sessionId]);
+
+  // 프로젝트 저장
+  const handleSave = async () => {
+    if (!user || isSaving) return;
+    setIsSaving(true);
+    setSaveSuccess(false);
+    try {
+      const state = useFormStore.getState();
+      const formState: FormState = {
+        storeBasic: state.storeBasic,
+        brandVision: state.brandVision,
+        product: state.product,
+        persona: state.persona,
+        analysis: state.analysis,
+        identity: state.identity,
+        expression: state.expression,
+      };
+      const { current } = splitByReset(state.batches, state.resetTimestamp);
+
+      if (currentSessionId) {
+        await sessionService.updateSession(currentSessionId, formState, current);
+      } else {
+        const ind = state.storeBasic.industry;
+        const title = ind.minor || ind.medium || ind.major || '새 프로젝트';
+        const id = await sessionService.createSession(user.id, title, formState, current);
+        useFormStore.getState().setCurrentSessionId(id);
+      }
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 2000);
+    } catch (err) {
+      console.error('저장 실패:', err);
+      alert('프로젝트 저장에 실패했습니다.');
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   // 그룹 토글 핸들러
   const toggleGroup = (key: string) => {
@@ -148,7 +217,23 @@ export default function NamingPage() {
         }
         right={
           <div ref={recommendPanelRef} className="scroll-mt-4">
-          <RecommendPanel>
+          <RecommendPanel
+            headerRight={user && currentBatches.length > 0 ? (
+              <button
+                onClick={handleSave}
+                disabled={isSaving}
+                className={[
+                  'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all',
+                  saveSuccess
+                    ? 'bg-emerald-500/20 text-emerald-400'
+                    : 'bg-[#B48C50]/20 text-[#B48C50] hover:bg-[#B48C50]/30',
+                ].join(' ')}
+              >
+                {isSaving ? <Loader2 size={12} className="animate-spin" /> : saveSuccess ? <Check size={12} /> : <Save size={12} />}
+                {isSaving ? '저장 중...' : saveSuccess ? '저장됨' : currentSessionId ? '업데이트' : '프로젝트 저장'}
+              </button>
+            ) : undefined}
+          >
             {isLoading && (
               <div className="flex items-center gap-2 text-[#B48C50] text-[14px] mb-3">
                 <Loader2 size={14} className="animate-spin" /><span>생성 중...</span>
