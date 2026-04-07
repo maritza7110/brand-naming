@@ -2,38 +2,77 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ShieldCheck, ShieldAlert, ShieldX, Loader2, ExternalLink } from 'lucide-react';
 import { searchTrademark } from '../../services/kiprisService';
-import type { TrademarkResult } from '../../services/kiprisService';
+import type { TrademarkResult, TrademarkItem } from '../../services/kiprisService';
 
 import { useFormStore } from '../../store/useFormStore';
 
 interface Props { open: boolean; onClose: () => void; brandName: string; }
 
-// ─── 업종 → 니스 상품류 코드 매핑 ──────────────────────────────────────────
-const NICE_CLASS_MAP: Record<string, string> = {
+// ─── 업종 → 니스 상품류 코드 매핑 (핵심류 + 확장류) ──────────────────────────
+interface NiceClassInfo {
+  primary: string;   // 핵심 상품류
+  expansion: string[]; // 사업 확장 시 필요한 류
+  labels: Record<string, string>; // 류별 설명
+}
+
+const NICE_CLASS_MAP: Record<string, NiceClassInfo> = {
   // 식음료
-  '카페': '43', '커피': '43', '음식점': '43', '한식': '43', '치킨': '43',
-  '피자': '43', '베이커리': '43', '빵': '43', '술집': '43', '식당': '43',
-  '분식': '43', '일식': '43', '중식': '43', '양식': '43',
+  '카페':     { primary: '43', expansion: ['30', '35', '21'], labels: { '43': '음식점업', '30': '커피·차·음료', '35': '온라인유통·프랜차이즈', '21': '머그·텀블러' } },
+  '커피':     { primary: '43', expansion: ['30', '35', '21'], labels: { '43': '음식점업', '30': '커피·차·음료', '35': '온라인유통·프랜차이즈', '21': '머그·텀블러' } },
+  '음식점':   { primary: '43', expansion: ['29', '30', '35', '16'], labels: { '43': '음식점업', '29': '밀키트·가공식품', '30': '소스·양념', '35': '프랜차이즈·유통', '16': '포장재·인쇄물' } },
+  '한식':     { primary: '43', expansion: ['29', '30', '35', '16'], labels: { '43': '음식점업', '29': '밀키트·반찬', '30': '소스·장류', '35': '프랜차이즈·유통', '16': '캐릭터·인쇄물' } },
+  '치킨':     { primary: '43', expansion: ['29', '35', '16'], labels: { '43': '음식점업', '29': '냉동식품·밀키트', '35': '프랜차이즈·배달앱', '16': '캐릭터·인쇄물' } },
+  '피자':     { primary: '43', expansion: ['29', '30', '35'], labels: { '43': '음식점업', '29': '냉동피자', '30': '소스·도우', '35': '프랜차이즈·유통' } },
+  '베이커리': { primary: '43', expansion: ['30', '35', '16'], labels: { '43': '음식점업', '30': '빵·과자·디저트', '35': '프랜차이즈·온라인몰', '16': '포장재·캐릭터' } },
+  '빵':       { primary: '43', expansion: ['30', '35'], labels: { '43': '음식점업', '30': '빵·과자류', '35': '온라인유통' } },
+  '술집':     { primary: '43', expansion: ['33', '35'], labels: { '43': '음식점업', '33': '주류', '35': '유통·프랜차이즈' } },
+  '식당':     { primary: '43', expansion: ['29', '30', '35', '16'], labels: { '43': '음식점업', '29': '밀키트·가공식품', '30': '소스·양념', '35': '프랜차이즈·유통', '16': '캐릭터·인쇄물' } },
+  '분식':     { primary: '43', expansion: ['29', '30', '35'], labels: { '43': '음식점업', '29': '냉동분식', '30': '소스류', '35': '프랜차이즈' } },
+  '일식':     { primary: '43', expansion: ['29', '35'], labels: { '43': '음식점업', '29': '수산가공', '35': '프랜차이즈·유통' } },
+  '중식':     { primary: '43', expansion: ['29', '30', '35'], labels: { '43': '음식점업', '29': '냉동만두·가공식품', '30': '소스류', '35': '프랜차이즈' } },
+  '양식':     { primary: '43', expansion: ['29', '30', '35'], labels: { '43': '음식점업', '29': '밀키트', '30': '소스·파스타', '35': '프랜차이즈' } },
   // 뷰티·미용
-  '뷰티': '03', '화장품': '03', '네일': '44', '헤어': '44', '미용': '44',
+  '뷰티':     { primary: '03', expansion: ['35', '44'], labels: { '03': '화장품', '35': '온라인유통', '44': '미용서비스' } },
+  '화장품':   { primary: '03', expansion: ['35', '05'], labels: { '03': '화장품', '35': '온라인유통', '05': '기능성화장품' } },
+  '네일':     { primary: '44', expansion: ['03', '35'], labels: { '44': '미용서비스', '03': '네일제품', '35': '프랜차이즈' } },
+  '헤어':     { primary: '44', expansion: ['03', '35'], labels: { '44': '미용서비스', '03': '헤어제품', '35': '프랜차이즈' } },
+  '미용':     { primary: '44', expansion: ['03', '35'], labels: { '44': '미용서비스', '03': '화장품', '35': '프랜차이즈' } },
   // 의류·패션
-  '의류': '25', '패션': '25', '신발': '25', '가방': '18',
-  // IT·소프트웨어
-  'IT': '09', '소프트웨어': '09', '앱': '09', '플랫폼': '42',
+  '의류':     { primary: '25', expansion: ['35', '18', '14'], labels: { '25': '의류', '35': '온라인유통', '18': '가방·잡화', '14': '액세서리' } },
+  '패션':     { primary: '25', expansion: ['35', '18', '14'], labels: { '25': '의류', '35': '온라인유통', '18': '가방·잡화', '14': '액세서리' } },
+  '신발':     { primary: '25', expansion: ['35'], labels: { '25': '신발', '35': '온라인유통' } },
+  '가방':     { primary: '18', expansion: ['25', '35'], labels: { '18': '가방·잡화', '25': '패션의류', '35': '온라인유통' } },
+  // IT
+  'IT':       { primary: '09', expansion: ['42', '35'], labels: { '09': '소프트웨어·앱', '42': '기술서비스', '35': '플랫폼·유통' } },
+  '소프트웨어': { primary: '09', expansion: ['42', '35'], labels: { '09': '소프트웨어', '42': 'SaaS', '35': '온라인서비스' } },
+  '앱':       { primary: '09', expansion: ['42', '35'], labels: { '09': '앱', '42': '기술서비스', '35': '플랫폼' } },
+  '플랫폼':   { primary: '42', expansion: ['09', '35'], labels: { '42': '기술서비스', '09': '소프트웨어', '35': '전자상거래' } },
   // 교육
-  '교육': '41', '학원': '41', '온라인교육': '41',
-  // 피트니스·건강
-  '피트니스': '41', '헬스': '41', '요가': '41', '필라테스': '41',
+  '교육':     { primary: '41', expansion: ['09', '16'], labels: { '41': '교육서비스', '09': '교육앱·콘텐츠', '16': '교재·인쇄물' } },
+  '학원':     { primary: '41', expansion: ['09', '35'], labels: { '41': '교육서비스', '09': '교육앱', '35': '프랜차이즈' } },
+  '온라인교육': { primary: '41', expansion: ['09', '35'], labels: { '41': '교육서비스', '09': '교육플랫폼', '35': '온라인유통' } },
+  // 피트니스
+  '피트니스': { primary: '41', expansion: ['28', '35'], labels: { '41': '체육서비스', '28': '운동기구', '35': '프랜차이즈' } },
+  '헬스':     { primary: '41', expansion: ['28', '35'], labels: { '41': '체육서비스', '28': '운동기구', '35': '프랜차이즈' } },
+  '요가':     { primary: '41', expansion: ['25', '35'], labels: { '41': '체육서비스', '25': '운동복', '35': '프랜차이즈' } },
+  '필라테스': { primary: '41', expansion: ['28', '35'], labels: { '41': '체육서비스', '28': '운동기구', '35': '프랜차이즈' } },
   // 의료
-  '의료': '44', '병원': '44', '한의원': '44', '약국': '05',
+  '의료':     { primary: '44', expansion: ['05', '10'], labels: { '44': '의료서비스', '05': '의약품', '10': '의료기기' } },
+  '병원':     { primary: '44', expansion: ['05', '10'], labels: { '44': '의료서비스', '05': '의약품', '10': '의료기기' } },
+  '한의원':   { primary: '44', expansion: ['05', '30'], labels: { '44': '의료서비스', '05': '한약', '30': '건강식품' } },
+  '약국':     { primary: '05', expansion: ['44', '35'], labels: { '05': '의약품', '44': '의료서비스', '35': '유통' } },
   // 반려동물
-  '반려동물': '31', '펫': '31',
-  // 세탁·청소
-  '세탁': '37', '청소': '37',
-  // 물류·운송
-  '물류': '39', '배송': '39', '운송': '39',
-  // 부동산·건설
-  '부동산': '36', '건설': '37', '인테리어': '42',
+  '반려동물': { primary: '31', expansion: ['35', '44'], labels: { '31': '사료·용품', '35': '펫유통·프랜차이즈', '44': '반려동물서비스' } },
+  '펫':       { primary: '31', expansion: ['35', '44'], labels: { '31': '사료·용품', '35': '펫유통', '44': '반려동물서비스' } },
+  // 세탁·물류·부동산
+  '세탁':     { primary: '37', expansion: ['35'], labels: { '37': '세탁서비스', '35': '프랜차이즈' } },
+  '청소':     { primary: '37', expansion: ['35'], labels: { '37': '청소서비스', '35': '프랜차이즈' } },
+  '물류':     { primary: '39', expansion: ['35'], labels: { '39': '물류·운송', '35': '유통' } },
+  '배송':     { primary: '39', expansion: ['35'], labels: { '39': '배송서비스', '35': '유통' } },
+  '운송':     { primary: '39', expansion: ['35'], labels: { '39': '운송업', '35': '유통' } },
+  '부동산':   { primary: '36', expansion: ['37', '42'], labels: { '36': '부동산', '37': '건설', '42': '설계·인테리어' } },
+  '건설':     { primary: '37', expansion: ['36', '42'], labels: { '37': '건설', '36': '부동산', '42': '설계' } },
+  '인테리어': { primary: '42', expansion: ['20', '35'], labels: { '42': '인테리어설계', '20': '가구', '35': '온라인유통' } },
 };
 
 // ─── F-1: 상표 식별력 5등급 (doc_f 기반) ───────────────────────────────────
@@ -99,10 +138,18 @@ function RiskGauge({ level }: { level: RiskLevel }) {
 // ─── 모달 본체 ──────────────────────────────────────────────────────────────
 type SearchState = 'idle' | 'loading' | 'error' | 'done';
 
+// 류별 조회 결과
+interface ClassResult {
+  classCode: string;
+  label: string;
+  result: TrademarkResult;
+  riskLevel: RiskLevel;
+}
+
 export function TrademarkModal({ open, onClose, brandName }: Props) {
   const [searchState, setSearchState] = useState<SearchState>('idle');
-  const [result, setResult] = useState<TrademarkResult | null>(null);
-  const [riskLevel, setRiskLevel] = useState<RiskLevel | null>(null);
+  const [classResults, setClassResults] = useState<ClassResult[]>([]);
+  const [overallRisk, setOverallRisk] = useState<RiskLevel | null>(null);
 
   if (!open) return null;
 
@@ -113,27 +160,48 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
 
   document.body.style.overflow = 'hidden';
 
-  // 업종에서 니스 분류 코드 조회
-  function getNiceClass(): string | undefined {
+  // 업종에서 니스 분류 정보 조회
+  function getNiceClassInfo(): NiceClassInfo | null {
     const { industry } = useFormStore.getState().storeBasic;
     const terms = [industry.minor, industry.medium, industry.major].filter(Boolean);
     for (const term of terms) {
       if (NICE_CLASS_MAP[term]) return NICE_CLASS_MAP[term];
-      for (const [key, code] of Object.entries(NICE_CLASS_MAP)) {
-        if (term.includes(key) || key.includes(term)) return code;
+      for (const [key, info] of Object.entries(NICE_CLASS_MAP)) {
+        if (term.includes(key) || key.includes(term)) return info;
       }
     }
-    return undefined;
+    return null;
   }
 
-  const niceClass = getNiceClass();
+  const classInfo = getNiceClassInfo();
+  const allClasses = classInfo ? [classInfo.primary, ...classInfo.expansion] : [];
 
   async function handleSearch() {
     setSearchState('loading');
     try {
-      const data = await searchTrademark(brandName, niceClass);
-      setResult(data);
-      setRiskLevel(calcRiskLevel(data));
+      const results: ClassResult[] = [];
+      // 핵심류 + 확장류 전부 조회
+      for (const code of allClasses) {
+        const data = await searchTrademark(brandName, code);
+        const risk = calcRiskLevel(data);
+        const label = classInfo?.labels[code] ?? `제${code}류`;
+        results.push({ classCode: code, label, result: data, riskLevel: risk });
+      }
+      // 업종 없으면 전체 조회
+      if (allClasses.length === 0) {
+        const data = await searchTrademark(brandName);
+        const risk = calcRiskLevel(data);
+        results.push({ classCode: '-', label: '전체', result: data, riskLevel: risk });
+      }
+      setClassResults(results);
+      // 전체 중 가장 높은 위험도를 종합 위험도로
+      const riskOrder: RiskLevel[] = ['SAFE', 'LOW', 'MEDIUM', 'HIGH', 'BLOCKED'];
+      const worst = results.reduce((max, r) => {
+        const a = riskOrder.indexOf(max);
+        const b = riskOrder.indexOf(r.riskLevel);
+        return b > a ? r.riskLevel : max;
+      }, 'SAFE' as RiskLevel);
+      setOverallRisk(worst);
       setSearchState('done');
     } catch {
       setSearchState('error');
@@ -181,18 +249,22 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
             {searchState === 'idle' && (
               <div className="space-y-3">
                 <div className="p-2.5 rounded-xl bg-[#2C2825] border border-amber-500/30">
-                  <p className="text-[11px] text-amber-400 font-semibold mb-1">주의사항</p>
-                  <ul className="text-[11px] text-[#A09890] space-y-0.5 list-disc list-inside">
-                    <li>조회 상품류: {niceClass ? `제${niceClass}류` : '전체 (업종 미선택)'}</li>
-                    <li>동일 상표명만 조회 (유사 상표 별도)</li>
-                    <li>법적 효력 없음</li>
-                  </ul>
+                  <p className="text-[11px] text-amber-400 font-semibold mb-1">조회 범위</p>
+                  {allClasses.length > 0 ? (
+                    <div className="text-[11px] text-[#A09890] space-y-0.5">
+                      <p>핵심: 제{classInfo!.primary}류 ({classInfo!.labels[classInfo!.primary]})</p>
+                      <p>확장: {classInfo!.expansion.map(c => `제${c}류(${classInfo!.labels[c]})`).join(', ')}</p>
+                    </div>
+                  ) : (
+                    <p className="text-[11px] text-[#A09890]">전체 상품류 조회 (업종 미선택)</p>
+                  )}
+                  <p className="text-[11px] text-[#6A6460] mt-1">동일 상표명만 조회 · 법적 효력 없음</p>
                 </div>
                 <button
                   onClick={handleSearch}
                   className="w-full py-2.5 rounded-xl bg-[#7BAFD4]/20 text-[#7BAFD4] text-[13px] font-semibold hover:bg-[#7BAFD4]/30 transition-colors"
                 >
-                  KIPRIS 실사 조회
+                  KIPRIS 실사 조회 {allClasses.length > 0 ? `(${allClasses.length}개 류)` : ''}
                 </button>
               </div>
             )}
@@ -201,7 +273,7 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
             {searchState === 'loading' && (
               <div className="flex items-center justify-center gap-2 py-6 text-[12px] text-[#A09890]">
                 <Loader2 size={14} className="animate-spin" />
-                <span>KIPRIS 조회 중...</span>
+                <span>KIPRIS 조회 중... ({allClasses.length || 1}개 류)</span>
               </div>
             )}
 
@@ -217,36 +289,42 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
             )}
 
             {/* done */}
-            {searchState === 'done' && result && riskLevel && (
+            {searchState === 'done' && overallRisk && (
               <div className="space-y-3">
-                <RiskGauge level={riskLevel} />
+                <RiskGauge level={overallRisk} />
 
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5">
-                    {result.totalCount === 0 && <><ShieldCheck size={13} className="text-emerald-400" /><span className="text-[12px] text-emerald-400 font-semibold">동일 상표 없음</span></>}
-                    {result.totalCount > 0 && riskLevel !== 'BLOCKED' && <><ShieldAlert size={13} className="text-amber-400" /><span className="text-[12px] text-amber-400 font-semibold">유사 출원 {result.totalCount}건</span></>}
-                    {riskLevel === 'BLOCKED' && <><ShieldX size={13} className="text-red-400" /><span className="text-[12px] text-red-400 font-semibold">등록 상표 {result.totalCount}건</span></>}
-                  </div>
-
-                  {result.items.length > 0 && (
-                    <div className="rounded-xl bg-[#2C2825] border border-[#4A4440] divide-y divide-[#4A4440] overflow-hidden">
-                      {result.items.slice(0, 5).map((item, i) => (
-                        <div key={i} className="px-3 py-2">
-                          <div className="flex items-center justify-between gap-2">
-                            <p className="text-[12px] font-medium text-[#D0CAC2] truncate">{item.title}</p>
-                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full shrink-0 ${item.status === '등록' ? 'bg-red-400/20 text-red-400' : 'bg-[#4A4440] text-[#A09890]'}`}>
-                              {item.status}
-                            </span>
-                          </div>
-                          <p className="text-[10px] text-[#6A6460] mt-0.5">{item.applicant} · {item.applicationDate}</p>
+                {/* 류별 결과 */}
+                <div className="space-y-2">
+                  {classResults.map((cr) => (
+                    <div key={cr.classCode} className="rounded-xl bg-[#2C2825] border border-[#4A4440] p-3">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[11px] font-semibold text-[#D0CAC2]">
+                          {cr.classCode !== '-' ? `제${cr.classCode}류` : ''} {cr.label}
+                        </span>
+                        <div className="flex items-center gap-1">
+                          {cr.result.totalCount === 0 && <><ShieldCheck size={11} className="text-emerald-400" /><span className="text-[10px] text-emerald-400">없음</span></>}
+                          {cr.result.totalCount > 0 && cr.riskLevel !== 'BLOCKED' && <><ShieldAlert size={11} className="text-amber-400" /><span className="text-[10px] text-amber-400">{cr.result.totalCount}건</span></>}
+                          {cr.riskLevel === 'BLOCKED' && <><ShieldX size={11} className="text-red-400" /><span className="text-[10px] text-red-400">{cr.result.totalCount}건</span></>}
                         </div>
-                      ))}
+                      </div>
+                      {cr.result.items.length > 0 && (
+                        <div className="space-y-1">
+                          {cr.result.items.slice(0, 3).map((item: TrademarkItem, i: number) => (
+                            <div key={i} className="flex items-center justify-between gap-2">
+                              <p className="text-[11px] text-[#7A7570] truncate">{item.title}</p>
+                              <span className={`text-[9px] px-1.5 py-0.5 rounded-full shrink-0 ${item.status === '등록' ? 'bg-red-400/20 text-red-400' : 'bg-[#4A4440] text-[#6A6460]'}`}>
+                                {item.status}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  )}
+                  ))}
                 </div>
 
                 <button
-                  onClick={() => { setSearchState('idle'); setResult(null); setRiskLevel(null); }}
+                  onClick={() => { setSearchState('idle'); setClassResults([]); setOverallRisk(null); }}
                   className="w-full py-2 rounded-xl bg-[#4A4440] text-[#A09890] text-[12px] hover:bg-[#5A5450] transition-colors"
                 >
                   다시 조회
