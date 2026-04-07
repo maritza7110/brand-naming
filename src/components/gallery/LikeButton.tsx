@@ -16,9 +16,13 @@ export default function LikeButton({ sessionId, count, showCount = true }: LikeB
   const handleClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!user) return;
-    const { isInitialized, initSocialState } = useSocialStore.getState();
-    if (!isInitialized) await initSocialState(user.id);
-    toggleLike(sessionId, user.id);
+    try {
+      const { isInitialized, initSocialState } = useSocialStore.getState();
+      if (!isInitialized) await initSocialState(user.id);
+      await toggleLike(sessionId, user.id);
+    } catch (err) {
+      console.error('좋아요 실패:', err);
+    }
   };
 
   return (

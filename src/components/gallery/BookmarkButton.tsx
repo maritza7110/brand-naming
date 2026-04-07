@@ -14,9 +14,13 @@ export default function BookmarkButton({ sessionId }: BookmarkButtonProps) {
   const handleClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!user) return;
-    const { isInitialized, initSocialState } = useSocialStore.getState();
-    if (!isInitialized) await initSocialState(user.id);
-    toggleBookmark(sessionId, user.id);
+    try {
+      const { isInitialized, initSocialState } = useSocialStore.getState();
+      if (!isInitialized) await initSocialState(user.id);
+      await toggleBookmark(sessionId, user.id);
+    } catch (err) {
+      console.error('북마크 실패:', err);
+    }
   };
 
   return (
