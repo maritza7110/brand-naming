@@ -49,21 +49,25 @@ export default function NamingPage() {
       const stored = data.input_data?._formState as FormState | undefined;
       if (!stored) return;
 
-      const restoredBatches: RecommendBatch[] = [{
-        id: `restored-${data.id}`,
-        names: data.naming_results.map((r: any) => ({
-          brandName: r.brand_name,
-          reasoning: r.reasoning ?? '',
-          rationale: {
-            validityScore: r.score ?? 0,
-            namingTechnique: r.style_tag ?? '',
-            meaningAnalysis: r.reasoning ?? '',
-            reflectedInputs: Array.isArray(r.based_on) ? r.based_on : [],
-          },
-        })),
-        basedOn: data.naming_results[0]?.based_on ?? [],
-        createdAt: new Date(data.created_at),
-      }];
+      // _batches가 있으면 원본 배치 사용 (rationale 포함), 없으면 DB에서 재구성
+      const savedBatches = data.input_data?._batches as RecommendBatch[] | undefined;
+      const restoredBatches: RecommendBatch[] = savedBatches
+        ? savedBatches.map((b: any) => ({ ...b, createdAt: new Date(b.createdAt) }))
+        : [{
+            id: `restored-${data.id}`,
+            names: data.naming_results.map((r: any) => ({
+              brandName: r.brand_name,
+              reasoning: r.reasoning ?? '',
+              rationale: {
+                validityScore: r.score ?? 0,
+                namingTechnique: r.style_tag ?? '',
+                meaningAnalysis: r.reasoning ?? '',
+                reflectedInputs: Array.isArray(r.based_on) ? r.based_on : [],
+              },
+            })),
+            basedOn: data.naming_results[0]?.based_on ?? [],
+            createdAt: new Date(data.created_at),
+          }];
 
       useFormStore.getState().restoreSession(stored, restoredBatches);
       useFormStore.getState().setCurrentSessionId(sessionId);

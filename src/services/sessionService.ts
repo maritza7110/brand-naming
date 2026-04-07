@@ -61,7 +61,7 @@ export const sessionService = {
     const industryId = [industry.major, industry.medium, industry.minor]
       .filter(Boolean).join('/') || null;
 
-    // input_data: flat merge (갤러리 모달 호환) + _formState (복원용)
+    // input_data: flat merge (갤러리 모달 호환) + _formState + _batches (복원용)
     const inputData = {
       ...formState.storeBasic,
       ...formState.brandVision,
@@ -71,6 +71,7 @@ export const sessionService = {
       ...formState.identity,
       ...formState.expression,
       _formState: formState,
+      _batches: batches,
     };
 
     // sessions INSERT
@@ -131,6 +132,7 @@ export const sessionService = {
       ...formState.identity,
       ...formState.expression,
       _formState: formState,
+      _batches: batches,
     };
 
     // sessions UPDATE
