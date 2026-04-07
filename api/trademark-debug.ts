@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const KIPRIS_BASE = 'http://plus.kipris.or.kr/openapi/rest/trademarkInfoSearchService/trademarkNameSearchInfo';
-const ACCESS_KEY = process.env.KIPRIS_ACCESS_KEY ?? '';
+const ACCESS_KEY = (process.env.KIPRIS_ACCESS_KEY ?? '').trim();
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Access-Control-Allow-Origin', '*');

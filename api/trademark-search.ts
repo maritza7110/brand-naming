@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const KIPRIS_BASE = 'http://plus.kipris.or.kr/openapi/rest/trademarkInfoSearchService/trademarkNameSearchInfo';
-const ACCESS_KEY = process.env.KIPRIS_ACCESS_KEY ?? '';
+const ACCESS_KEY = (process.env.KIPRIS_ACCESS_KEY ?? '').trim();
 
 function extractText(xml: string, tag: string): string {
   const m = xml.match(new RegExp(`<${tag}>([^<]*)</${tag}>`));
