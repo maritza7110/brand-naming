@@ -212,7 +212,7 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={handleClose}>
       <div className="max-h-[85vh] overflow-y-auto px-4">
         <div
-          className="relative w-full max-w-lg rounded-2xl bg-[#3E3A36] border border-[#4A4640] shadow-2xl flex flex-col"
+          className="relative w-full max-w-3xl rounded-2xl bg-[#3E3A36] border border-[#4A4640] shadow-2xl flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
         {/* 헤더 */}
@@ -224,10 +224,11 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
           <p className="text-[30px] font-bold text-[#E8C878] text-center tracking-tight">{brandName}</p>
         </div>
 
-        {/* 스크롤 바디 */}
-        <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
+        {/* 2열 바디 */}
+        <div className="flex-1 overflow-y-auto px-6 py-5">
+          <div className="grid grid-cols-2 gap-5">
 
-          {/* F-1: 식별력 등급 */}
+          {/* 좌: F-1 식별력 등급 */}
           <div>
             <p className="text-[11px] font-semibold text-[#6A6460] uppercase tracking-widest mb-2">F-1 식별력 등급</p>
             <div className="space-y-1.5">
@@ -241,8 +242,8 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
             </div>
           </div>
 
-          {/* F-4: KIPRIS 조회 */}
-          <div className="border-t border-[#504A44] pt-4">
+          {/* 우: F-4 KIPRIS 조회 */}
+          <div>
             <p className="text-[11px] font-semibold text-[#6A6460] uppercase tracking-widest mb-2">F-4 KIPRIS 실사 조회</p>
 
             {/* idle */}
@@ -333,19 +334,21 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
             )}
           </div>
 
+          </div>{/* /grid */}
+
           {/* KIPRIS 직접 링크 */}
           <a
             href="https://www.kipris.or.kr/khome/main.do"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-2.5 rounded-xl bg-[#2C2825] border border-[#4A4440] text-[12px] text-[#A09890] hover:text-[#D0CAC2] transition-colors"
+            className="mt-4 flex items-center justify-between p-2.5 rounded-xl bg-[#2C2825] border border-[#4A4440] text-[12px] text-[#A09890] hover:text-[#D0CAC2] transition-colors"
           >
             <span>KIPRIS 홈페이지에서 직접 검색</span>
             <ExternalLink size={12} />
           </a>
 
           {/* 면책 */}
-          <p className="text-[10px] text-[#6A6460] text-center leading-relaxed">
+          <p className="mt-3 text-[10px] text-[#6A6460] text-center leading-relaxed">
             참고용 정보만 제공하며 법적 효력이 없습니다.
             <br />상표 출원 전 반드시 전문 변리사와 상담하세요.
           </p>
