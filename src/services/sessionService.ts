@@ -34,12 +34,12 @@ export const sessionService = {
 
     const { data, error } = await supabase
       .from('sessions')
-      .select('*')
+      .select('*, naming_results(style_tag)')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false });
 
     if (error) throw error;
-    return data as SessionData[];
+    return data as (SessionData & { naming_results?: { style_tag: string | null }[] })[];
   },
 
   // 세션 + naming_results 조회 (복원용)

@@ -60,13 +60,15 @@ function computeStats(sessions: SessionData[]) {
     .sort((a, b) => b.count - a.count)
     .slice(0, 8);
 
-  // 3. 네이밍 스타일 빈도: input_data.expression.namingStyle 배열
+  // 3. 네이밍 스타일 빈도: naming_results.style_tag에서 집계
   const styleCount: Record<string, number> = {};
   sessions.forEach(s => {
-    const styles = s.input_data?.expression?.namingStyle;
-    if (Array.isArray(styles)) {
-      styles.forEach((st: string) => {
-        styleCount[st] = (styleCount[st] ?? 0) + 1;
+    const results = (s as any).naming_results;
+    if (Array.isArray(results)) {
+      results.forEach((r: { style_tag?: string | null }) => {
+        if (r.style_tag) {
+          styleCount[r.style_tag] = (styleCount[r.style_tag] ?? 0) + 1;
+        }
       });
     }
   });
