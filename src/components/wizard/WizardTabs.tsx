@@ -51,7 +51,7 @@ export function WizardTabs({ activeTab, onTabChange }: WizardTabsProps) {
   return (
     <div
       role="tablist"
-      className="relative flex border-b border-[#4A4440] bg-[#2C2825]"
+      className="relative flex border-b border-[var(--color-border)] bg-[var(--color-bg)]"
       onKeyDown={handleKeyDown}
     >
       {TABS.map((tab) => {
@@ -65,8 +65,8 @@ export function WizardTabs({ activeTab, onTabChange }: WizardTabsProps) {
             aria-label={tab.ariaLabel}
             tabIndex={isActive ? 0 : -1}
             onClick={() => onTabChange(tab.id)}
-            className={`flex-1 h-[44px] text-[14px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-[#B48C50] focus-visible:outline-offset-[-2px] ${
-              isActive ? 'text-[#B48C50]' : 'text-[#A09890] hover:text-[#D0CAC2]'
+            className={`flex-1 h-[44px] text-[14px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-[-2px] ${
+              isActive ? 'text-[var(--color-accent)]' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]'
             }`}
           >
             {tab.label}
@@ -76,7 +76,7 @@ export function WizardTabs({ activeTab, onTabChange }: WizardTabsProps) {
       {/* 슬라이딩 인디케이터 */}
       <span
         aria-hidden="true"
-        className="absolute bottom-0 h-[2px] bg-[#B48C50]"
+        className="absolute bottom-0 h-[2px] bg-[var(--color-accent)]"
         style={{
           width: `${100 / TABS.length}%`,
           transform: `translateX(${activeIndex * 100}%)`,

@@ -24,14 +24,14 @@ function CommentItem({
     <div className="flex justify-between items-start gap-2">
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <span className="text-[14px] font-semibold text-[#D0CAC2]">
+          <span className="text-[14px] font-semibold text-[var(--color-text-secondary)]">
             {comment.profiles?.full_name || '익명'}
           </span>
           <span className="text-[12px] text-[#5A5550]">
             {formatDistanceToNow(new Date(comment.created_at), { addSuffix: true, locale: ko })}
           </span>
         </div>
-        <p className="text-[14px] text-[#E8E2DA] whitespace-pre-wrap mt-1 break-words">
+        <p className="text-[14px] text-[var(--color-text-primary)] whitespace-pre-wrap mt-1 break-words">
           {comment.content}
         </p>
       </div>
@@ -67,12 +67,12 @@ export default function CommentSection({ sessionId }: CommentSectionProps) {
     <div className="space-y-4">
       {/* 댓글 목록 헤더 */}
       {isCommentsLoading ? (
-        <p className="text-[14px] text-[#A09890] text-center py-4">댓글을 불러오는 중...</p>
+        <p className="text-[14px] text-[var(--color-text-muted)] text-center py-4">댓글을 불러오는 중...</p>
       ) : comments.length === 0 ? (
-        <p className="text-[14px] text-[#A09890] text-center py-4">아직 댓글이 없습니다</p>
+        <p className="text-[14px] text-[var(--color-text-muted)] text-center py-4">아직 댓글이 없습니다</p>
       ) : (
         <>
-          <p className="text-[14px] font-semibold text-[#A09890] mb-3">
+          <p className="text-[14px] font-semibold text-[var(--color-text-muted)] mb-3">
             댓글 {comments.length}개
           </p>
           <div className="space-y-3 max-h-[240px] overflow-y-auto">
@@ -96,19 +96,19 @@ export default function CommentSection({ sessionId }: CommentSectionProps) {
             onChange={(e) => setContent(e.target.value)}
             maxLength={500}
             placeholder="댓글을 입력하세요..."
-            className="min-h-[80px] w-full bg-[#1A1A1E] border border-[#4A4440] rounded-lg p-3 text-[14px] text-[#E8E2DA] placeholder-[#5A5550] focus:border-[#B48C50] focus:outline-none resize-none"
+            className="min-h-[80px] w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-3 text-[14px] text-[var(--color-text-primary)] placeholder-[#5A5550] focus:border-[var(--color-accent)] focus:outline-none resize-none"
           />
           <div className="flex justify-end mt-2">
             <button
               onClick={handleSubmit}
-              className="text-[14px] font-semibold text-[#B48C50] hover:text-[#C5A06B] transition-colors cursor-pointer"
+              className="text-[14px] font-semibold text-[var(--color-accent)] hover:text-[#C5A06B] transition-colors cursor-pointer"
             >
               댓글 작성
             </button>
           </div>
         </div>
       ) : (
-        <p className="text-[14px] text-[#A09890] text-center py-4">
+        <p className="text-[14px] text-[var(--color-text-muted)] text-center py-4">
           댓글을 작성하려면 로그인하세요
         </p>
       )}

@@ -13,7 +13,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0F0F11]">
-        <Loader2 className="animate-spin text-[#B48C50]" size={32} />
+        <Loader2 className="animate-spin text-[var(--color-accent)]" size={32} />
       </div>
     );
   }

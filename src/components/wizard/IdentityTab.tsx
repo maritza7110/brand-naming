@@ -41,7 +41,7 @@ export function IdentityTab() {
       <BrandVisionSection />
       <BrandPersonalitySection />
       {keywords.length > 0 && (
-        <div className="rounded-2xl bg-[#363230] p-5 lg:p-7 border border-[#4A4440]">
+        <div className="rounded-2xl bg-[#363230] p-5 lg:p-7 border border-[var(--color-border)]">
           <KeywordWeightSlider keywords={keywords} onChange={setKeywordWeight} />
         </div>
       )}

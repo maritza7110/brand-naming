@@ -50,7 +50,7 @@ export default function SignupForm() {
             type="text"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="w-full bg-[#1A1A1E] border border-white/5 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-[#B48C50] transition-colors"
+            className="w-full bg-[var(--color-surface)] border border-white/5 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors"
             placeholder="홍길동"
             required
           />
@@ -65,7 +65,7 @@ export default function SignupForm() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-[#1A1A1E] border border-white/5 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-[#B48C50] transition-colors"
+            className="w-full bg-[var(--color-surface)] border border-white/5 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors"
             placeholder="example@email.com"
             required
           />
@@ -80,7 +80,7 @@ export default function SignupForm() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-[#1A1A1E] border border-white/5 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-[#B48C50] transition-colors"
+            className="w-full bg-[var(--color-surface)] border border-white/5 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors"
             placeholder="••••••••"
             required
             minLength={6}
@@ -97,14 +97,14 @@ export default function SignupForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full bg-[#B48C50] hover:bg-[#C5A06B] text-white font-bold py-3 px-4 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-[var(--color-accent)] hover:bg-[#C5A06B] text-white font-bold py-3 px-4 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {isLoading ? <Loader2 className="animate-spin" size={20} /> : '회원가입'}
       </button>
 
       <p className="text-center text-gray-500 text-sm mt-4">
         이미 계정이 있으신가요?{' '}
-        <Link to="/login" className="text-[#B48C50] hover:underline">
+        <Link to="/login" className="text-[var(--color-accent)] hover:underline">
           로그인
         </Link>
       </p>

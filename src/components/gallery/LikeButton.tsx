@@ -33,14 +33,14 @@ export default function LikeButton({ sessionId, count, showCount = true }: LikeB
     >
       <Heart
         size={16}
-        className={isLiked ? 'fill-[#B48C50] text-[#B48C50]' : 'text-[#A09890]'}
+        className={isLiked ? 'fill-[var(--color-accent)] text-[var(--color-accent)]' : 'text-[var(--color-text-muted)]'}
         style={
           isLiked
             ? { transform: 'scale(1.1)', transition: 'transform 150ms' }
             : { transition: 'transform 150ms' }
         }
       />
-      {showCount && <span className="text-[12px] text-[#A09890]">{count}</span>}
+      {showCount && <span className="text-[12px] text-[var(--color-text-muted)]">{count}</span>}
     </button>
   );
 }

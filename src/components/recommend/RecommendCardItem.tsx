@@ -46,13 +46,13 @@ export function RecommendCardItem({ batch, isGroupOpen }: Props) {
   };
 
   return (
-    <div className="rounded-xl bg-[#2C2825] border border-[#4A4440] p-4">
+    <div className="rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] p-4">
       {batch.names.map((n, i) => {
         const isExpanded = expandedIndices.has(i);
         const hasRationale = Boolean(n.rationale);
 
         return (
-          <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#4A4440]' : ''}>
+          <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[var(--color-border)]' : ''}>
             <div
               className={hasRationale ? 'cursor-pointer' : ''}
               role={hasRationale ? 'button' : undefined}
@@ -64,7 +64,7 @@ export function RecommendCardItem({ batch, isGroupOpen }: Props) {
                 {hasRationale && (
                   <ChevronDown
                     size={14}
-                    className={`mt-1 shrink-0 text-[#A09890] transition-transform duration-200 ${
+                    className={`mt-1 shrink-0 text-[var(--color-text-muted)] transition-transform duration-200 ${
                       isExpanded ? 'rotate-180' : 'rotate-0'
                     }`}
                   />
@@ -87,7 +87,7 @@ export function RecommendCardItem({ batch, isGroupOpen }: Props) {
           <button
             type="button"
             onClick={() => setChecklistOpen((v) => !v)}
-            className="flex items-center gap-1.5 text-[12px] font-semibold text-[#B48C50] hover:text-[#C49A5C] transition-colors"
+            className="flex items-center gap-1.5 text-[12px] font-semibold text-[var(--color-accent)] hover:text-[#C49A5C] transition-colors"
           >
             <ClipboardList size={13} />
             <span>소비자 테스트 체크리스트</span>
@@ -103,17 +103,17 @@ export function RecommendCardItem({ batch, isGroupOpen }: Props) {
                       type="button"
                       onClick={() => handleCriterionClick(item, i)}
                       disabled={result === 'loading'}
-                      className="w-full flex items-start gap-2 text-left text-[13px] text-[#D0CAC2] hover:text-white group transition-colors"
+                      className="w-full flex items-start gap-2 text-left text-[13px] text-[var(--color-text-secondary)] hover:text-white group transition-colors"
                     >
-                      <span className="mt-0.5 w-4 h-4 shrink-0 rounded border border-[#4A4440] group-hover:border-[#B48C50] flex items-center justify-center text-[10px] text-[#A09890] transition-colors">
+                      <span className="mt-0.5 w-4 h-4 shrink-0 rounded border border-[var(--color-border)] group-hover:border-[var(--color-accent)] flex items-center justify-center text-[10px] text-[var(--color-text-muted)] transition-colors">
                         {result === 'loading' ? <Loader2 size={10} className="animate-spin" /> : <Sparkles size={9} className="opacity-0 group-hover:opacity-100 transition-opacity" />}
                       </span>
                       <span>{item}</span>
                     </button>
                     {result && result !== 'loading' && result !== 'error' && (
-                      <div className="mt-1.5 ml-6 pl-3 border-l-2 border-[#B48C50]/40">
-                        <span className="text-[14px] font-semibold text-[#B48C50]">{result.brandName}</span>
-                        <p className="text-[12px] text-[#A09890] mt-0.5">{result.reasoning}</p>
+                      <div className="mt-1.5 ml-6 pl-3 border-l-2 border-[var(--color-accent)]/40">
+                        <span className="text-[14px] font-semibold text-[var(--color-accent)]">{result.brandName}</span>
+                        <p className="text-[12px] text-[var(--color-text-muted)] mt-0.5">{result.reasoning}</p>
                       </div>
                     )}
                     {result === 'error' && (
@@ -129,15 +129,15 @@ export function RecommendCardItem({ batch, isGroupOpen }: Props) {
 
       <div className="mt-3 pt-2 border-t border-[#332F2C] flex items-center gap-1.5 flex-wrap">
         {batch.basedOn.slice(0, 4).map((t) => (
-          <span key={t} className="px-2 py-0.5 rounded-full bg-[#4A4440] text-[12px] text-[#D0CAC2]">{t}</span>
+          <span key={t} className="px-2 py-0.5 rounded-full bg-[var(--color-border)] text-[12px] text-[var(--color-text-secondary)]">{t}</span>
         ))}
-        {batch.basedOn.length > 4 && <span className="text-[12px] text-[#D0CAC2]">+{batch.basedOn.length - 4}</span>}
+        {batch.basedOn.length > 4 && <span className="text-[12px] text-[var(--color-text-secondary)]">+{batch.basedOn.length - 4}</span>}
         <span className="ml-auto text-[12px] text-[#B5AFA8]">{time}</span>
       </div>
 
       {/* processNote (문서 기반 모드) — 카드 최하단 */}
       {batch.processNote && (
-        <p className="mt-2 text-[11px] text-[#6A6460] italic leading-relaxed">{batch.processNote}</p>
+        <p className="mt-2 text-[11px] text-[var(--color-border-muted)] italic leading-relaxed">{batch.processNote}</p>
       )}
     </div>
   );

@@ -12,12 +12,12 @@ interface ProjectCardProps {
 export default function ProjectCard({ session, onDelete, onClick, onPublishToggle }: ProjectCardProps) {
   return (
     <div
-      className="group relative bg-[#1A1A1E] border border-white/5 rounded-2xl p-5 hover:border-[#B48C50]/30 transition-all cursor-pointer overflow-hidden"
+      className="group relative bg-[var(--color-surface)] border border-white/5 rounded-2xl p-5 hover:border-[var(--color-accent)]/30 transition-all cursor-pointer overflow-hidden"
       onClick={() => onClick(session)}
     >
       <div className="flex justify-between items-start mb-3">
-        <div className="p-2 bg-[#B48C50]/10 rounded-lg">
-          <Layout className="text-[#B48C50]" size={20} />
+        <div className="p-2 bg-[var(--color-accent)]/10 rounded-lg">
+          <Layout className="text-[var(--color-accent)]" size={20} />
         </div>
         <button
           onClick={(e) => {
@@ -38,7 +38,7 @@ export default function ProjectCard({ session, onDelete, onClick, onPublishToggl
           <Calendar size={14} />
           <span>{sessionService.formatDate(session.created_at)}</span>
         </div>
-        <div className="text-[#B48C50]/70 text-[13px] font-medium mt-1">
+        <div className="text-[var(--color-accent)]/70 text-[13px] font-medium mt-1">
           {session.industry_id || '산업분류 미지정'}
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function ProjectCard({ session, onDelete, onClick, onPublishToggl
                 e.stopPropagation();
                 onPublishToggle(session.id, false);
               }}
-              className="text-[#A09890] hover:text-red-400 text-[13px] transition-colors flex items-center gap-1"
+              className="text-[var(--color-text-muted)] hover:text-red-400 text-[13px] transition-colors flex items-center gap-1"
             >
               <EyeOff size={13} />
               발행 철회
@@ -68,7 +68,7 @@ export default function ProjectCard({ session, onDelete, onClick, onPublishToggl
               e.stopPropagation();
               onPublishToggle(session.id, true);
             }}
-            className="w-full flex items-center justify-center gap-1.5 bg-[#B48C50]/10 text-[#B48C50] border border-[#B48C50]/30 rounded-lg px-3 py-2 text-[13px] hover:bg-[#B48C50]/20 transition-colors"
+            className="w-full flex items-center justify-center gap-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] border border-[var(--color-accent)]/30 rounded-lg px-3 py-2 text-[13px] hover:bg-[var(--color-accent)]/20 transition-colors"
           >
             <Globe size={14} />
             갤러리에 발행
@@ -77,7 +77,7 @@ export default function ProjectCard({ session, onDelete, onClick, onPublishToggl
       </div>
 
       {/* 장식용 그라데이션 */}
-      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#B48C50]/5 to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[var(--color-accent)]/5 to-transparent pointer-events-none" />
     </div>
   );
 }

@@ -27,7 +27,7 @@ export function KeywordWeightSlider({ keywords, onChange }: KeywordWeightSliderP
           height: 14px;
           border-radius: 50%;
           background: #F5F0E8;
-          border: 2px solid #B48C50;
+          border: 2px solid var(--color-accent);
           box-shadow: 0 0 0 3px rgba(180, 140, 80, 0.25);
           cursor: pointer;
           margin-top: -5px;
@@ -35,7 +35,7 @@ export function KeywordWeightSlider({ keywords, onChange }: KeywordWeightSliderP
         .kw-slider::-moz-range-thumb {
           width: 14px;
           height: 14px;
-          border: 2px solid #B48C50;
+          border: 2px solid var(--color-accent);
           border-radius: 50%;
           background: #F5F0E8;
           box-shadow: 0 0 0 3px rgba(180, 140, 80, 0.25);
@@ -44,8 +44,8 @@ export function KeywordWeightSlider({ keywords, onChange }: KeywordWeightSliderP
         .kw-slider::-webkit-slider-runnable-track {
           background: linear-gradient(
             to right,
-            #B48C50 calc(var(--fill) * 1%),
-            #4A4440 calc(var(--fill) * 1%)
+            var(--color-accent) calc(var(--fill) * 1%),
+            var(--color-border) calc(var(--fill) * 1%)
           );
           height: 4px;
           border-radius: 2px;
@@ -53,8 +53,8 @@ export function KeywordWeightSlider({ keywords, onChange }: KeywordWeightSliderP
         .kw-slider::-moz-range-track {
           background: linear-gradient(
             to right,
-            #B48C50 calc(var(--fill) * 1%),
-            #4A4440 calc(var(--fill) * 1%)
+            var(--color-accent) calc(var(--fill) * 1%),
+            var(--color-border) calc(var(--fill) * 1%)
           );
           height: 4px;
           border-radius: 2px;
@@ -66,7 +66,7 @@ export function KeywordWeightSlider({ keywords, onChange }: KeywordWeightSliderP
           const fillPercent = ((weight - 1) / 4) * 100;
           return (
             <div key={label} className="flex items-center gap-3 py-1.5">
-              <span className="text-[14px] text-[#D0CAC2] truncate shrink-0 text-right w-24">
+              <span className="text-[14px] text-[var(--color-text-secondary)] truncate shrink-0 text-right w-24">
                 {label}
               </span>
               <input
@@ -80,7 +80,7 @@ export function KeywordWeightSlider({ keywords, onChange }: KeywordWeightSliderP
                 className="kw-slider flex-1"
                 style={{ '--fill': fillPercent } as React.CSSProperties}
               />
-              <span className="text-[12px] font-semibold text-[#B48C50] w-[20px] text-right">
+              <span className="text-[12px] font-semibold text-[var(--color-accent)] w-[20px] text-right">
                 {weight}
               </span>
             </div>

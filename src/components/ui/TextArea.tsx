@@ -22,7 +22,7 @@ export function TextArea({ label, value, onChange, placeholder, rows = 2, disabl
         {labelAction && <div>{labelAction}</div>}
       </div>
       <textarea id={textareaId} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} rows={rows} disabled={disabled}
-        className="w-full px-4 py-3 rounded-xl bg-[#F5F3F0] text-[15px] text-[#2C2825] leading-relaxed placeholder:text-[#A09890] border border-[#C5BFB7] resize-none transition-all duration-200 hover:border-[#A09890] focus:border-[#B48C50] focus:bg-white focus:outline-none disabled:opacity-40" />
+        className="w-full px-4 py-3 rounded-xl bg-[#F5F3F0] text-[15px] text-[var(--color-bg)] leading-relaxed placeholder:text-[var(--color-text-muted)] border border-[#C5BFB7] resize-none transition-all duration-200 hover:border-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:bg-white focus:outline-none disabled:opacity-40" />
     </div>
   );
 }

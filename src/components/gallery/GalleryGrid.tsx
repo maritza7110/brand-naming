@@ -42,7 +42,7 @@ export default function GalleryGrid({
 
       {/* End of feed message */}
       {!hasMore && sessions.length > 0 && (
-        <p className="text-[14px] text-[#A09890] text-center py-8">
+        <p className="text-[14px] text-[var(--color-text-muted)] text-center py-8">
           모든 프로젝트를 불러왔습니다
         </p>
       )}

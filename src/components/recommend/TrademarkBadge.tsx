@@ -34,7 +34,7 @@ export function TrademarkBadge({ brandName }: Props) {
       <button
         type="button"
         onClick={handleCheck}
-        className="inline-flex items-center gap-1 text-[11px] text-[#A09890] hover:text-[#B48C50] transition-colors"
+        className="inline-flex items-center gap-1 text-[11px] text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
       >
         <ShieldCheck size={11} />
         <span>상표 확인</span>
@@ -44,7 +44,7 @@ export function TrademarkBadge({ brandName }: Props) {
 
   if (state === 'loading') {
     return (
-      <span className="inline-flex items-center gap-1 text-[11px] text-[#A09890]">
+      <span className="inline-flex items-center gap-1 text-[11px] text-[var(--color-text-muted)]">
         <Loader2 size={11} className="animate-spin" />
         <span>조회 중...</span>
       </span>

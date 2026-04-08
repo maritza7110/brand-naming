@@ -29,10 +29,10 @@ export function RationaleExpandedCard({ rationale, isOpen, brandName }: Rational
 
           {/* 타당성 점수 */}
           <div className="flex justify-between items-center">
-            <span className="text-[20px] font-semibold text-[#E8E2DA]">{validityScore}%</span>
-            <span className="text-[12px] text-[#6A6460]">타당성 점수</span>
+            <span className="text-[20px] font-semibold text-[var(--color-text-primary)]">{validityScore}%</span>
+            <span className="text-[12px] text-[var(--color-border-muted)]">타당성 점수</span>
           </div>
-          <div className="h-[4px] bg-[#4A4440] rounded-full mt-2">
+          <div className="h-[4px] bg-[var(--color-border)] rounded-full mt-2">
             <div
               className="h-full bg-[#7BAFD4] rounded-full transition-all duration-[600ms] ease-in-out"
               style={{ width: isOpen ? `${validityScore}%` : '0%' }}
@@ -41,21 +41,21 @@ export function RationaleExpandedCard({ rationale, isOpen, brandName }: Rational
 
           {/* 네이밍 기법 */}
           <div className="border-t border-[#332F2C] mt-3 pt-3">
-            <p className="text-[12px] font-semibold text-[#6A6460] mb-1.5">네이밍 기법</p>
-            <span className="px-2 py-0.5 rounded-full bg-[#4A4440] text-[12px] text-[#A09890]">
+            <p className="text-[12px] font-semibold text-[var(--color-border-muted)] mb-1.5">네이밍 기법</p>
+            <span className="px-2 py-0.5 rounded-full bg-[var(--color-border)] text-[12px] text-[var(--color-text-muted)]">
               {namingTechnique}
             </span>
           </div>
 
           {/* 의미 분석 */}
           <div className="border-t border-[#332F2C] mt-3 pt-3">
-            <p className="text-[12px] font-semibold text-[#6A6460] mb-1.5">의미 분석</p>
-            <p className="text-[13px] text-[#A09890] leading-relaxed">{meaningAnalysis}</p>
+            <p className="text-[12px] font-semibold text-[var(--color-border-muted)] mb-1.5">의미 분석</p>
+            <p className="text-[13px] text-[var(--color-text-muted)] leading-relaxed">{meaningAnalysis}</p>
           </div>
 
           {/* 반영된 입력 */}
           <div className="border-t border-[#332F2C] mt-3 pt-3">
-            <p className="text-[12px] font-semibold text-[#6A6460] mb-1.5">반영된 입력</p>
+            <p className="text-[12px] font-semibold text-[var(--color-border-muted)] mb-1.5">반영된 입력</p>
             <div className="flex flex-wrap gap-1.5">
               {reflectedInputs.map((input) => (
                 <span key={input} className="px-2 py-0.5 rounded-full bg-[rgba(74,160,140,0.12)] text-[#4AA08C] text-[12px]">
@@ -68,8 +68,8 @@ export function RationaleExpandedCard({ rationale, isOpen, brandName }: Rational
           {/* 적용 원칙 */}
           {documentReference && (
             <div className="border-t border-[#332F2C] mt-3 pt-3">
-              <p className="text-[12px] font-semibold text-[#6A6460] mb-1.5">적용 원칙</p>
-              <p className="text-[13px] text-[#A09890]">{documentReference}</p>
+              <p className="text-[12px] font-semibold text-[var(--color-border-muted)] mb-1.5">적용 원칙</p>
+              <p className="text-[13px] text-[var(--color-text-muted)]">{documentReference}</p>
             </div>
           )}
 
@@ -77,7 +77,7 @@ export function RationaleExpandedCard({ rationale, isOpen, brandName }: Rational
           {trademarkRisk && (
             <div className="border-t border-[#332F2C] mt-3 pt-3">
               <div className="flex items-center justify-between mb-1.5">
-                <p className="text-[12px] font-semibold text-[#6A6460]">상표 예비 판정</p>
+                <p className="text-[12px] font-semibold text-[var(--color-border-muted)]">상표 예비 판정</p>
                 <button
                   type="button"
                   onClick={(e) => { e.stopPropagation(); setTrademarkOpen(true); }}
@@ -87,14 +87,14 @@ export function RationaleExpandedCard({ rationale, isOpen, brandName }: Rational
                 </button>
               </div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${RISK_COLOR[trademarkRisk.riskLevel] ?? 'text-[#A09890]'}`}>
+                <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${RISK_COLOR[trademarkRisk.riskLevel] ?? 'text-[var(--color-text-muted)]'}`}>
                   위험도 {trademarkRisk.riskLevel}
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-[#4A4440] text-[11px] text-[#D0CAC2]">
+                <span className="px-2 py-0.5 rounded-full bg-[var(--color-border)] text-[11px] text-[var(--color-text-secondary)]">
                   {trademarkRisk.identityGrade}
                 </span>
               </div>
-              <p className="text-[13px] text-[#A09890]">{trademarkRisk.note}</p>
+              <p className="text-[13px] text-[var(--color-text-muted)]">{trademarkRisk.note}</p>
             </div>
           )}
 

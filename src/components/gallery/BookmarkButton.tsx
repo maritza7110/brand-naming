@@ -31,7 +31,7 @@ export default function BookmarkButton({ sessionId }: BookmarkButtonProps) {
     >
       <Bookmark
         size={16}
-        className={isBookmarked ? 'fill-[#B48C50] text-[#B48C50]' : 'text-[#A09890]'}
+        className={isBookmarked ? 'fill-[var(--color-accent)] text-[var(--color-accent)]' : 'text-[var(--color-text-muted)]'}
         style={
           isBookmarked
             ? { transform: 'scale(1.1)', transition: 'transform 150ms' }

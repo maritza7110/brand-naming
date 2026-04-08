@@ -20,14 +20,14 @@ export function InputPanel({
   tabBar,
 }: InputPanelProps) {
   return (
-    <main className="overflow-visible lg:overflow-y-auto h-auto lg:h-screen scroll-smooth bg-[#2C2825]">
+    <main className="overflow-visible lg:overflow-y-auto h-auto lg:h-screen scroll-smooth bg-[var(--color-bg)]">
       <div className="max-w-none lg:max-w-[640px] mx-auto px-5 lg:px-8 pt-6 lg:pt-12 pb-8 lg:pb-20">
         {/* 히어로 — 살짝 밝은 톤 */}
         <div className="relative rounded-2xl bg-[#363230] px-5 lg:px-8 py-6 lg:py-8 mb-10">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-5">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <p className="text-[13px] font-semibold tracking-[0.25em] uppercase text-[#B48C50]">
+                <p className="text-[13px] font-semibold tracking-[0.25em] uppercase text-[var(--color-accent)]">
                   Brand Naming
                 </p>
               </div>
@@ -40,7 +40,7 @@ export function InputPanel({
                 <button
                   type="button"
                   onClick={onAuthClick}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[#C5BFB7] text-[13px] font-medium transition hover:text-[#B48C50] hover:bg-[#504A44] whitespace-nowrap"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[#C5BFB7] text-[13px] font-medium transition hover:text-[var(--color-accent)] hover:bg-[#504A44] whitespace-nowrap"
                 >
                   {isLoggedIn ? <Layout size={16} /> : <User size={16} />}
                   <span>{authLabel}</span>
@@ -49,7 +49,7 @@ export function InputPanel({
               <button
                 type="button"
                 onClick={onSettingsClick}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[#C5BFB7] text-[13px] font-medium transition hover:text-[#B48C50] hover:bg-[#504A44] whitespace-nowrap"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[#C5BFB7] text-[13px] font-medium transition hover:text-[var(--color-accent)] hover:bg-[#504A44] whitespace-nowrap"
               >
                 <Settings size={16} />
                 <span>API설정</span>
@@ -67,15 +67,15 @@ export function InputPanel({
             </div>
           </div>
           
-          <div className="pt-4 border-t border-[#4A4440]">
-            <p className="text-[15px] text-[#D0CAC2] leading-relaxed">
+          <div className="pt-4 border-t border-[var(--color-border)]">
+            <p className="text-[15px] text-[var(--color-text-secondary)] leading-relaxed">
               페르소나 항목을 채워가면 AI가 점점 정교한 브랜드명을 추천합니다
             </p>
           </div>
         </div>
 
         {tabBar && (
-          <div className="sticky top-0 z-10 bg-[#2C2825] -mx-5 lg:-mx-8 px-5 lg:px-8 mb-5">
+          <div className="sticky top-0 z-10 bg-[var(--color-bg)] -mx-5 lg:-mx-8 px-5 lg:px-8 mb-5">
             {tabBar}
           </div>
         )}

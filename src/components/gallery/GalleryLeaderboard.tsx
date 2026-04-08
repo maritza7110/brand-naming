@@ -23,20 +23,20 @@ export default function GalleryLeaderboard() {
   }, []);
 
   return (
-    <div className="border-b border-[#4A4440] pb-6 mb-2">
+    <div className="border-b border-[var(--color-border)] pb-6 mb-2">
       {/* 섹션 헤더 */}
       <div className="flex items-center gap-2 mb-3">
-        <Trophy size={20} className="text-[#B48C50]" />
-        <h2 className="text-[20px] font-semibold text-[#E8E2DA]">이번 주 인기 TOP</h2>
+        <Trophy size={20} className="text-[var(--color-accent)]" />
+        <h2 className="text-[20px] font-semibold text-[var(--color-text-primary)]">이번 주 인기 TOP</h2>
       </div>
 
       {/* 기간 탭 */}
-      <div className="flex gap-0 border-b border-[#4A4440] mb-4">
+      <div className="flex gap-0 border-b border-[var(--color-border)] mb-4">
         {PERIOD_TABS.map(({ key, label }) =>
           leaderboardPeriod === key ? (
             <span
               key={key}
-              className="px-4 py-2 text-[14px] text-[#B48C50] border-b-2 border-[#B48C50] cursor-default"
+              className="px-4 py-2 text-[14px] text-[var(--color-accent)] border-b-2 border-[var(--color-accent)] cursor-default"
             >
               {label}
             </span>
@@ -44,7 +44,7 @@ export default function GalleryLeaderboard() {
             <button
               key={key}
               onClick={() => setLeaderboardPeriod(key)}
-              className="px-4 py-2 text-[14px] text-[#A09890] cursor-pointer hover:text-[#E8E2DA] transition-colors duration-150"
+              className="px-4 py-2 text-[14px] text-[var(--color-text-muted)] cursor-pointer hover:text-[var(--color-text-primary)] transition-colors duration-150"
             >
               {label}
             </button>
@@ -58,12 +58,12 @@ export default function GalleryLeaderboard() {
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="animate-pulse bg-[#4A4440] rounded-xl min-w-[200px] h-[140px] flex-shrink-0"
+              className="animate-pulse bg-[var(--color-border)] rounded-xl min-w-[200px] h-[140px] flex-shrink-0"
             />
           ))}
         </div>
       ) : leaderboard.length === 0 ? (
-        <p className="text-[14px] text-[#A09890] text-center py-8">
+        <p className="text-[14px] text-[var(--color-text-muted)] text-center py-8">
           아직 발행된 프로젝트가 없습니다
         </p>
       ) : (
@@ -75,22 +75,22 @@ export default function GalleryLeaderboard() {
             return (
               <div
                 key={entry.session.id}
-                className="bg-[#1A1A1E] border border-white/5 rounded-xl p-4 min-w-[200px] flex-shrink-0 hover:border-[#B48C50]/30 transition-all"
+                className="bg-[var(--color-surface)] border border-white/5 rounded-xl p-4 min-w-[200px] flex-shrink-0 hover:border-[var(--color-accent)]/30 transition-all"
               >
                 {/* 순위 배지 */}
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 rounded-full bg-[#4A4440] flex items-center justify-center text-[12px] font-semibold text-[#D0CAC2]">
+                  <div className="w-6 h-6 rounded-full bg-[var(--color-border)] flex items-center justify-center text-[12px] font-semibold text-[var(--color-text-secondary)]">
                     {index + 1}
                   </div>
                 </div>
 
                 {/* 브랜드명 */}
-                <p className="text-[#B48C50] text-[16px] font-semibold truncate mb-1">
+                <p className="text-[var(--color-accent)] text-[16px] font-semibold truncate mb-1">
                   {brandName}
                 </p>
 
                 {/* 업종 배지 */}
-                <span className="bg-[#4A4440] text-[#D0CAC2] text-[12px] px-2 py-0.5 rounded-full inline-block mb-2">
+                <span className="bg-[var(--color-border)] text-[var(--color-text-secondary)] text-[12px] px-2 py-0.5 rounded-full inline-block mb-2">
                   {industry}
                 </span>
 

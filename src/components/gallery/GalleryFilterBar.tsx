@@ -40,7 +40,7 @@ export default function GalleryFilterBar() {
   }
 
   return (
-    <div className="py-4 border-b border-[#4A4440] space-y-4">
+    <div className="py-4 border-b border-[var(--color-border)] space-y-4">
       <div className="flex items-center justify-between">
         <ChipSelector
           label="업종"
@@ -52,7 +52,7 @@ export default function GalleryFilterBar() {
         {hasActiveFilters && (
           <button
             onClick={handleReset}
-            className="text-[14px] text-[#A09890] hover:text-[#E8E2DA] cursor-pointer transition-colors duration-150 shrink-0 ml-4"
+            className="text-[14px] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] cursor-pointer transition-colors duration-150 shrink-0 ml-4"
           >
             필터 초기화
           </button>

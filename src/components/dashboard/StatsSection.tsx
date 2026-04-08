@@ -16,13 +16,13 @@ interface StatsSectionProps {
   sessions: SessionData[];
 }
 
-const CHART_COLORS = ['#B48C50', '#8B6E3A', '#C5A06B', '#6B5030', '#D4B485'];
+const CHART_COLORS = ['var(--color-accent)', '#8B6E3A', '#C5A06B', '#6B5030', '#D4B485'];
 
 const TOOLTIP_STYLE = {
-  backgroundColor: '#1A1A1E',
-  border: '1px solid #4A4440',
+  backgroundColor: 'var(--color-surface)',
+  border: '1px solid var(--color-border)',
   borderRadius: '8px',
-  color: '#E8E2DA',
+  color: 'var(--color-text-primary)',
 };
 
 function computeStats(sessions: SessionData[]) {
@@ -78,8 +78,8 @@ function computeStats(sessions: SessionData[]) {
 }
 
 const EMPTY_TEXT = '아직 데이터가 없습니다';
-const CARD_CLASS = 'bg-[#1A1A1E] rounded-xl p-4 border border-white/5';
-const TITLE_CLASS = 'text-[14px] font-semibold text-[#A09890] mb-3';
+const CARD_CLASS = 'bg-[var(--color-surface)] rounded-xl p-4 border border-white/5';
+const TITLE_CLASS = 'text-[14px] font-semibold text-[var(--color-text-muted)] mb-3';
 const EMPTY_CLASS = 'text-[14px] text-[#5A5550] text-center py-8';
 
 export default function StatsSection({ sessions }: StatsSectionProps) {
@@ -90,7 +90,7 @@ export default function StatsSection({ sessions }: StatsSectionProps) {
 
   return (
     <section>
-      <h3 className="text-[20px] font-semibold text-[#E8E2DA] mt-8 mb-6">나의 네이밍 통계</h3>
+      <h3 className="text-[20px] font-semibold text-[var(--color-text-primary)] mt-8 mb-6">나의 네이밍 통계</h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {/* 차트 1: 인기 키워드 (수평 BarChart) */}
@@ -105,11 +105,11 @@ export default function StatsSection({ sessions }: StatsSectionProps) {
                 <YAxis
                   type="category"
                   dataKey="name"
-                  tick={{ fill: '#A09890', fontSize: 12 }}
+                  tick={{ fill: 'var(--color-text-muted)', fontSize: 12 }}
                   width={80}
                 />
                 <Tooltip contentStyle={TOOLTIP_STYLE} />
-                <Bar dataKey="count" fill="#B48C50" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="count" fill="var(--color-accent)" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           )}
@@ -155,13 +155,13 @@ export default function StatsSection({ sessions }: StatsSectionProps) {
               <BarChart data={styleData}>
                 <XAxis
                   dataKey="name"
-                  tick={{ fill: '#A09890', fontSize: 11 }}
+                  tick={{ fill: 'var(--color-text-muted)', fontSize: 11 }}
                   interval={0}
                   angle={-20}
                   textAnchor="end"
                   height={50}
                 />
-                <YAxis tick={{ fill: '#A09890', fontSize: 12 }} />
+                <YAxis tick={{ fill: 'var(--color-text-muted)', fontSize: 12 }} />
                 <Tooltip contentStyle={TOOLTIP_STYLE} />
                 <Bar dataKey="count" fill="#C5A06B" radius={[4, 4, 0, 0]} />
               </BarChart>

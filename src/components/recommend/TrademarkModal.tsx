@@ -113,10 +113,10 @@ function RiskGauge({ level }: { level: RiskLevel }) {
   return (
     <div className="space-y-2">
       <div className="flex items-end justify-between">
-        <p className="text-[13px] font-semibold text-[#E8E2DA]">{info.label}</p>
+        <p className="text-[13px] font-semibold text-[var(--color-text-primary)]">{info.label}</p>
         <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold text-white ${info.color}`}>{level}</span>
       </div>
-      <div className="h-2 bg-[#4A4440] rounded-full overflow-hidden">
+      <div className="h-2 bg-[var(--color-border)] rounded-full overflow-hidden">
         <div
           className="h-full bg-gradient-to-r from-emerald-400 to-red-500 rounded-full transition-all duration-700"
           style={{ width: `${percent}%` }}
@@ -125,12 +125,12 @@ function RiskGauge({ level }: { level: RiskLevel }) {
       <div className="flex justify-between">
         {RISK_LEVELS.map((r, i) => (
           <div key={r.level} className="flex flex-col items-center gap-0.5">
-            <div className={`w-1.5 h-1.5 rounded-full ${i <= idx ? r.color : 'bg-[#4A4440]'}`} />
-            <span className="text-[9px] text-[#6A6460]">{r.label}</span>
+            <div className={`w-1.5 h-1.5 rounded-full ${i <= idx ? r.color : 'bg-[var(--color-border)]'}`} />
+            <span className="text-[9px] text-[var(--color-border-muted)]">{r.label}</span>
           </div>
         ))}
       </div>
-      <p className="text-[12px] text-[#A09890]">{info.desc}</p>
+      <p className="text-[12px] text-[var(--color-text-muted)]">{info.desc}</p>
     </div>
   );
 }
@@ -217,8 +217,8 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
         >
         {/* 헤더 */}
         <div className="relative px-6 py-8 border-b border-[#504A44] shrink-0">
-          <p className="absolute top-4 left-6 text-[13px] font-bold text-[#E8E2DA]">상표 조회</p>
-          <button onClick={handleClose} className="absolute top-3 right-4 p-1.5 rounded-lg text-[#A09890] hover:bg-[#504A44] hover:text-[#B48C50] transition-colors">
+          <p className="absolute top-4 left-6 text-[13px] font-bold text-[var(--color-text-primary)]">상표 조회</p>
+          <button onClick={handleClose} className="absolute top-3 right-4 p-1.5 rounded-lg text-[var(--color-text-muted)] hover:bg-[#504A44] hover:text-[var(--color-accent)] transition-colors">
             <X size={16} />
           </button>
           <p className="text-[30px] font-bold text-[#E8C878] text-center tracking-tight">{brandName}</p>
@@ -230,12 +230,12 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
 
           {/* 좌: F-1 식별력 등급 */}
           <div>
-            <p className="text-[11px] font-semibold text-[#6A6460] uppercase tracking-widest mb-2">F-1 식별력 등급</p>
+            <p className="text-[11px] font-semibold text-[var(--color-border-muted)] uppercase tracking-widest mb-2">F-1 식별력 등급</p>
             <div className="space-y-1.5">
               {IDENTITY_GRADES.map((g) => (
-                <div key={g.grade} className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#2C2825] border border-[#4A4440]">
+                <div key={g.grade} className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)]">
                   <div className={`w-2 h-2 rounded-full shrink-0 ${g.dot}`} />
-                  <span className="text-[12px] font-semibold text-[#D0CAC2] shrink-0">{g.grade}</span>
+                  <span className="text-[12px] font-semibold text-[var(--color-text-secondary)] shrink-0">{g.grade}</span>
                   <span className="text-[11px] text-[#7A7570]">{g.desc}</span>
                 </div>
               ))}
@@ -244,22 +244,22 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
 
           {/* 우: F-4 KIPRIS 조회 */}
           <div>
-            <p className="text-[11px] font-semibold text-[#6A6460] uppercase tracking-widest mb-2">F-4 KIPRIS 실사 조회</p>
+            <p className="text-[11px] font-semibold text-[var(--color-border-muted)] uppercase tracking-widest mb-2">F-4 KIPRIS 실사 조회</p>
 
             {/* idle */}
             {searchState === 'idle' && (
               <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-[#2C2825] border border-amber-500/30">
+                <div className="p-2.5 rounded-xl bg-[var(--color-bg)] border border-amber-500/30">
                   <p className="text-[11px] text-amber-400 font-semibold mb-1">조회 범위</p>
                   {allClasses.length > 0 ? (
-                    <div className="text-[11px] text-[#A09890] space-y-0.5">
+                    <div className="text-[11px] text-[var(--color-text-muted)] space-y-0.5">
                       <p>핵심: 제{classInfo!.primary}류 ({classInfo!.labels[classInfo!.primary]})</p>
                       <p>확장: {classInfo!.expansion.map(c => `제${c}류(${classInfo!.labels[c]})`).join(', ')}</p>
                     </div>
                   ) : (
-                    <p className="text-[11px] text-[#A09890]">전체 상품류 조회 (업종 미선택)</p>
+                    <p className="text-[11px] text-[var(--color-text-muted)]">전체 상품류 조회 (업종 미선택)</p>
                   )}
-                  <p className="text-[11px] text-[#6A6460] mt-1">동일 상표명만 조회 · 법적 효력 없음</p>
+                  <p className="text-[11px] text-[var(--color-border-muted)] mt-1">동일 상표명만 조회 · 법적 효력 없음</p>
                 </div>
                 <button
                   onClick={handleSearch}
@@ -272,7 +272,7 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
 
             {/* loading */}
             {searchState === 'loading' && (
-              <div className="flex items-center justify-center gap-2 py-6 text-[12px] text-[#A09890]">
+              <div className="flex items-center justify-center gap-2 py-6 text-[12px] text-[var(--color-text-muted)]">
                 <Loader2 size={14} className="animate-spin" />
                 <span>KIPRIS 조회 중... ({allClasses.length || 1}개 류)</span>
               </div>
@@ -284,7 +284,7 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
                 <p className="text-[12px] text-red-400">조회 실패 — KIPRIS 서버에 연결할 수 없습니다.</p>
                 <div className="flex gap-2">
                   <button onClick={handleSearch} className="flex-1 py-2 rounded-xl bg-[#7BAFD4]/20 text-[#7BAFD4] text-[12px] hover:bg-[#7BAFD4]/30 transition-colors">재시도</button>
-                  <button onClick={() => setSearchState('idle')} className="flex-1 py-2 rounded-xl bg-[#4A4440] text-[#A09890] text-[12px] hover:bg-[#5A5450] transition-colors">취소</button>
+                  <button onClick={() => setSearchState('idle')} className="flex-1 py-2 rounded-xl bg-[var(--color-border)] text-[var(--color-text-muted)] text-[12px] hover:bg-[#5A5450] transition-colors">취소</button>
                 </div>
               </div>
             )}
@@ -297,9 +297,9 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
                 {/* 류별 결과 */}
                 <div className="space-y-2">
                   {classResults.map((cr) => (
-                    <div key={cr.classCode} className="rounded-xl bg-[#2C2825] border border-[#4A4440] p-3">
+                    <div key={cr.classCode} className="rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] p-3">
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[11px] font-semibold text-[#D0CAC2]">
+                        <span className="text-[11px] font-semibold text-[var(--color-text-secondary)]">
                           {cr.classCode !== '-' ? `제${cr.classCode}류` : ''} {cr.label}
                         </span>
                         <div className="flex items-center gap-1">
@@ -313,7 +313,7 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
                           {cr.result.items.slice(0, 3).map((item: TrademarkItem, i: number) => (
                             <div key={i} className="flex items-center justify-between gap-2">
                               <p className="text-[11px] text-[#7A7570] truncate">{item.title}</p>
-                              <span className={`text-[9px] px-1.5 py-0.5 rounded-full shrink-0 ${item.status === '등록' ? 'bg-red-400/20 text-red-400' : 'bg-[#4A4440] text-[#6A6460]'}`}>
+                              <span className={`text-[9px] px-1.5 py-0.5 rounded-full shrink-0 ${item.status === '등록' ? 'bg-red-400/20 text-red-400' : 'bg-[var(--color-border)] text-[var(--color-border-muted)]'}`}>
                                 {item.status}
                               </span>
                             </div>
@@ -326,7 +326,7 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
 
                 <button
                   onClick={() => { setSearchState('idle'); setClassResults([]); setOverallRisk(null); }}
-                  className="w-full py-2 rounded-xl bg-[#4A4440] text-[#A09890] text-[12px] hover:bg-[#5A5450] transition-colors"
+                  className="w-full py-2 rounded-xl bg-[var(--color-border)] text-[var(--color-text-muted)] text-[12px] hover:bg-[#5A5450] transition-colors"
                 >
                   다시 조회
                 </button>
@@ -341,14 +341,14 @@ export function TrademarkModal({ open, onClose, brandName }: Props) {
             href="https://www.kipris.or.kr/khome/main.do"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 flex items-center justify-between p-2.5 rounded-xl bg-[#2C2825] border border-[#4A4440] text-[12px] text-[#A09890] hover:text-[#D0CAC2] transition-colors"
+            className="mt-4 flex items-center justify-between p-2.5 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] text-[12px] text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
           >
             <span>KIPRIS 홈페이지에서 직접 검색</span>
             <ExternalLink size={12} />
           </a>
 
           {/* 면책 */}
-          <p className="mt-3 text-[10px] text-[#6A6460] text-center leading-relaxed">
+          <p className="mt-3 text-[10px] text-[var(--color-border-muted)] text-center leading-relaxed">
             참고용 정보만 제공하며 법적 효력이 없습니다.
             <br />상표 출원 전 반드시 전문 변리사와 상담하세요.
           </p>

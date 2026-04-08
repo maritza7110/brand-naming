@@ -189,7 +189,7 @@ export default function NamingPage() {
           <div ref={recommendPanelRef} className="scroll-mt-4">
           <RecommendPanel>
             {isLoading && (
-              <div className="flex items-center gap-2 text-[#B48C50] text-[14px] mb-3">
+              <div className="flex items-center gap-2 text-[var(--color-accent)] text-[14px] mb-3">
                 <Loader2 size={14} className="animate-spin" /><span>생성 중...</span>
               </div>
             )}

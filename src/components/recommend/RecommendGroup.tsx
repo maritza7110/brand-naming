@@ -18,7 +18,7 @@ export function RecommendGroup({ label, batches, isOpen, onToggle, count }: Reco
   const dateStr = `${latestDate.getMonth() + 1}월 ${latestDate.getDate()}일`;
 
   return (
-    <div className="rounded-xl border border-[#4A4440] overflow-hidden">
+    <div className="rounded-xl border border-[var(--color-border)] overflow-hidden">
       {/* 그룹 헤더 */}
       <button
         type="button"
@@ -28,13 +28,13 @@ export function RecommendGroup({ label, batches, isOpen, onToggle, count }: Reco
         <div className="flex items-center gap-2">
           <ChevronDown
             size={16}
-            className={`text-[#B48C50] transition-transform duration-300 ${
+            className={`text-[var(--color-accent)] transition-transform duration-300 ${
               isOpen ? 'rotate-0' : '-rotate-90'
             }`}
           />
           <span className="text-[14px] font-semibold text-white">{label}</span>
         </div>
-        <span className="text-[12px] text-[#D0CAC2]">{dateStr} · {count}건</span>
+        <span className="text-[12px] text-[var(--color-text-secondary)]">{dateStr} · {count}건</span>
       </button>
 
       {/* CSS Grid 0fr/1fr 접기/펼치기 */}

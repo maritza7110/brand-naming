@@ -101,14 +101,14 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => navigate('/gallery')}
-              className="flex items-center justify-center gap-2 border border-white/10 hover:border-[#B48C50]/50 text-gray-400 hover:text-[#B48C50] px-4 py-3 rounded-2xl font-bold transition-all"
+              className="flex items-center justify-center gap-2 border border-white/10 hover:border-[var(--color-accent)]/50 text-gray-400 hover:text-[var(--color-accent)] px-4 py-3 rounded-2xl font-bold transition-all"
             >
               <LayoutGrid size={18} />
               <span>갤러리</span>
             </button>
             <button
               onClick={() => navigate('/')}
-              className="flex items-center justify-center gap-2 bg-[#B48C50] hover:bg-[#C5A06B] text-white px-5 py-3 rounded-2xl font-bold transition-all"
+              className="flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[#C5A06B] text-white px-5 py-3 rounded-2xl font-bold transition-all"
             >
               <Plus size={20} />
               <span>새 프로젝트 시작</span>
@@ -122,8 +122,8 @@ export default function Dashboard() {
             onClick={() => setActiveTab('projects')}
             className={`px-4 py-2 text-[14px] transition-colors ${
               activeTab === 'projects'
-                ? 'text-[#B48C50] border-b-2 border-[#B48C50]'
-                : 'text-[#A09890] cursor-pointer hover:text-[#E8E2DA]'
+                ? 'text-[var(--color-accent)] border-b-2 border-[var(--color-accent)]'
+                : 'text-[var(--color-text-muted)] cursor-pointer hover:text-[var(--color-text-primary)]'
             }`}
           >
             내 프로젝트
@@ -132,8 +132,8 @@ export default function Dashboard() {
             onClick={() => setActiveTab('bookmarks')}
             className={`px-4 py-2 text-[14px] transition-colors ${
               activeTab === 'bookmarks'
-                ? 'text-[#B48C50] border-b-2 border-[#B48C50]'
-                : 'text-[#A09890] cursor-pointer hover:text-[#E8E2DA]'
+                ? 'text-[var(--color-accent)] border-b-2 border-[var(--color-accent)]'
+                : 'text-[var(--color-text-muted)] cursor-pointer hover:text-[var(--color-text-primary)]'
             }`}
           >
             북마크
@@ -144,7 +144,7 @@ export default function Dashboard() {
         {activeTab === 'projects' ? (
           isLoading ? (
             <div className="flex flex-col items-center justify-center py-20">
-              <Loader2 className="animate-spin text-[#B48C50] mb-4" size={40} />
+              <Loader2 className="animate-spin text-[var(--color-accent)] mb-4" size={40} />
               <p className="text-gray-500">프로젝트를 불러오는 중...</p>
             </div>
           ) : (
@@ -159,8 +159,8 @@ export default function Dashboard() {
           /* 북마크 탭 */
           bookmarkedSessions.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-center">
-              <div className="p-4 bg-[#B48C50]/10 rounded-2xl mb-4">
-                <Bookmark className="text-[#B48C50]" size={32} />
+              <div className="p-4 bg-[var(--color-accent)]/10 rounded-2xl mb-4">
+                <Bookmark className="text-[var(--color-accent)]" size={32} />
               </div>
               <p className="text-white font-medium mb-2">저장한 프로젝트가 없습니다</p>
               <p className="text-gray-500 text-sm">갤러리에서 마음에 드는 프로젝트를 북마크해보세요.</p>
@@ -173,10 +173,10 @@ export default function Dashboard() {
                 return (
                   <div
                     key={s.id}
-                    className="bg-[#1A1A1E] border border-white/5 rounded-2xl p-5 hover:border-[#B48C50]/30 transition-all"
+                    className="bg-[var(--color-surface)] border border-white/5 rounded-2xl p-5 hover:border-[var(--color-accent)]/30 transition-all"
                   >
                     <h3 className="text-white font-bold text-lg mb-2 truncate">{s.title}</h3>
-                    <div className="text-[#B48C50]/70 text-[13px] font-medium mb-1">
+                    <div className="text-[var(--color-accent)]/70 text-[13px] font-medium mb-1">
                       {s.industry_id || '산업분류 미지정'}
                     </div>
                     {s.profiles?.full_name && (

@@ -13,7 +13,7 @@ export function AdvancedOptionsToggle({ children }: AdvancedOptionsToggleProps) 
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center gap-1 text-[14px] font-semibold text-[#A09890] hover:text-[#B48C50] cursor-pointer transition-colors duration-150"
+        className="flex items-center gap-1 text-[14px] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-accent)] cursor-pointer transition-colors duration-150"
         aria-expanded={isOpen}
       >
         <span>고급 옵션</span>
