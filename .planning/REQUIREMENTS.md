@@ -27,8 +27,8 @@
 
 ### 데이터 정합성
 
-- [ ] **DATA-01**: 추천을 받을 때마다 새 세션이 생성되지 않고 기존 세션이 업데이트된다
-- [ ] **DATA-02**: 리더보드가 전체 데이터를 불러오지 않고 서버에서 집계된 결과를 사용한다
+- [x] **DATA-01**: 추천을 받을 때마다 새 세션이 생성되지 않고 기존 세션이 업데이트된다
+- [x] **DATA-02**: 리더보드가 전체 데이터를 불러오지 않고 서버에서 집계된 결과를 사용한다
 
 ### 테스트
 
@@ -69,8 +69,8 @@
 | STB-02 | Phase 14 | Complete |
 | STB-03 | Phase 14 | Complete |
 | STB-04 | Phase 14 | Complete |
-| DATA-01 | Phase 15 | Pending |
-| DATA-02 | Phase 15 | Pending |
+| DATA-01 | Phase 15 | Complete |
+| DATA-02 | Phase 15 | Complete |
 | TEST-01 | Phase 16 | Pending |
 | TEST-02 | Phase 16 | Pending |
 | TEST-03 | Phase 16 | Pending |
