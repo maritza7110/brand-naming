@@ -32,9 +32,9 @@
 
 ### 테스트
 
-- [ ] **TEST-01**: Vitest 테스트 프레임워크가 설치되고 실행 가능하다
-- [ ] **TEST-02**: AI 응답 파싱 로직에 대한 테스트가 존재한다 (정상/빈값/잘못된 JSON)
-- [ ] **TEST-03**: 세션 저장/복원 로직에 대한 테스트가 존재한다
+- [x] **TEST-01**: Vitest 테스트 프레임워크가 설치되고 실행 가능하다
+- [x] **TEST-02**: AI 응답 파싱 로직에 대한 테스트가 존재한다 (정상/빈값/잘못된 JSON)
+- [x] **TEST-03**: 세션 저장/복원 로직에 대한 테스트가 존재한다
 
 ### 디자인
 
@@ -71,9 +71,9 @@
 | STB-04 | Phase 14 | Complete |
 | DATA-01 | Phase 15 | Complete |
 | DATA-02 | Phase 15 | Complete |
-| TEST-01 | Phase 16 | Pending |
-| TEST-02 | Phase 16 | Pending |
-| TEST-03 | Phase 16 | Pending |
+| TEST-01 | Phase 16 | Complete |
+| TEST-02 | Phase 16 | Complete |
+| TEST-03 | Phase 16 | Complete |
 | DSN-01 | Phase 16 | Complete |
 
 **Coverage:**
