@@ -68,8 +68,12 @@ export const galleryService = {
   },
 
   fetchLeaderboard: async (period: LeaderboardPeriod, limit = 5): Promise<LeaderboardEntry[]> => {
-    // 1. likes 테이블에서 전체 조회 (period === 'week'이면 7일 이내만)
-    let likesQuery = supabase.from('likes').select('session_id, created_at');
+    const LEADERBOARD_LIKES_LIMIT = 1000;
+    // 1. likes 테이블에서 조회 (period === 'week'이면 7일 이내만, 최대 1000건)
+    let likesQuery = supabase
+      .from('likes')
+      .select('session_id, created_at')
+      .limit(LEADERBOARD_LIKES_LIMIT);
 
     if (period === 'week') {
       const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();

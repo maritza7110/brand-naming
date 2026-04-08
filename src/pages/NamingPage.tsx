@@ -66,6 +66,7 @@ export default function NamingPage() {
           }];
 
       useFormStore.getState().restoreSession(stored, restoredBatches);
+      useFormStore.getState().setCurrentSessionId(sessionId);
     }).catch(console.error);
   }, [sessionId]);
 
