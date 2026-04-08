@@ -3,6 +3,7 @@ import { GoogleGenAI } from '@google/genai';
 export const MODEL_NAME = 'gemini-3.1-pro-preview';
 export const API_TIMEOUT_MS = 30_000; // 30초 타임아웃 (per D-01)
 import type { FormState, RecommendBatch } from '../types/form';
+import { parseSimpleResponse, parseDocBasedResponse } from '../utils/parseGeminiResponse';
 import { useSettingsStore } from '../store/useSettingsStore';
 import {
   buildInputSummary,
@@ -167,21 +168,6 @@ const SCHEMA_DOC_BASED = {
   required: ['candidates', 'consumerChecklist', 'processNote'],
 } as const;
 
-interface SimpleResult {
-  brandName: string; reasoning: string; validityScore?: number;
-  namingTechnique?: string; meaningAnalysis?: string; reflectedInputs?: string[];
-}
-interface DocBasedResult {
-  candidates: {
-    brandName: string; reasoning: string; validityScore: number;
-    namingTechnique: string; meaningAnalysis: string; reflectedInputs: string[];
-    documentReference: string; trademarkRiskLevel: string;
-    trademarkGrade: string; trademarkNote: string;
-  }[];
-  consumerChecklist: string[];
-  processNote: string;
-}
-
 export async function generateBrandNames(
   form: FormState,
   keywordWeights?: Record<string, number>
@@ -229,14 +215,7 @@ export async function generateBrandNames(
   const hasIndustry = industry.major || industry.medium || industry.minor;
 
   if (hasDocuments) {
-    let parsed: DocBasedResult;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      const m = raw.match(/\{[\s\S]*\}/);
-      if (!m) throw new Error('AI 응답을 파싱할 수 없습니다. 다시 시도해주세요.');
-      parsed = JSON.parse(m[0]);
-    }
+    const parsed = parseDocBasedResponse(raw);
     return {
       id: `batch-${now.getTime()}`,
       names: parsed.candidates.map((c) => ({
@@ -263,14 +242,7 @@ export async function generateBrandNames(
     };
   }
 
-  let simple: SimpleResult[];
-  try {
-    simple = JSON.parse(raw);
-  } catch {
-    const m = raw.match(/\[[\s\S]*\]/);
-    if (!m) throw new Error('AI 응답을 파싱할 수 없습니다. 다시 시도해주세요.');
-    simple = JSON.parse(m[0]);
-  }
+  const simple = parseSimpleResponse(raw);
   return {
     id: `batch-${now.getTime()}`,
     names: simple.slice(0, 2).map((item) => ({
