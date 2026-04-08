@@ -60,11 +60,14 @@ export function useRecommend() {
           // 기존 세션 업데이트 — 누적된 전체 배치 전달
           sessionService.updateSession(existingId, form, latestState.batches).catch(console.error);
         } else {
-          // 최초 세션 생성
-          const title = batch.names.map((n) => n.brandName).join(', ');
-          sessionService.createSession(user.id, title, form, latestState.batches)
-            .then((id) => useFormStore.getState().setCurrentSessionId(id))
-            .catch(console.error);
+          // 최초 세션 생성 — await로 ID 확정 후 다음 추천 가능
+          try {
+            const title = batch.names.map((n) => n.brandName).join(', ');
+            const id = await sessionService.createSession(user.id, title, form, latestState.batches);
+            useFormStore.getState().setCurrentSessionId(id);
+          } catch (e) {
+            console.error(e);
+          }
         }
       }
     } catch (err) {
