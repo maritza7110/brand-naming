@@ -5,7 +5,7 @@
 - ✅ **v1.0 MVP** — 기초 UI 및 AI 추천 엔진 (shipped 2013-04-01)
 - ✅ **v1.1 UX 개선** — 산업분류 및 모바일 반응형 (shipped 2013-04-02)
 - ✅ **v2.0 Logic & Social** — 지능형 로직 및 소셜 협업 플랫폼 (shipped 2013-04-06)
-- 🚧 **v2.1 고급화 및 정밀화** — Phases 12-16 (in progress)
+- 🚧 **v2.1 고급화 및 정밀화** — Phases 12-14 (in progress)
 
 ## Phases
 
@@ -40,8 +40,7 @@
 
 - [x] **Phase 12: AI 모델 업그레이드** — gemini-3.1-pro-preview 전환으로 추천 품질 향상 (completed 2013-04-07)
 - [x] **Phase 13: 안정성 개선** — 타임아웃/재시도/에러 처리/로그아웃 정리 (completed 2026-04-07)
-- [x] **Phase 13: 데이터 정합성** — 세션 오염 수정, 리더보드 서버사이드 집계 (completed 2026-04-07)
-- [ ] **Phase 13: 테스트 및 디자인 시스템** — Vitest 기반 구축, CSS 변수 토큰화
+- [ ] **Phase 14: 데이터 정합성 + 테스트/디자인 시스템** — 세션 오염 수정, 리더보드 서버사이드 집계, Vitest 구축, CSS 변수 토큰화
 
 ## Phase Details
 
@@ -72,26 +71,23 @@ Plans:
 - [x] 13-01-PLAN.md — AI API 호출 30초 타임아웃 + 2회 자동 재시도
 **UI hint**: yes
 
-### Phase 13: 데이터 정합성
-**Goal**: 세션이 오염 없이 누적되고 리더보드가 서버사이드 집계로 성능 문제 없이 동작한다
+### Phase 14: 데이터 정합성 + 테스트/디자인 시스템
+**Goal**: 세션 오염 없이 데이터가 정합하고, 핵심 로직에 자동화 테스트가 존재하며, 색상이 CSS 변수로 통합 관리된다
 **Depends on**: Phase 13
-**Requirements**: DATA-01, DATA-02
+**Requirements**: DATA-01, DATA-02, TEST-01, TEST-02, TEST-03, DSN-01
 **Success Criteria** (what must be TRUE):
   1. 같은 사용자가 동일 입력으로 추천을 여러 번 받아도 세션이 하나만 존재하고 업데이트된다
   2. 리더보드 로딩 시 전체 행이 아닌 집계된 결과만 네트워크로 전송된다
   3. 리더보드가 100개 이상의 세션이 있어도 지연 없이 표시된다
-**Plans**: TBD
-
-### Phase 13: 테스트 및 디자인 시스템
-**Goal**: 핵심 로직에 자동화 테스트가 존재하고 색상이 CSS 변수로 통합 관리된다
-**Depends on**: Phase 13
-**Requirements**: TEST-01, TEST-02, TEST-03, DSN-01
-**Success Criteria** (what must be TRUE):
-  1. `npm run test`로 Vitest 테스트가 실행되고 통과한다
-  2. AI 응답 파싱 함수에 대해 정상/빈값/잘못된 JSON 케이스가 모두 테스트된다
-  3. 세션 저장 및 복원 로직에 대한 테스트가 존재하고 통과한다
-  4. 하드코딩된 색상값 (#B48C50, #0F0F11 등)이 CSS 변수로 교체되어 토큰 파일 하나로 전체 변경이 가능하다
-**Plans**: TBD
+  4. `npm run test`로 Vitest 테스트가 실행되고 통과한다
+  5. AI 응답 파싱 함수에 대해 정상/빈값/잘못된 JSON 케이스가 모두 테스트된다
+  6. 세션 저장 및 복원 로직에 대한 테스트가 존재하고 통과한다
+  7. 하드코딩된 색상값 (#B48C50, #0F0F11 등)이 CSS 변수로 교체되어 토큰 파일 하나로 전체 변경이 가능하다
+**Plans**: 3 plans
+Plans:
+- [ ] 14-01-PLAN.md — 세션 오염 수정 (createOrUpdate) + 리더보드 limit
+- [ ] 14-02-PLAN.md — Vitest 인프라 구축 + AI 파싱/세션 로직 테스트
+- [ ] 14-03-PLAN.md — CSS 변수 토큰화 (8종 색상, 45개 파일)
 **UI hint**: yes
 
 ## Progress
@@ -107,5 +103,4 @@ Plans:
 | 11. UX 재설계 | v2.0 | 3/3 | Complete | 2013-04-06 |
 | 12. AI 모델 업그레이드 | v2.1 | 1/1 | Complete    | 2013-04-07 |
 | 13. 안정성 개선 | v2.1 | 1/1 | Complete    | 2026-04-07 |
-| 13. 데이터 정합성 | v2.1 | 0/TBD | Not started | - |
-| 13. 테스트 및 디자인 시스템 | v2.1 | 0/TBD | Not started | - |
+| 14. 데이터 정합성 + 테스트/디자인 시스템 | v2.1 | 0/3 | Not started | - |
