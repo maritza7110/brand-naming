@@ -178,6 +178,7 @@ export const useFormStore = create<AppState & FormActions>()(
           keywordWeights: {},
           activeTab: 'analysis' as TabId,
           resetTimestamp: new Date(),
+          currentSessionId: null,
         }),
 
       addBatch: (batch) =>

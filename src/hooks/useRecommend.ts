@@ -50,11 +50,22 @@ export function useRecommend() {
       const batch = await withRetry(() => generateBrandNames(form, keywordWeights));
       addBatch(batch);
 
-      // 로그인 상태면 자동 저장 (1회 추천 = 1개 프로젝트)
+      // 로그인 상태면 자동 저장 (createOrUpdate — 같은 위저드 세션은 누적)
       const user = useAuthStore.getState().user;
       if (user) {
-        const title = batch.names.map((n) => n.brandName).join(', ');
-        await sessionService.createSession(user.id, title, form, [batch]).catch(console.error);
+        const latestState = useFormStore.getState();
+        const existingId = latestState.currentSessionId;
+
+        if (existingId) {
+          // 기존 세션 업데이트 — 누적된 전체 배치 전달
+          sessionService.updateSession(existingId, form, latestState.batches).catch(console.error);
+        } else {
+          // 최초 세션 생성
+          const title = batch.names.map((n) => n.brandName).join(', ');
+          sessionService.createSession(user.id, title, form, latestState.batches)
+            .then((id) => useFormStore.getState().setCurrentSessionId(id))
+            .catch(console.error);
+        }
       }
     } catch (err) {
       let message: string;
