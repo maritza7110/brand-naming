@@ -11,7 +11,7 @@ const SESSION_SELECT = `
   created_at,
   user_id,
   profiles:user_id (full_name),
-  naming_results (brand_name, reasoning)
+  naming_results (brand_name, reasoning, style_tag)
 `;
 
 export const galleryService = {

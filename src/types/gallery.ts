@@ -8,7 +8,7 @@ export interface GallerySession {
   created_at: string;
   user_id: string;
   profiles: { full_name: string | null } | null;
-  naming_results: { brand_name: string; reasoning: string }[];
+  naming_results: { brand_name: string; reasoning: string; style_tag?: string | null }[];
   like_count: number;
   is_bookmarked?: boolean;
 }

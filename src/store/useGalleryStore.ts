@@ -61,14 +61,13 @@ export const useGalleryStore = create<GalleryState>((set, get) => ({
     try {
       const newSessions = await galleryService.fetchPage(page, sortBy, filters);
 
-      // namingStyle 클라이언트 필터 (input_data.expression.namingStyle 배열에서 매칭)
+      // namingStyle 클라이언트 필터 (naming_results.style_tag에서 매칭)
       let filtered = newSessions;
       if (filters.namingStyle) {
         const style = filters.namingStyle;
-        filtered = newSessions.filter((s) => {
-          const styles = s.input_data?.expression?.namingStyle;
-          return Array.isArray(styles) && styles.includes(style);
-        });
+        filtered = newSessions.filter((s) =>
+          s.naming_results?.some((r) => r.style_tag?.includes(style))
+        );
       }
 
       const sessionIds = filtered.map((s) => s.id);
