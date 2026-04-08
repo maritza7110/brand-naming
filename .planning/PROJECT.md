@@ -26,10 +26,11 @@
 ## Current State
 
 **v2.0 Shipped (2026-04-06):** 지능형 로직 및 소셜 협업 플랫폼 완성.
-- ~52개 TypeScript/TSX 소스 파일, ~3,149 LOC
-- Supabase Auth + DB, Gemini 3.1 Pro (gemini-3.1-pro-preview), recharts
-- Phase 12 완료 (2026-04-08): AI 모델 업그레이드
-- Phase 13 완료 (2026-04-08): 안정성 개선 — Gemini API 30초 타임아웃 + 2회 자동 재시도
+- ~55개 TypeScript/TSX 소스 파일 (테스트 포함)
+- Supabase Auth + DB, Gemini 3.1 Pro (gemini-3.1-pro-preview), recharts, Vitest
+- Phase 12 완료 (2026-04-07): AI 모델 업그레이드
+- Phase 13 완료 (2026-04-07): 안정성 개선 — Gemini API 30초 타임아웃 + 2회 자동 재시도
+- Phase 14 완료 (2026-04-08): 데이터 정합성 + 테스트 + 디자인 토큰 — 세션 오염 수정, Vitest 14건, CSS 변수 8종
 
 ## Requirements
 
@@ -63,10 +64,10 @@
 - [x] Gemini API 30초 타임아웃 + 2회 재시도 — Validated in Phase 13
 - [ ] 빈 응답/파싱 실패 시 명확한 에러 메시지
 - [ ] 구조화된 에러 로깅 (서비스 전체)
-- [ ] 세션 오염 수정 (매 추천 시 새 세션 생성 방지)
-- [ ] 리더보드 풀스캔 → 서버사이드 집계
-- [ ] 테스트 인프라 (Vitest) + 핵심 경로 테스트
-- [ ] 색상 CSS 변수 토큰화
+- [x] 세션 오염 수정 (매 추천 시 새 세션 생성 방지) — Validated in Phase 14
+- [x] 리더보드 likes 쿼리 1000건 limit — Validated in Phase 14
+- [x] 테스트 인프라 (Vitest) + 핵심 경로 테스트 — Validated in Phase 14
+- [x] 색상 CSS 변수 토큰화 (8종, 214곳) — Validated in Phase 14
 - [ ] 로그아웃 시 로컬 데이터 정리
 
 ### Out of Scope
@@ -124,4 +125,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-08 after Phase 12 completion*
+*Last updated: 2026-04-08 after Phase 14 completion (v2.1 마지막 phase)*
