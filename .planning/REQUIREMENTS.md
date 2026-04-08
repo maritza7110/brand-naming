@@ -38,7 +38,7 @@
 
 ### 디자인
 
-- [ ] **DSN-01**: 하드코딩된 색상값이 CSS 변수로 관리되어 일괄 변경이 가능하다
+- [x] **DSN-01**: 하드코딩된 색상값이 CSS 변수로 관리되어 일괄 변경이 가능하다
 
 ## Future Requirements
 
@@ -74,7 +74,7 @@
 | TEST-01 | Phase 16 | Pending |
 | TEST-02 | Phase 16 | Pending |
 | TEST-03 | Phase 16 | Pending |
-| DSN-01 | Phase 16 | Pending |
+| DSN-01 | Phase 16 | Complete |
 
 **Coverage:**
 - v2.1 requirements: 15 total
