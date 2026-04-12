@@ -15,6 +15,8 @@ import type {
   TabId,
   KeywordWeights,
 } from '../types/form';
+import type { BuilderState, PersonaFieldKey } from '../types/workshop';
+import { PERSONA_FIELD_METADATA } from '../types/workshop';
 
 // 초기값 (모든 필드 빈 문자열)
 const initialStoreBasic: StoreBasicState = {
@@ -71,6 +73,21 @@ const initialExpression: ExpressionState = {
   languageConstraint: '',
 };
 
+/** BuilderState 초기화 헬퍼 */
+function createInitialBuilderState(): BuilderState {
+  const initial: BuilderState = {} as BuilderState;
+  PERSONA_FIELD_METADATA.forEach(field => {
+    initial[field.key] = {
+      draft: '',
+      userInput: '',
+      history: [],
+      isFinalized: false,
+      isLoading: false,
+    };
+  });
+  return initial;
+}
+
 interface FormActions {
   updateStoreBasic: (field: Exclude<keyof StoreBasicState, 'industry'>, value: string) => void;
   updateIndustry: (selection: IndustrySelection) => void;
@@ -94,6 +111,21 @@ interface FormActions {
   currentSessionId: string | null;
   setCurrentSessionId: (id: string | null) => void;
   restoreSession: (formState: FormState, batches: RecommendBatch[]) => void;
+
+  // Workshop 관련
+  workshopMode: boolean;
+  builderState: BuilderState;
+  expandedField: PersonaFieldKey | null;
+  guides: Partial<Record<PersonaFieldKey, string[]>>;
+  toggleWorkshopMode: () => void;
+  setExpandedField: (field: PersonaFieldKey | null) => void;
+  setFieldGuide: (field: PersonaFieldKey, guides: string[]) => void;
+  setFieldUserInput: (field: PersonaFieldKey, input: string) => void;
+  setFieldDraft: (field: PersonaFieldKey, draft: string) => void;
+  setFieldLoading: (field: PersonaFieldKey, loading: boolean) => void;
+  finalizeField: (field: PersonaFieldKey) => void;
+  resetField: (field: PersonaFieldKey) => void;
+  resetWorkshop: () => void;
 }
 
 export const useFormStore = create<AppState & FormActions>()(
@@ -113,6 +145,12 @@ export const useFormStore = create<AppState & FormActions>()(
       activeTab: 'analysis' as TabId,
       keywordWeights: {} as KeywordWeights,
       currentSessionId: null as string | null,
+
+      // Workshop 초기값
+      workshopMode: false,
+      builderState: createInitialBuilderState(),
+      expandedField: null,
+      guides: {},
 
       updateStoreBasic: (field, value) =>
         set((state) => ({ storeBasic: { ...state.storeBasic, [field]: value } })),
@@ -164,6 +202,10 @@ export const useFormStore = create<AppState & FormActions>()(
           expression: { ...initialExpression },
           keywordWeights: {},
           activeTab: 'analysis' as TabId,
+          workshopMode: false,
+          builderState: createInitialBuilderState(),
+          expandedField: null,
+          guides: {},
         }),
 
       resetNaming: () =>
@@ -179,6 +221,10 @@ export const useFormStore = create<AppState & FormActions>()(
           activeTab: 'analysis' as TabId,
           resetTimestamp: new Date(),
           currentSessionId: null,
+          workshopMode: false,
+          builderState: createInitialBuilderState(),
+          expandedField: null,
+          guides: {},
         }),
 
       addBatch: (batch) =>
@@ -202,6 +248,73 @@ export const useFormStore = create<AppState & FormActions>()(
           resetTimestamp: null,
           activeTab: 'analysis' as TabId,
           keywordWeights: {},
+        }),
+
+      // Workshop actions
+      toggleWorkshopMode: () =>
+        set((state) => ({ workshopMode: !state.workshopMode })),
+
+      setExpandedField: (field) => set({ expandedField: field }),
+
+      setFieldGuide: (field, guides) =>
+        set((state) => ({ guides: { ...state.guides, [field]: guides } })),
+
+      setFieldUserInput: (field, input) =>
+        set((state) => ({
+          builderState: {
+            ...state.builderState,
+            [field]: { ...state.builderState[field], userInput: input },
+          },
+        })),
+
+      setFieldDraft: (field, draft) =>
+        set((state) => ({
+          builderState: {
+            ...state.builderState,
+            [field]: {
+              ...state.builderState[field],
+              draft,
+              history: [...state.builderState[field].history, draft],
+            },
+          },
+        })),
+
+      setFieldLoading: (field, loading) =>
+        set((state) => ({
+          builderState: {
+            ...state.builderState,
+            [field]: { ...state.builderState[field], isLoading: loading },
+          },
+        })),
+
+      finalizeField: (field) =>
+        set((state) => ({
+          builderState: {
+            ...state.builderState,
+            [field]: { ...state.builderState[field], isFinalized: true },
+          },
+        })),
+
+      resetField: (field) =>
+        set((state) => ({
+          builderState: {
+            ...state.builderState,
+            [field]: {
+              draft: '',
+              userInput: '',
+              history: [],
+              isFinalized: false,
+              isLoading: false,
+            },
+          },
+        })),
+
+      resetWorkshop: () =>
+        set({
+          workshopMode: false,
+          builderState: createInitialBuilderState(),
+          expandedField: null,
+          guides: {},
         }),
     }),
     {
