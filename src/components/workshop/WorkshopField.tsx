@@ -21,6 +21,7 @@ export function WorkshopField({ fieldKey }: WorkshopFieldProps) {
   const setFieldDraft = useFormStore((s) => s.setFieldDraft);
   const setFieldLoading = useFormStore((s) => s.setFieldLoading);
   const finalizeField = useFormStore((s) => s.finalizeField);
+  const syncFieldToPersona = useFormStore((s) => s.syncFieldToPersona);
   const resetField = useFormStore((s) => s.resetField);
   const guides = useFormStore((s) => s.guides[fieldKey]);
   const storeBasic = useFormStore((s) => s.storeBasic);
@@ -62,6 +63,7 @@ export function WorkshopField({ fieldKey }: WorkshopFieldProps) {
 
       setFieldDraft(fieldKey, draft);
       finalizeField(fieldKey);
+      syncFieldToPersona(fieldKey);
 
       // Auto-advance to next field
       const currentIndex = PERSONA_FIELD_METADATA.findIndex(f => f.key === fieldKey);

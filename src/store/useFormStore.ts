@@ -295,6 +295,15 @@ export const useFormStore = create<AppState & FormActions>()(
           },
         })),
 
+      syncFieldToPersona: (field: PersonaFieldKey) =>
+        set((state) => {
+          const draft = state.builderState[field]?.draft;
+          if (!draft?.trim()) return state;
+          return {
+            persona: { ...state.persona, [field]: draft },
+          };
+        }),
+
       resetField: (field) =>
         set((state) => ({
           builderState: {

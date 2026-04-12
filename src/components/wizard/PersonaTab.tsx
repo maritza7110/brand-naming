@@ -10,6 +10,7 @@ import { KeywordWeightSlider } from '../ui/KeywordWeightSlider';
 import { RecommendButton } from '../ui/RecommendButton';
 import { useRecommend } from '../../hooks/useRecommend';
 import { WorkshopBuilder } from './WorkshopBuilder';
+import { SinglePersonaSummary } from '../ui/SinglePersonaSummary';
 
 const PERSONA_LABELS: Record<string, string> = {
   philosophy: '브랜드철학',
@@ -31,7 +32,7 @@ const PERSONA_LABELS: Record<string, string> = {
 };
 
 export function PersonaTab() {
-  const [workshopMode, setWorkshopMode] = useState(false);
+  const [workshopMode, setWorkshopMode] = useState(true);
   const persona = useFormStore((s) => s.persona);
   const keywordWeights = useFormStore((s) => s.keywordWeights);
   const setKeywordWeight = useFormStore((s) => s.setKeywordWeight);
@@ -71,13 +72,13 @@ export function PersonaTab() {
         >
           {workshopMode ? (
             <>
-              <Pencil className="w-4 h-4" />
-              일반 모드
+              <Sparkles className="w-4 h-4" />
+              심플 모드
             </>
           ) : (
             <>
-              <Sparkles className="w-4 h-4" />
-              심층 기획 워크숍
+              <Pencil className="w-4 h-4" />
+              심층 기획
             </>
           )}
         </button>
@@ -88,6 +89,7 @@ export function PersonaTab() {
         <WorkshopBuilder />
       ) : (
         <>
+          <SinglePersonaSummary persona={persona} />
           <div className="space-y-8">
             <PersonaIdentityGroup />
             <PersonaStrategyGroup />
