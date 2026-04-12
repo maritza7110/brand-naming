@@ -124,8 +124,13 @@ interface FormActions {
   setFieldDraft: (field: PersonaFieldKey, draft: string) => void;
   setFieldLoading: (field: PersonaFieldKey, loading: boolean) => void;
   finalizeField: (field: PersonaFieldKey) => void;
+  syncFieldToPersona: (field: PersonaFieldKey) => void;
   resetField: (field: PersonaFieldKey) => void;
   resetWorkshop: () => void;
+
+  // 업종별 예시 캐시
+  industryExamplesCache: Record<string, { competitors: string; usp: string; timestamp: number }>;
+  setCachedIndustryExamples: (key: string, examples: { competitors: string; usp: string; timestamp: number }) => void;
 }
 
 export const useFormStore = create<AppState & FormActions>()(
@@ -151,6 +156,7 @@ export const useFormStore = create<AppState & FormActions>()(
       builderState: createInitialBuilderState(),
       expandedField: null,
       guides: {},
+      industryExamplesCache: {},
 
       updateStoreBasic: (field, value) =>
         set((state) => ({ storeBasic: { ...state.storeBasic, [field]: value } })),
@@ -325,6 +331,11 @@ export const useFormStore = create<AppState & FormActions>()(
           expandedField: null,
           guides: {},
         }),
+
+      setCachedIndustryExamples: (key, examples) =>
+        set((state) => ({
+          industryExamplesCache: { ...state.industryExamplesCache, [key]: examples },
+        })),
     }),
     {
       name: 'brand-naming-data',

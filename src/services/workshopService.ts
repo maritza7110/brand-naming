@@ -7,8 +7,7 @@ import type { PersonaFieldKey, BuilderState } from '../types/workshop';
 import type { IndustrySelection } from '../types/form';
 import { useSettingsStore } from '../store/useSettingsStore';
 import { PERSONA_FIELD_METADATA } from '../types/workshop';
-
-const MODEL_NAME = 'gemini-3-flash-preview';
+import { MODEL_NAME } from './gemini';
 
 // System instruction for workshop
 const SYSTEM_INSTRUCTION = `당신은 세계 최고의 브랜드 전략가(CBO)입니다.
