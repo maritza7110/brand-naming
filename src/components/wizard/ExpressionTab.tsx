@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useFormStore } from '../../store/useFormStore';
 import { ProductSection } from '../sections/ProductSection';
 import { AdvancedOptionsToggle } from '../ui/AdvancedOptionsToggle';
@@ -6,6 +7,7 @@ import { TextField } from '../ui/TextField';
 import { KeywordWeightSlider } from '../ui/KeywordWeightSlider';
 import { RecommendButton } from '../ui/RecommendButton';
 import { useRecommend } from '../../hooks/useRecommend';
+import { getIndustryPlaceholder } from '../../services/industryPlaceholder';
 
 const NAMING_STYLE_OPTIONS = [
   '합성어',
@@ -26,6 +28,17 @@ export function ExpressionTab() {
   const updateExpressionChips = useFormStore((s) => s.updateExpressionChips);
   const updateExpressionText = useFormStore((s) => s.updateExpressionText);
   const { recommend, isLoading } = useRecommend();
+  const storeBasic = useFormStore((s) => s.storeBasic);
+
+  const [languageConstraintPh, setLanguageConstraintPh] = useState('');
+
+  useEffect(() => {
+    let cancelled = false;
+    getIndustryPlaceholder('languageConstraint', storeBasic.industry).then((ph) => {
+      if (!cancelled) setLanguageConstraintPh(ph);
+    });
+    return () => { cancelled = true; };
+  }, [storeBasic.industry]);
 
   // 입력된 키워드 목록 추출
   const keywords: { label: string; weight: number }[] = [];
@@ -73,7 +86,7 @@ export function ExpressionTab() {
             label="언어 제약"
             value={expression.languageConstraint}
             onChange={(v) => updateExpressionText('languageConstraint', v)}
-            placeholder="예: '영문 5자 이내', '한글+영문 조합', '발음하기 쉬운'"
+            placeholder={languageConstraintPh || "예: '영문 5자 이내', '한글+영문 조합', '발음하기 쉬운'"}
           />
         </AdvancedOptionsToggle>
       </div>

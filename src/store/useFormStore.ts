@@ -129,8 +129,19 @@ interface FormActions {
   resetWorkshop: () => void;
 
   // 업종별 예시 캐시
-  industryExamplesCache: Record<string, { competitors: string; usp: string; timestamp: number }>;
-  setCachedIndustryExamples: (key: string, examples: { competitors: string; usp: string; timestamp: number }) => void;
+  industryExamplesCache: Record<string, {
+    competitors: string;
+    usp: string;
+    ceoVision: string;
+    longTermGoal: string;
+    personalStory: string;
+    uniqueStrength: string;
+    valueProposition: string;
+    languageConstraint: string;
+    marketTrend: string;
+    timestamp: number;
+  }>;
+  setCachedIndustryExamples: (key: string, examples: { competitors: string; usp: string; ceoVision: string; longTermGoal: string; personalStory: string; uniqueStrength: string; valueProposition: string; languageConstraint: string; marketTrend: string; timestamp: number }) => void;
 }
 
 export const useFormStore = create<AppState & FormActions>()(
